@@ -165,26 +165,36 @@ h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.03em;margin:1
 /* Video demo */
 .video-frame{margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:#000;position:relative}
 .video-frame video{width:100%;display:block;max-height:560px}
-/* Customer Journey table — exact same as Thunder Gym */
-.cj-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.cj-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-top:32px}
-.cj-table th{padding:14px 18px;font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;text-align:left;white-space:nowrap}
+/* Customer Journey table — fully responsive, never scrolls horizontally */
+.cj-table-wrap{width:100%}
+.cj-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-top:32px;table-layout:fixed}
+.cj-table th{padding:12px 10px;font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;text-align:left;line-height:1.3}
 .cj-table th:nth-child(1){background:var(--surface);color:var(--muted)}
 .cj-table th:nth-child(2){background:var(--surface);color:var(--brand-a)}
 .cj-table th:nth-child(3){background:var(--surface);color:var(--brand-a)}
 .cj-table th:nth-child(4){background:var(--surface);color:var(--brand-b)}
 .cj-table th:nth-child(5){background:var(--surface);color:var(--brand-b)}
 .cj-table th:nth-child(6){background:var(--surface);color:var(--brand-a)}
-.cj-table td{padding:16px 18px;border-top:1px solid var(--border);vertical-align:top;background:var(--surface);font-size:13px;color:var(--muted);line-height:1.55;transition:background var(--ease)}
+.cj-table td{padding:14px 10px;border-top:1px solid var(--border);vertical-align:top;background:var(--surface);font-size:12px;color:var(--muted);line-height:1.5;transition:background var(--ease);word-wrap:break-word}
 .cj-table tr:hover td{background:var(--card-soft)}
-.cj-phase{display:flex;align-items:center;gap:10px}
-.cj-phase__num{width:24px;height:24px;border-radius:6px;background:var(--brand-a);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;color:#fff;flex-shrink:0}
-.cj-phase__name{font-weight:700;color:var(--text);font-size:13px}
-.cj-emotion{display:flex;align-items:center;gap:8px;font-size:13px}
-.cj-emotion__emoji{font-size:20px}
-.cj-opp{font-size:12px;color:var(--brand-a);font-weight:600}
-.cj-pain{font-size:13px;color:#e88a5c}
-@media(max-width:900px){.cj-table{min-width:900px}}
+.cj-phase{display:flex;align-items:center;gap:8px}
+.cj-phase__num{width:22px;height:22px;border-radius:6px;background:var(--brand-a);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;color:#fff;flex-shrink:0}
+.cj-phase__name{font-weight:700;color:var(--text);font-size:12px}
+.cj-emotion{display:flex;align-items:center;gap:6px;font-size:12px}
+.cj-emotion__emoji{font-size:16px}
+.cj-opp{font-size:11px;color:var(--brand-a);font-weight:600}
+.cj-pain{font-size:12px;color:#e88a5c}
+
+/* Below 860px: table collapses into stacked cards — no horizontal scroll ever */
+@media(max-width:860px){
+  .cj-table, .cj-table thead, .cj-table tbody, .cj-table th, .cj-table td, .cj-table tr{display:block}
+  .cj-table thead{display:none}
+  .cj-table tr{border-top:1px solid var(--border);padding:18px 16px}
+  .cj-table tr:first-child{border-top:none}
+  .cj-table td{border-top:none;padding:6px 0}
+  .cj-table td::before{content:attr(data-label);display:block;font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand-a);font-weight:700;margin-bottom:3px}
+  .cj-table td:first-child::before{display:none}
+}
 /* Screen groups */
 .screen-group{margin-top:44px}
 .screen-group:first-child{margin-top:32px}
@@ -322,10 +332,76 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
   </div>
 </section>
 
+<!-- 08 CUSTOMER JOURNEY -->
+<section class="cs-sec cs-sec--alt">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">04</span><div class="eyebrow__line"></div><span class="lbl" data-t="s8jl">Customer Journey</span></div>
+    <h2 data-t="s8jh">De la duda a la recomendación</h2>
+    <p class="prose reveal" data-t="s8jp1">Mapeamos el recorrido completo del usuario en cinco fases, desde que percibe el problema del desperdicio hasta que recomienda la app a otras personas.</p>
+
+    <div class="cj-table-wrap reveal">
+      <table class="cj-table" role="table" aria-label="Customer Journey de WiseCook">
+        <thead>
+          <tr>
+            <th scope="col" data-t="cj_fase">🚩 Fase</th>
+            <th scope="col" data-t="cj_actions">⚡ Acciones</th>
+            <th scope="col" data-t="cj_touch">📍 Puntos de contacto</th>
+            <th scope="col" data-t="cj_emotion">😊 Emociones</th>
+            <th scope="col" data-t="cj_pain">⚠️ Frustraciones</th>
+            <th scope="col" data-t="cj_opp">💡 Oportunidades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cj-phase"><div class="cj-phase__num">01</div><span class="cj-phase__name" data-t="cj1_name">Conciencia</span></div></td>
+            <td data-label="Acción" data-t="cj1_action">Revisa la nevera y nota comida que se está echando a perder.</td>
+            <td data-label="Contacto" data-t="cj1_touch">Nevera / despensa</td>
+            <td data-label="Emoción"><div class="cj-emotion"><span class="cj-emotion__emoji">😞</span><span data-t="cj1_emo">Desilusionado</span></div></td>
+            <td data-label="Frustración" class="cj-pain" data-t="cj1_pain">No sabe cuánta comida desperdicia ni por qué.</td>
+            <td data-label="Oportunidad" class="cj-opp" data-t="cj1_opp">→ Registro visual de la despensa en la app</td>
+          </tr>
+          <tr>
+            <td><div class="cj-phase"><div class="cj-phase__num">02</div><span class="cj-phase__name" data-t="cj2_name">Descubrimiento</span></div></td>
+            <td data-label="Acción" data-t="cj2_action">Investiga alternativas para reducir el desperdicio y descarga la app.</td>
+            <td data-label="Contacto" data-t="cj2_touch">Búsqueda / App Store</td>
+            <td data-label="Emoción"><div class="cj-emotion"><span class="cj-emotion__emoji">🤔</span><span data-t="cj2_emo">Curioso</span></div></td>
+            <td data-label="Frustración" class="cj-pain" data-t="cj2_pain">Duda si otra app más le va a funcionar de verdad.</td>
+            <td data-label="Oportunidad" class="cj-opp" data-t="cj2_opp">→ Onboarding claro con beneficio inmediato</td>
+          </tr>
+          <tr>
+            <td><div class="cj-phase"><div class="cj-phase__num">03</div><span class="cj-phase__name" data-t="cj3_name">Aprendizaje</span></div></td>
+            <td data-label="Acción" data-t="cj3_action">Ve el tutorial, verifica su número y completa su perfil.</td>
+            <td data-label="Contacto" data-t="cj3_touch">Onboarding / registro</td>
+            <td data-label="Emoción"><div class="cj-emotion"><span class="cj-emotion__emoji">😰</span><span data-t="cj3_emo">Preocupado</span></div></td>
+            <td data-label="Frustración" class="cj-pain" data-t="cj3_pain">Teme que registrar todo manualmente sea tedioso.</td>
+            <td data-label="Oportunidad" class="cj-opp" data-t="cj3_opp">→ Conexión automática con el dispositivo Wisemer</td>
+          </tr>
+          <tr>
+            <td><div class="cj-phase"><div class="cj-phase__num">04</div><span class="cj-phase__name" data-t="cj4_name">Uso</span></div></td>
+            <td data-label="Acción" data-t="cj4_action">Escanea su despensa, cocina su primera receta y mide su comida sobrante.</td>
+            <td data-label="Contacto" data-t="cj4_touch">Escaneo / Recetas / Medición</td>
+            <td data-label="Emoción"><div class="cj-emotion"><span class="cj-emotion__emoji">😓</span><span data-t="cj4_emo">Agobiado</span></div></td>
+            <td data-label="Frustración" class="cj-pain" data-t="cj4_pain">Demasiados pasos nuevos al mismo tiempo.</td>
+            <td data-label="Oportunidad" class="cj-opp" data-t="cj4_opp">→ Flujo guiado paso a paso con feedback inmediato</td>
+          </tr>
+          <tr>
+            <td><div class="cj-phase"><div class="cj-phase__num">05</div><span class="cj-phase__name" data-t="cj5_name">Engagement</span></div></td>
+            <td data-label="Acción" data-t="cj5_action">Ve su progreso en "Mi impacto" y recomienda la app a otras personas.</td>
+            <td data-label="Contacto" data-t="cj5_touch">Mi Impacto / Foro / Social</td>
+            <td data-label="Emoción"><div class="cj-emotion"><span class="cj-emotion__emoji">🎉</span><span data-t="cj5_emo">Entusiasmado</span></div></td>
+            <td data-label="Frustración" class="cj-pain" data-t="cj5_pain">Sin comunidad, el hábito es fácil de abandonar.</td>
+            <td data-label="Oportunidad" class="cj-opp" data-t="cj5_opp">→ Foro y mensajería para sostener el hábito en comunidad</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- 04 CONCEPTO -->
 <section class="cs-sec cs-sec--alt">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">04</span><div class="eyebrow__line"></div><span class="lbl" data-t="s4l">Concepto del servicio</span></div>
+    <div class="eyebrow reveal"><span class="eyebrow__num">05</span><div class="eyebrow__line"></div><span class="lbl" data-t="s4l">Concepto del servicio</span></div>
     <h2 data-t="s4h">¿Cómo crear conciencia y educar?</h2>
     <div class="prose reveal">
       <p data-t="s4p1">A partir del reto redefinido — <strong>¿cómo podríamos crear conciencia, educar y disminuir el porcentaje de desperdicio de alimentos en los hogares?</strong> — diseñamos el concepto de WiseCook: una app que acompaña al usuario desde la despensa hasta el plato, combinando registro de alimentos, recetas, medición de impacto y educación continua.</p>
@@ -336,7 +412,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
 <!-- 05 IDENTIDAD -->
 <section class="cs-sec">
   <div class="wrap">
- <div class="eyebrow reveal"><span class="eyebrow__num">05</span><div class="eyebrow__line"></div><span class="lbl" data-t="s5l">Identidad</span></div>
+ <div class="eyebrow reveal"><span class="eyebrow__num">06</span><div class="eyebrow__line"></div><span class="lbl" data-t="s5l">Identidad</span></div>
       <h2 id="s5" data-t="s5h">Un sistema visual cálido y orgánico</h2>
     <div class="prose reveal">
       <p data-t="s5p1">Desarrollamos el logotipo, la paleta de colores, la tipografía y los recursos gráficos de apoyo de la marca — un sistema visual pensado para transmitir frescura, alimentos orgánicos y una experiencia amigable y educativa.</p>
@@ -450,7 +526,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
 <!-- 06 PROTOTIPO -->
 <section class="cs-sec cs-sec--alt">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">06</span><div class="eyebrow__line"></div><span class="lbl" data-t="s6l">Prototipo</span></div>
+    <div class="eyebrow reveal"><span class="eyebrow__num">07</span><div class="eyebrow__line"></div><span class="lbl" data-t="s6l">Prototipo</span></div>
     <h2 data-t="s6h">Registro, educación y comunidad</h2>
     <div class="prose reveal">
       <p data-t="s6p1">El prototipo de alta fidelidad incluye tres pilares: <strong>registro de alimentos, recetas y medición</strong> del impacto personal; una sección de <strong>educación y foro</strong> para aprender y compartir con la comunidad; y <strong>"Mi impacto"</strong>, donde el usuario visualiza cuánto desperdicio ha evitado.</p>
@@ -461,8 +537,51 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
       <div class="del-card"><div class="del-card__icon">📊</div><p class="del-card__title" data-t="d3t">Mi impacto</p><p class="del-card__sub" data-t="d3s">Medición del desperdicio evitado</p></div>
       <div class="del-card"><div class="del-card__icon">💬</div><p class="del-card__title" data-t="d4t">Foro & educación</p><p class="del-card__sub" data-t="d4s">Comunidad y contenido educativo</p></div>
     </div>
-    
+
     <p class="lbl reveal" style="margin-top:40px;margin-bottom:0" data-t="screens_label">Pantallas del prototipo</p>
+    <div class="screen-group reveal">
+      <div class="screen-group__label">
+        <span data-t="grp_wiser">Conexión con Wisemer</span>
+        <span class="screen-group__count">(5)</span>
+      </div>
+      <div class="screens-grid">
+      <figure class="screen-card">
+        <div class="screen-card__img-wrap">
+          <img src="assets/wisecook-wiser-01.jpg" alt="Wisemer intro — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        </div>
+        <figcaption data-t="scr_wiser01">Wisemer intro</figcaption>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-card__img-wrap">
+          <img src="assets/wisecook-wiser-02.jpg" alt="Detectando Wisemer — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        </div>
+        <figcaption data-t="scr_wiser02">Detectando Wisemer</figcaption>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-card__img-wrap">
+          <img src="assets/wisecook-wiser-03.jpg" alt="Conectando — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        </div>
+        <figcaption data-t="scr_wiser03">Conectando</figcaption>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-card__img-wrap">
+          <img src="assets/wisecook-wiser-04.jpg" alt="Wisemer detectado — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        </div>
+        <figcaption data-t="scr_wiser04">Wisemer detectado</figcaption>
+      </figure>
+      <figure class="screen-card">
+        <div class="screen-card__img-wrap">
+          <img src="assets/wisecook-wiser-05.jpg" alt="Wisemer conectado — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        </div>
+        <figcaption data-t="scr_wiser05">Wisemer conectado</figcaption>
+      </figure>
+      </div>
+    </div>
     <div class="screen-group reveal">
       <div class="screen-group__label">
         <span data-t="grp_auth">Registro y onboarding</span>
@@ -524,49 +643,6 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
           <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
         </div>
         <figcaption data-t="scr_auth08">Popup Escanear</figcaption>
-      </figure>
-      </div>
-    </div>
-    <div class="screen-group reveal">
-      <div class="screen-group__label">
-        <span data-t="grp_wiser">Conexión con Wisemer</span>
-        <span class="screen-group__count">(5)</span>
-      </div>
-      <div class="screens-grid">
-      <figure class="screen-card">
-        <div class="screen-card__img-wrap">
-          <img src="assets/wisecook-wiser-01.jpg" alt="Wisemer intro — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-        </div>
-        <figcaption data-t="scr_wiser01">Wisemer intro</figcaption>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-card__img-wrap">
-          <img src="assets/wisecook-wiser-02.jpg" alt="Detectando Wisemer — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-        </div>
-        <figcaption data-t="scr_wiser02">Detectando Wisemer</figcaption>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-card__img-wrap">
-          <img src="assets/wisecook-wiser-03.jpg" alt="Conectando — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-        </div>
-        <figcaption data-t="scr_wiser03">Conectando</figcaption>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-card__img-wrap">
-          <img src="assets/wisecook-wiser-04.jpg" alt="Wisemer detectado — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-        </div>
-        <figcaption data-t="scr_wiser04">Wisemer detectado</figcaption>
-      </figure>
-      <figure class="screen-card">
-        <div class="screen-card__img-wrap">
-          <img src="assets/wisecook-wiser-05.jpg" alt="Wisemer conectado — WiseCook" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="screen-card__empty" style="display:none" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-        </div>
-        <figcaption data-t="scr_wiser05">Wisemer conectado</figcaption>
       </figure>
       </div>
     </div>
@@ -757,7 +833,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
 <!-- 07 WISEMER -->
 <section class="cs-sec">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">07</span><div class="eyebrow__line"></div><span class="lbl" data-t="s7l">Dispositivo</span></div>
+    <div class="eyebrow reveal"><span class="eyebrow__num">08</span><div class="eyebrow__line"></div><span class="lbl" data-t="s7l">Dispositivo</span></div>
     <h2 data-t="s7h">Wisemer — el complemento físico</h2>
     <div class="prose reveal">
       <p data-t="s7p1">Wisemer es el <strong>dispositivo inteligente</strong> diseñado para complementar la app, sincronizándose con la sección "Despensa". Su objetivo es mostrar el tiempo de vida, la etapa y la cantidad de productos orgánicos disponibles en tiempo real, sin que el usuario tenga que registrar todo manualmente.</p>
@@ -766,72 +842,6 @@ footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;fo
       <img src="assets/wisecook-wisemer.jpg" alt="Modelado 3D del dispositivo Wisemer, renderizado en Rhino" loading="lazy" onerror="this.parentElement.style.display='none'">
     </div>
     <p class="render-caption reveal" data-t="render_caption">Modelado 3D y renderizado del dispositivo Wisemer — realizado en Rhino</p>
-  </div>
-</section>
-
-<!-- 08 CUSTOMER JOURNEY -->
-<section class="cs-sec cs-sec--alt">
-  <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">08</span><div class="eyebrow__line"></div><span class="lbl" data-t="s8jl">Customer Journey</span></div>
-    <h2 data-t="s8jh">De la duda a la recomendación</h2>
-    <p class="prose reveal" data-t="s8jp1">Mapeamos el recorrido completo del usuario en cinco fases, desde que percibe el problema del desperdicio hasta que recomienda la app a otras personas.</p>
-
-    <div class="cj-table-wrap reveal">
-      <table class="cj-table" role="table" aria-label="Customer Journey de WiseCook">
-        <thead>
-          <tr>
-            <th scope="col" data-t="cj_fase">🚩 Fase</th>
-            <th scope="col" data-t="cj_actions">⚡ Acciones</th>
-            <th scope="col" data-t="cj_touch">📍 Puntos de contacto</th>
-            <th scope="col" data-t="cj_emotion">😊 Emociones</th>
-            <th scope="col" data-t="cj_pain">⚠️ Frustraciones</th>
-            <th scope="col" data-t="cj_opp">💡 Oportunidades</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="cj-phase"><div class="cj-phase__num">01</div><span class="cj-phase__name" data-t="cj1_name">Conciencia</span></div></td>
-            <td data-t="cj1_action">Revisa la nevera y nota comida que se está echando a perder.</td>
-            <td data-t="cj1_touch">Nevera / despensa</td>
-            <td><div class="cj-emotion"><span class="cj-emotion__emoji">😞</span><span data-t="cj1_emo">Desilusionado</span></div></td>
-            <td class="cj-pain" data-t="cj1_pain">No sabe cuánta comida desperdicia ni por qué.</td>
-            <td class="cj-opp" data-t="cj1_opp">→ Registro visual de la despensa en la app</td>
-          </tr>
-          <tr>
-            <td><div class="cj-phase"><div class="cj-phase__num">02</div><span class="cj-phase__name" data-t="cj2_name">Descubrimiento</span></div></td>
-            <td data-t="cj2_action">Investiga alternativas para reducir el desperdicio y descarga la app.</td>
-            <td data-t="cj2_touch">Búsqueda / App Store</td>
-            <td><div class="cj-emotion"><span class="cj-emotion__emoji">🤔</span><span data-t="cj2_emo">Curioso</span></div></td>
-            <td class="cj-pain" data-t="cj2_pain">Duda si otra app más le va a funcionar de verdad.</td>
-            <td class="cj-opp" data-t="cj2_opp">→ Onboarding claro con beneficio inmediato</td>
-          </tr>
-          <tr>
-            <td><div class="cj-phase"><div class="cj-phase__num">03</div><span class="cj-phase__name" data-t="cj3_name">Aprendizaje</span></div></td>
-            <td data-t="cj3_action">Ve el tutorial, verifica su número y completa su perfil.</td>
-            <td data-t="cj3_touch">Onboarding / registro</td>
-            <td><div class="cj-emotion"><span class="cj-emotion__emoji">😰</span><span data-t="cj3_emo">Preocupado</span></div></td>
-            <td class="cj-pain" data-t="cj3_pain">Teme que registrar todo manualmente sea tedioso.</td>
-            <td class="cj-opp" data-t="cj3_opp">→ Conexión automática con el dispositivo Wisemer</td>
-          </tr>
-          <tr>
-            <td><div class="cj-phase"><div class="cj-phase__num">04</div><span class="cj-phase__name" data-t="cj4_name">Uso</span></div></td>
-            <td data-t="cj4_action">Escanea su despensa, cocina su primera receta y mide su comida sobrante.</td>
-            <td data-t="cj4_touch">Escaneo / Recetas / Medición</td>
-            <td><div class="cj-emotion"><span class="cj-emotion__emoji">😓</span><span data-t="cj4_emo">Agobiado</span></div></td>
-            <td class="cj-pain" data-t="cj4_pain">Demasiados pasos nuevos al mismo tiempo.</td>
-            <td class="cj-opp" data-t="cj4_opp">→ Flujo guiado paso a paso con feedback inmediato</td>
-          </tr>
-          <tr>
-            <td><div class="cj-phase"><div class="cj-phase__num">05</div><span class="cj-phase__name" data-t="cj5_name">Engagement</span></div></td>
-            <td data-t="cj5_action">Ve su progreso en "Mi impacto" y recomienda la app a otras personas.</td>
-            <td data-t="cj5_touch">Mi Impacto / Foro / Social</td>
-            <td><div class="cj-emotion"><span class="cj-emotion__emoji">🎉</span><span data-t="cj5_emo">Entusiasmado</span></div></td>
-            <td class="cj-pain" data-t="cj5_pain">Sin comunidad, el hábito es fácil de abandonar.</td>
-            <td class="cj-opp" data-t="cj5_opp">→ Foro y mensajería para sostener el hábito en comunidad</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </section>
 
