@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velada — Design Sprint · Verónica Arciniega</title>
+<meta name="description" content="Design Sprint para mejorar el onboarding de la app Velada. Proceso completo de planeación, ejecución, testeo con usuarios y aprendizajes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--surface:#16161d;--card:#1a1a24;--card-soft:#0d0d14;--text:#f5f5f7;--muted:rgba(245,245,247,0.68);--faint:rgba(245,245,247,0.58);--border:rgba(255,255,255,0.07);--border-mid:rgba(255,255,255,0.13);--font:'Plus Jakarta Sans',sans-serif;--mono:'Space Mono',monospace;--ease:0.4s cubic-bezier(0.4,0,0.2,1);--bounce:0.5s cubic-bezier(0.34,1.56,0.64,1);--brand-a:#FF6B35;--brand-b:#2D2A32}
+[data-theme="light"]{--bg:#f4f4f8;--surface:#ffffff;--card:#ffffff;--card-soft:#ececf4;--text:#0a0a0f;--muted:rgba(10,10,15,0.72);--faint:rgba(10,10,15,0.64);--border:rgba(0,0,0,0.07);--border-mid:rgba(0,0,0,0.13)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:68px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background var(--ease),color var(--ease)}
+img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--brand-a);outline-offset:3px;border-radius:4px}
+.skip{position:fixed;top:-100px;left:16px;z-index:9999;padding:12px 20px;background:var(--brand-a);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:top .2s}
+.skip:focus{top:16px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-mid);background:rgba(10,10,15,0.92);box-shadow:0 4px 24px rgba(0,0,0,.2)}
+[data-theme="light"] .nav{background:rgba(248,248,252,0.94)}
+.nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+@media(min-width:768px){.nav__inner{padding:0 48px}}
+.nav__back{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);transition:color var(--ease)}
+.nav__back:hover{color:var(--text)}
+.nav__back svg{width:16px;height:16px;transition:transform var(--ease)}
+.nav__back:hover svg{transform:translateX(-3px)}
+.nav__right{display:flex;align-items:center;gap:12px}
+.lang-sep{color:var(--faint);font-size:11px}
+.lang-btn{font-family:var(--mono);font-size:11px;background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;font-weight:400;color:var(--faint);transition:color .3s,font-weight .3s,background .3s;letter-spacing:.05em}
+.lang-btn[aria-pressed="true"]{color:var(--brand-a);font-weight:800;background:rgba(255,107,53,0.14)}
+.lang-btn:hover:not([aria-pressed="true"]){color:var(--text);background:rgba(255,255,255,0.06)}
+.theme-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-mid);color:var(--muted);transition:background var(--ease),transform var(--bounce),border-color var(--ease),color var(--ease)}
+.theme-btn:hover{background:var(--surface);transform:rotate(20deg);color:var(--text)}
+[data-theme="light"] .theme-btn{background:rgba(255,107,53,0.12);border-color:var(--brand-a);color:var(--brand-a)}
+[data-theme="light"] .theme-btn:hover{background:var(--brand-a);color:#fff}
+.theme-btn svg{width:16px;height:16px}
+.hero{position:relative;height:92svh;min-height:540px;overflow:hidden;display:flex;align-items:flex-end;padding-top:68px;background:linear-gradient(160deg,#1a1512,#0a0a0f 60%)}
+.hero__overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(255,107,53,.18),transparent 60%)}
+.hero__content{position:relative;z-index:1;width:100%;max-width:1280px;margin:0 auto;padding:0 24px 72px}
+@media(min-width:768px){.hero__content{padding:0 48px 88px}}
+.hero__eyebrow{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--brand-a);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeUp .7s .1s ease forwards}
+.hero__eyebrow::before{content:'';width:32px;height:1px;background:var(--brand-a)}
+.hero__title{font-size:clamp(44px,9vw,104px);font-weight:800;letter-spacing:-.045em;line-height:.92;color:#fff;opacity:0;animation:fadeUp .8s .25s ease forwards;margin-bottom:24px}
+.hero__chips{display:flex;flex-wrap:wrap;gap:8px;opacity:0;animation:fadeUp .8s .4s ease forwards}
+.hero__chip{padding:8px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);backdrop-filter:blur(8px);font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.08em}
+.hero__chip--accent{border-color:var(--brand-a);background:rgba(255,107,53,0.22);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.meta-strip{background:var(--surface);border-bottom:1px solid var(--border)}
+.meta-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+@media(min-width:640px){.meta-inner{grid-template-columns:repeat(4,1fr)}}
+.meta-block{background:var(--surface);padding:24px 28px}
+@media(min-width:768px){.meta-block{padding:28px 48px}}
+.meta-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--brand-a);font-weight:700;margin-bottom:8px}
+.meta-value{font-size:13px;font-weight:600;color:var(--text);line-height:1.5}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+@media(min-width:768px){.wrap{padding:0 48px}}
+.cs-sec{padding:80px 0}
+.cs-sec--alt{background:var(--surface)}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.eyebrow__num{font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:700;letter-spacing:.1em}
+.eyebrow__line{flex:1;height:1px;background:var(--border)}
+.lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--brand-a);font-weight:700}
+h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.03em;margin:10px 0 16px}
+.prose{font-size:16px;color:var(--muted);line-height:1.8;max-width:680px}
+.prose strong{color:var(--text);font-weight:700}
+.prose p{margin-bottom:14px}
+.prose p:last-child{margin-bottom:0}
+.highlight{border-left:3px solid var(--brand-a);padding:20px 24px;background:var(--card);border-radius:0 12px 12px 0;margin:28px 0}
+.highlight p{font-size:15px;font-style:italic;color:var(--muted);line-height:1.7}
+.highlight cite{display:block;margin-top:10px;font-style:normal;font-family:var(--mono);font-size:10px;color:var(--brand-a);text-transform:uppercase;letter-spacing:.08em}
+/* objetivos grid */
+.obj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:28px}
+.obj-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;transition:all var(--ease)}
+.obj-card:hover{border-color:var(--brand-a);transform:translateY(-4px)}
+.obj-card__num{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--brand-a);margin-bottom:10px}
+.obj-card__text{font-size:13px;color:var(--text);line-height:1.55;font-weight:600}
+/* stat callout */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin:32px 0}
+.stat-box{text-align:center;padding:28px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px}
+.stat-box__num{font-size:38px;font-weight:800;color:var(--brand-a);letter-spacing:-.03em;line-height:1}
+.stat-box__label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:8px}
+/* escaleta timeline */
+.escaleta{display:flex;flex-direction:column;gap:0;margin-top:28px}
+.esc-phase{border-bottom:1px solid var(--border);padding:20px 0}
+.esc-phase:last-child{border-bottom:none}
+.esc-phase__head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.esc-phase__dot{width:10px;height:10px;border-radius:3px;background:var(--brand-a);flex-shrink:0}
+.esc-phase__name{font-size:15px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.02em}
+.esc-phase__time{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--brand-a);font-weight:700}
+.esc-tasks{display:flex;flex-direction:column;gap:6px;padding-left:22px}
+.esc-task{font-size:13px;color:var(--muted);display:flex;gap:8px}
+.esc-task::before{content:'—';color:var(--faint);flex-shrink:0}
+/* materiales */
+.mat-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:640px){.mat-grid{grid-template-columns:1fr 1fr}}
+.mat-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px}
+.mat-card__title{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand-a);font-weight:700;margin-bottom:12px}
+.mat-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.mat-list li{font-size:13px;color:var(--muted)}
+/* propuestas */
+.prop-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+@media(min-width:640px){.prop-grid{grid-template-columns:1fr 1fr}}
+.prop-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all var(--ease)}
+.prop-card:hover{border-color:var(--brand-a);transform:translateY(-4px)}
+.prop-card__img{aspect-ratio:16/10;background:var(--card-soft);overflow:hidden}
+.prop-card__img img{width:100%;height:100%;object-fit:cover}
+.prop-card__body{padding:20px}
+.prop-card__num{font-family:var(--mono);font-size:10px;color:var(--brand-a);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.prop-card__title{font-size:15px;font-weight:800;color:var(--text)}
+/* screens grid — reuso mismo tamaño estándar */
+.screens-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:540px){.screens-grid{grid-template-columns:repeat(4,1fr);gap:18px}}
+.screen-card{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--card-soft);transition:all var(--ease);display:flex;flex-direction:column}
+.screen-card:hover{border-color:var(--border-mid);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.screen-card__img-wrap{width:100%;aspect-ratio:9/16;overflow:hidden;position:relative;background:var(--card-soft);flex-shrink:0}
+.screen-card__img-wrap img{width:100%;height:100%;object-fit:contain;object-position:center top;display:block;padding:6px;transition:transform .5s ease}
+.screen-card:hover .screen-card__img-wrap img{transform:scale(1.03)}
+.screen-card__empty{width:100%;aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:.15}
+.screen-card__empty svg{width:24px;height:24px}
+.screen-card figcaption{padding:10px 12px;font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);border-top:1px solid var(--border)}
+/* feedback notes */
+.fb-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media(min-width:768px){.fb-grid{grid-template-columns:1fr 1fr}}
+.fb-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px}
+.fb-card__name{font-size:13px;font-weight:800;color:var(--brand-a);font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.fb-card__item{margin-bottom:10px}
+.fb-card__item:last-child{margin-bottom:0}
+.fb-card__item-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
+.fb-card__item-note{font-size:12.5px;color:var(--muted);line-height:1.55}
+/* conclusiones */
+.concl-list{display:flex;flex-direction:column;gap:16px;margin-top:28px}
+.concl-item{display:flex;gap:14px;align-items:flex-start}
+.concl-item__icon{width:32px;height:32px;border-radius:9px;background:rgba(255,107,53,0.12);color:var(--brand-a);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.concl-item__text{font-size:14px;color:var(--muted);line-height:1.65}
+.proj-nav{background:var(--surface);border-top:1px solid var(--border);padding:36px 0}
+.proj-nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(min-width:768px){.proj-nav__inner{padding:0 48px}}
+.nav-proj{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--muted);padding:11px 20px;border-radius:100px;border:1px solid var(--border);transition:all var(--ease)}
+.nav-proj:hover{color:var(--text);border-color:var(--border-mid);background:var(--card)}
+.nav-proj svg{width:15px;height:15px;flex-shrink:0}
+.nav-home{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff;padding:11px 24px;border-radius:100px;background:var(--brand-a);border:1px solid var(--brand-a);transition:all var(--bounce)}
+.nav-home:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(255,107,53,0.35)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--faint)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<script>(function(){var t=localStorage.getItem('va-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+
+<a href="#main" class="skip" data-t="skip">Saltar al contenido</a>
+
+<nav class="nav" role="navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span data-t="back">Volver al portfolio</span>
+    </a>
+    <div class="nav__right">
+      <div style="display:flex;align-items:center;gap:6px">
+        <button class="lang-btn" id="btn-es" onclick="setLang('es')" aria-pressed="true">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()">
+        <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="hero">
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow" data-t="sector">Design Sprint · Innovación · Marzo 2024</p>
+    <h1 class="hero__title">Velada</h1>
+    <div class="hero__chips">
+      <span class="hero__chip hero__chip--accent" data-t="tag1">Design Sprint</span>
+      <span class="hero__chip" data-t="tag2">Onboarding UX</span>
+      <span class="hero__chip" data-t="tag3">Trabajo en Equipo</span>
+    </div>
+  </div>
+</header>
+
+<div class="meta-strip">
+  <div class="meta-inner">
+    <div class="meta-block"><p class="meta-label" data-t="ml_sector">Sector</p><p class="meta-value" data-t="mv_sector">Reservas & Hostelería</p></div>
+    <div class="meta-block"><p class="meta-label" data-t="ml_role">Mi rol</p><p class="meta-value" data-t="mv_role">Facilitación & Diseño UX</p></div>
+    <div class="meta-block"><p class="meta-label" data-t="ml_team">Equipo</p><p class="meta-value">Grupo 6 · 5 personas</p></div>
+    <div class="meta-block"><p class="meta-label" data-t="ml_duration">Duración</p><p class="meta-value">2h 30min · sesión única</p></div>
+  </div>
+</div>
+
+<!-- 01 INTRO -->
+<section class="cs-sec">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">01</span><div class="eyebrow__line"></div><span class="lbl" data-t="s1l">El reto</span></div>
+    <h2 data-t="s1h">Entender y mejorar el onboarding de Velada</h2>
+    <div class="prose reveal">
+      <p data-t="s1p1">Un Design Sprint es una metodología que aborda de forma efectiva el desarrollo de procesos de diseño en un periodo de tiempo corto. Este proyecto documenta la planeación y ejecución de un Design Sprint real, aplicado al onboarding de <strong>Velada</strong>, una app de reservas de restaurantes.</p>
+      <p data-t="s1p2">El objetivo del Sprint fue claro: <strong>entender el onboarding actual de la app Velada, identificar problemáticas y desarrollar propuestas de mejora</strong> — todo en una sola sesión de 2 horas y 30 minutos.</p>
+    </div>
+    <div class="obj-grid reveal">
+      <div class="obj-card"><p class="obj-card__num">01</p><p class="obj-card__text" data-t="o1">Comprender la forma adecuada de planear y ejecutar un Design Sprint</p></div>
+      <div class="obj-card"><p class="obj-card__num">02</p><p class="obj-card__text" data-t="o2">Preparar una sesión definiendo herramientas útiles para el proceso</p></div>
+      <div class="obj-card"><p class="obj-card__num">03</p><p class="obj-card__text" data-t="o3">Entender las fases y cómo se articulan para un proceso fluido</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PLANEACIÓN -->
+<section class="cs-sec cs-sec--alt">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">02</span><div class="eyebrow__line"></div><span class="lbl" data-t="s2l">Planeación</span></div>
+    <h2 data-t="s2h">Workshop Design Canvas</h2>
+    <div class="prose reveal">
+      <p data-t="s2p1">El proceso se inició realizando el <strong>Workshop Design Canvas</strong>, una herramienta que permite pensar en los elementos clave antes del workshop: el objetivo de la sesión, el alcance deseado, los inputs necesarios y las herramientas y materiales a preparar.</p>
+      <p data-t="s2p2">Se planteó el proceso en 3 fases: <strong>Planeación</strong> (definir objetivos y entregables), <strong>Sprint</strong> (ejecutar y obtener información) y <strong>Post Sprint</strong> (procesar los resultados del taller).</p>
+    </div>
+    <div class="highlight reveal">
+      <p data-t="s2q">Los participantes fueron estudiantes del Máster en Diseño de Experiencia de Usuario de la Universidad de Diseño, Innovación y Tecnología (UDIT) — con un background de diseño que ya conocía muchas de las herramientas del proceso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 ESCALETA -->
+<section class="cs-sec">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">03</span><div class="eyebrow__line"></div><span class="lbl" data-t="s3l">Escaleta</span></div>
+    <h2 data-t="s3h">Cuatro fases en 2h 30min</h2>
+    <div class="prose reveal">
+      <p data-t="s3p1">Se organizó la sesión en cuatro fases — <strong>Comprender, Diverger, Converger y Prototipar</strong> — sin incluir la fase de testeo, que por la limitación de tiempo se desarrolló en una etapa posterior al Sprint.</p>
+    </div>
+    <div class="escaleta reveal">
+      <div class="esc-phase">
+        <div class="esc-phase__head"><div class="esc-phase__dot"></div><span class="esc-phase__name" data-t="ph1">Comprender</span><span class="esc-phase__time">~90 min</span></div>
+        <div class="esc-tasks">
+          <span class="esc-task" data-t="ph1t1">Setup, presentación del Sprint y contexto de la app</span>
+          <span class="esc-task" data-t="ph1t2">Descarga de la app Velada por los participantes</span>
+          <span class="esc-task" data-t="ph1t3">Crear User Persona y Customer Journey actual</span>
+          <span class="esc-task" data-t="ph1t4">How Might We — reformular problemas como oportunidades</span>
+        </div>
+      </div>
+      <div class="esc-phase">
+        <div class="esc-phase__head"><div class="esc-phase__dot"></div><span class="esc-phase__name" data-t="ph2">Diverger</span><span class="esc-phase__time">~35 min</span></div>
+        <div class="esc-tasks">
+          <span class="esc-task" data-t="ph2t1">Lighting Demos — inspiración y referentes existentes</span>
+          <span class="esc-task" data-t="ph2t2">Captar ideas con dibujo rápido</span>
+          <span class="esc-task" data-t="ph2t3">Generación de ideas individual — técnica 6-3-5</span>
+        </div>
+      </div>
+      <div class="esc-phase">
+        <div class="esc-phase__head"><div class="esc-phase__dot"></div><span class="esc-phase__name" data-t="ph3">Converger</span><span class="esc-phase__time">~15 min</span></div>
+        <div class="esc-tasks">
+          <span class="esc-task" data-t="ph3t1">Museo de Arte y Mapa de Calor — puntuación con stickers</span>
+          <span class="esc-task" data-t="ph3t2">Discusión de ideas destacadas y votación</span>
+          <span class="esc-task" data-t="ph3t3">Agrupar ideas elegidas en un solo prototipo</span>
+        </div>
+      </div>
+      <div class="esc-phase">
+        <div class="esc-phase__head"><div class="esc-phase__dot"></div><span class="esc-phase__name" data-t="ph4">Prototipar</span><span class="esc-phase__time">~45 min</span></div>
+        <div class="esc-tasks">
+          <span class="esc-task" data-t="ph4t1">Creación de Blueprint de servicio</span>
+          <span class="esc-task" data-t="ph4t2">Prototipado en papel con plantillas de wireframes</span>
+          <span class="esc-task" data-t="ph4t3">Cierre, agradecimiento y feedback de la sesión</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MATERIALES -->
+<section class="cs-sec cs-sec--alt">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">04</span><div class="eyebrow__line"></div><span class="lbl" data-t="s4l">Preparación</span></div>
+    <h2 data-t="s4h">Herramientas y materiales</h2>
+    <div class="mat-grid reveal">
+      <div class="mat-card">
+        <p class="mat-card__title" data-t="m1t">Proceso y herramientas</p>
+        <ul class="mat-list">
+          <li data-t="m1i1">Escaleta y presentación inicial</li>
+          <li data-t="m1i2">30 circle drawing challenge</li>
+          <li data-t="m1i3">Ideación 6-3-5</li>
+          <li data-t="m1i4">Museo de Arte y Mapa de Calor</li>
+          <li data-t="m1i5">Prototipado en papel</li>
+        </ul>
+      </div>
+      <div class="mat-card">
+        <p class="mat-card__title" data-t="m2t">Materiales</p>
+        <ul class="mat-list">
+          <li data-t="m2i1">Post-it, rotuladores, papel, tijeras</li>
+          <li data-t="m2i2">Plantillas de celular para wireframes</li>
+          <li data-t="m2i3">Slides de presentación y contexto de la app</li>
+          <li data-t="m2i4">Hojas impresas de 30 círculos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 EJECUCIÓN -->
+<section class="cs-sec">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">05</span><div class="eyebrow__line"></div><span class="lbl" data-t="s5l">Ejecución</span></div>
+    <h2 data-t="s5h">La sesión en vivo</h2>
+    <div class="prose reveal">
+      <p data-t="s5p1">Se planteó una distribución del Sprint en un board físico para que los participantes visualizaran claramente el orden y avance del proceso en todo momento — el poder ponerse de pie e interactuar con el board hizo el proceso más dinámico y menos monótono.</p>
+      <p data-t="s5p2">Al iniciar la sesión se estableció el tiempo real disponible de 2 horas, lo que implicó ajustar el proceso sobre la marcha. Durante el <strong>How Might We</strong>, los participantes se plantearon si estaban en el camino correcto — el facilitador tuvo que recordar el enfoque principal de la sesión.</p>
+      <p data-t="s5p3">En la fase de <strong>Converger</strong>, la presión de tiempo terminó afectando la decisión: se eligió una propuesta que no estaba del todo alineada con el objetivo inicial. Fue una lección clave sobre el rol vital del facilitador para no perder el rumbo.</p>
+    </div>
+    <div class="stat-row reveal">
+      <div class="stat-box"><p class="stat-box__num">48</p><p class="stat-box__label" data-t="stat1">Ideas generadas en 20 min (6-3-5)</p></div>
+      <div class="stat-box"><p class="stat-box__num">45→20</p><p class="stat-box__label" data-t="stat2">Min de prototipado, reducidos por tiempo</p></div>
+      <div class="stat-box"><p class="stat-box__num">4</p><p class="stat-box__label" data-t="stat3">Participantes del equipo</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 POST SPRINT -->
+<section class="cs-sec cs-sec--alt">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">06</span><div class="eyebrow__line"></div><span class="lbl" data-t="s6l">Post Sprint</span></div>
+    <h2 data-t="s6h">Volviendo al enfoque correcto</h2>
+    <div class="prose reveal">
+      <p data-t="s6p1">Como equipo, se concluyó que en la fase final del Sprint el enfoque se había perdido. Se decidió volver atrás y revisar las propuestas del 6-3-5, eligiendo aquellas más alineadas con el objetivo de mejorar el onboarding:</p>
+    </div>
+    <div class="prop-grid reveal">
+      <div class="prop-card">
+        <div class="prop-card__img"><img src="assets/velada-prop-01.jpg" alt="Vincular con Google Calendar y Contacts" onerror="this.parentElement.style.display='none'"></div>
+        <div class="prop-card__body"><p class="prop-card__num" data-t="p1n">Propuesta 01</p><p class="prop-card__title" data-t="p1t">Vincular con Google Calendar y Contacts</p></div>
+      </div>
+      <div class="prop-card">
+        <div class="prop-card__img"><img src="assets/velada-prop-02.jpg" alt="Cuenta compartida" onerror="this.parentElement.style.display='none'"></div>
+        <div class="prop-card__body"><p class="prop-card__num" data-t="p2n">Propuesta 02</p><p class="prop-card__title" data-t="p2t">Crear una cuenta compartida</p></div>
+      </div>
+      <div class="prop-card">
+        <div class="prop-card__img"><img src="assets/velada-prop-03.jpg" alt="Nuevo proceso de reserva" onerror="this.parentElement.style.display='none'"></div>
+        <div class="prop-card__body"><p class="prop-card__num" data-t="p3n">Propuesta 03</p><p class="prop-card__title" data-t="p3t">Un nuevo proceso de reserva</p></div>
+      </div>
+      <div class="prop-card">
+        <div class="prop-card__img"><img src="assets/velada-prop-04.jpg" alt="Invitar a una persona por la app" onerror="this.parentElement.style.display='none'"></div>
+        <div class="prop-card__body"><p class="prop-card__num" data-t="p4n">Propuesta 04</p><p class="prop-card__title" data-t="p4t">Invitar a una persona por la app</p></div>
+      </div>
+    </div>
+
+    <p class="lbl reveal" style="margin-top:44px;margin-bottom:8px" data-t="screens_label">Pantallas de las propuestas</p>
+    <div class="screens-grid reveal">
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-01.jpg" alt="Vincular Google Calendar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc1">Vincular Calendar</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-02.jpg" alt="Vincular Google Contacts" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc2">Vincular Contacts</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-03.jpg" alt="Cuenta compartida" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc3">Cuenta compartida</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-04.jpg" alt="Nuevo proceso de reserva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc4">Nueva reserva</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-05.jpg" alt="Invitar a una persona" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc5">Invitar por la app</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-06.jpg" alt="Confirmación" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc6">Confirmación</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-07.jpg" alt="Notificación" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc7">Notificación</figcaption></figure>
+      <figure class="screen-card"><div class="screen-card__img-wrap"><img src="assets/velada-screen-08.jpg" alt="Home" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="screen-card__empty" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div><figcaption data-t="sc8">Home</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 07 TESTEO -->
+<section class="cs-sec">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">07</span><div class="eyebrow__line"></div><span class="lbl" data-t="s7l">Testeo con usuarios</span></div>
+    <h2 data-t="s7h">4 entrevistas, feedback real</h2>
+    <div class="prose reveal">
+      <p data-t="s7p1">Se diseñó un guión de entrevista y se realizaron <strong>4 sesiones de testeo</strong> mostrando las 4 propuestas para obtener feedback honesto sobre su utilidad, facilidad de uso y valor percibido.</p>
+    </div>
+    <div class="fb-grid reveal">
+      <div class="fb-card">
+        <p class="fb-card__name">Carlos</p>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c1_1t">Calendar & Contacts</p><p class="fb-card__item-note" data-t="c1_1n">Le pareció intuitivo vincular sus cuentas para acceder a reservas desde distintas apps.</p></div>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c1_2t">Reserva</p><p class="fb-card__item-note" data-t="c1_2n">Piensa que tiene demasiados pasos y se podría acortar el recorrido.</p></div>
+      </div>
+      <div class="fb-card">
+        <p class="fb-card__name">Alejandro</p>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c2_1t">Calendar & Contacts</p><p class="fb-card__item-note" data-t="c2_1n">"Me ha parecido muy intuitivo, no hay pérdida" — la opción más útil de todas para él.</p></div>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c2_2t">Invitar por la app</p><p class="fb-card__item-note" data-t="c2_2n">"Esto es justo como lo imaginaba yo" — le parece perfecto.</p></div>
+      </div>
+      <div class="fb-card">
+        <p class="fb-card__name">Juan Pablo</p>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c3_1t">Cuenta compartida</p><p class="fb-card__item-note" data-t="c3_1n">No entendió bien por qué medio se comparte la cuenta — generó confusión.</p></div>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c3_2t">Reserva</p><p class="fb-card__item-note" data-t="c3_2n">Sugiere mostrar información del restaurante como código de vestimenta o condiciones.</p></div>
+      </div>
+      <div class="fb-card">
+        <p class="fb-card__name">Alejandro Chico</p>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c4_1t">Cuenta compartida</p><p class="fb-card__item-note" data-t="c4_1n">No comprendió la utilidad — no estaba bien comunicada visual ni textualmente.</p></div>
+        <div class="fb-card__item"><p class="fb-card__item-title" data-t="c4_2t">Reserva</p><p class="fb-card__item-note" data-t="c4_2n">Muy intuitivo, fácil de comprender, logró completar el flujo sin problema.</p></div>
+      </div>
+    </div>
+    <div class="highlight reveal">
+      <p data-t="s7conc">De las 4 propuestas, "Vincular con Calendar y Contacts" y "Nuevo proceso de reserva" fueron las mejor valoradas de forma consistente. "Cuenta compartida" necesitaba más claridad visual sobre cómo funciona el compartir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 CONCLUSIONES -->
+<section class="cs-sec cs-sec--alt">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="eyebrow__num">08</span><div class="eyebrow__line"></div><span class="lbl" data-t="s8l">Aprendizajes</span></div>
+    <h2 data-t="s8h">Reflexión y conclusiones</h2>
+    <div class="concl-list reveal">
+      <div class="concl-item"><div class="concl-item__icon">⏱️</div><p class="concl-item__text" data-t="cc1">Un Design Sprint requiere planificación exhaustiva, pero hay que estar preparado para adaptarse a imprevistos sin perder de vista el objetivo principal.</p></div>
+      <div class="concl-item"><div class="concl-item__icon">🎯</div><p class="concl-item__text" data-t="cc2">La participación activa del facilitador es vital: debe mantener al equipo enfocado en los objetivos durante toda la dinámica.</p></div>
+      <div class="concl-item"><div class="concl-item__icon">⚡</div><p class="concl-item__text" data-t="cc3">Un entorno dinámico que permita movimiento y participación activa ayuda a mantener la atención en sesiones intensas.</p></div>
+      <div class="concl-item"><div class="concl-item__icon">🧰</div><p class="concl-item__text" data-t="cc4">Seleccionar cuidadosamente las herramientas es clave — tener demasiadas puede afectar negativamente el proceso.</p></div>
+      <div class="concl-item"><div class="concl-item__icon">✅</div><p class="concl-item__text" data-t="cc5">Definir roles claros y limitar actividades en sesiones cortas evita confusiones y mantiene el enfoque en los objetivos.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="proj-nav">
+  <div class="proj-nav__inner">
+    <a href="wisecook.html" class="nav-proj">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span data-t="prev_lbl">WiseCook</span>
+    </a>
+    <a href="index.html#projects" class="nav-home" data-t="all_projects">Ver todos los proyectos</a>
+    <a href="linkers.html" class="nav-proj">
+      <span data-t="next_lbl">Linkers</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<footer><p>© 2026 Verónica Arciniega — <span data-t="footer">Diseñadora Multidisciplinar</span></p></footer>
+
+<script>
+const T = {
+  es:{
+    skip:"Saltar al contenido",back:"Volver al portfolio",
+    sector:"Design Sprint · Innovación · Marzo 2024",tag1:"Design Sprint",tag2:"Onboarding UX",tag3:"Trabajo en Equipo",
+    ml_sector:"Sector",mv_sector:"Reservas & Hostelería",ml_role:"Mi rol",mv_role:"Facilitación & Diseño UX",ml_team:"Equipo",ml_duration:"Duración",
+    s1l:"El reto",s1h:"Entender y mejorar el onboarding de Velada",
+    s1p1:"Un Design Sprint es una metodología que aborda de forma efectiva el desarrollo de procesos de diseño en un periodo de tiempo corto. Este proyecto documenta la planeación y ejecución de un Design Sprint real, aplicado al onboarding de Velada, una app de reservas de restaurantes.",
+    s1p2:"El objetivo del Sprint fue claro: entender el onboarding actual de la app Velada, identificar problemáticas y desarrollar propuestas de mejora — todo en una sola sesión de 2 horas y 30 minutos.",
+    o1:"Comprender la forma adecuada de planear y ejecutar un Design Sprint",
+    o2:"Preparar una sesión definiendo herramientas útiles para el proceso",
+    o3:"Entender las fases y cómo se articulan para un proceso fluido",
+    s2l:"Planeación",s2h:"Workshop Design Canvas",
+    s2p1:"El proceso se inició realizando el Workshop Design Canvas, una herramienta que permite pensar en los elementos clave antes del workshop: el objetivo de la sesión, el alcance deseado, los inputs necesarios y las herramientas y materiales a preparar.",
+    s2p2:"Se planteó el proceso en 3 fases: Planeación (definir objetivos y entregables), Sprint (ejecutar y obtener información) y Post Sprint (procesar los resultados del taller).",
+    s2q:"Los participantes fueron estudiantes del Máster en Diseño de Experiencia de Usuario de la Universidad de Diseño, Innovación y Tecnología (UDIT) — con un background de diseño que ya conocía muchas de las herramientas del proceso.",
+    s3l:"Escaleta",s3h:"Cuatro fases en 2h 30min",
+    s3p1:"Se organizó la sesión en cuatro fases — Comprender, Diverger, Converger y Prototipar — sin incluir la fase de testeo, que por la limitación de tiempo se desarrolló en una etapa posterior al Sprint.",
+    ph1:"Comprender",ph1t1:"Setup, presentación del Sprint y contexto de la app",ph1t2:"Descarga de la app Velada por los participantes",ph1t3:"Crear User Persona y Customer Journey actual",ph1t4:"How Might We — reformular problemas como oportunidades",
+    ph2:"Diverger",ph2t1:"Lighting Demos — inspiración y referentes existentes",ph2t2:"Captar ideas con dibujo rápido",ph2t3:"Generación de ideas individual — técnica 6-3-5",
+    ph3:"Converger",ph3t1:"Museo de Arte y Mapa de Calor — puntuación con stickers",ph3t2:"Discusión de ideas destacadas y votación",ph3t3:"Agrupar ideas elegidas en un solo prototipo",
+    ph4:"Prototipar",ph4t1:"Creación de Blueprint de servicio",ph4t2:"Prototipado en papel con plantillas de wireframes",ph4t3:"Cierre, agradecimiento y feedback de la sesión",
+    s4l:"Preparación",s4h:"Herramientas y materiales",
+    m1t:"Proceso y herramientas",m1i1:"Escaleta y presentación inicial",m1i2:"30 circle drawing challenge",m1i3:"Ideación 6-3-5",m1i4:"Museo de Arte y Mapa de Calor",m1i5:"Prototipado en papel",
+    m2t:"Materiales",m2i1:"Post-it, rotuladores, papel, tijeras",m2i2:"Plantillas de celular para wireframes",m2i3:"Slides de presentación y contexto de la app",m2i4:"Hojas impresas de 30 círculos",
+    s5l:"Ejecución",s5h:"La sesión en vivo",
+    s5p1:"Se planteó una distribución del Sprint en un board físico para que los participantes visualizaran claramente el orden y avance del proceso en todo momento — el poder ponerse de pie e interactuar con el board hizo el proceso más dinámico y menos monótono.",
+    s5p2:"Al iniciar la sesión se estableció el tiempo real disponible de 2 horas, lo que implicó ajustar el proceso sobre la marcha. Durante el How Might We, los participantes se plantearon si estaban en el camino correcto — el facilitador tuvo que recordar el enfoque principal de la sesión.",
+    s5p3:"En la fase de Converger, la presión de tiempo terminó afectando la decisión: se eligió una propuesta que no estaba del todo alineada con el objetivo inicial. Fue una lección clave sobre el rol vital del facilitador para no perder el rumbo.",
+    stat1:"Ideas generadas en 20 min (6-3-5)",stat2:"Min de prototipado, reducidos por tiempo",stat3:"Participantes del equipo",
+    s6l:"Post Sprint",s6h:"Volviendo al enfoque correcto",
+    s6p1:"Como equipo, se concluyó que en la fase final del Sprint el enfoque se había perdido. Se decidió volver atrás y revisar las propuestas del 6-3-5, eligiendo aquellas más alineadas con el objetivo de mejorar el onboarding:",
+    p1n:"Propuesta 01",p1t:"Vincular con Google Calendar y Contacts",
+    p2n:"Propuesta 02",p2t:"Crear una cuenta compartida",
+    p3n:"Propuesta 03",p3t:"Un nuevo proceso de reserva",
+    p4n:"Propuesta 04",p4t:"Invitar a una persona por la app",
+    screens_label:"Pantallas de las propuestas",
+    sc1:"Vincular Calendar",sc2:"Vincular Contacts",sc3:"Cuenta compartida",sc4:"Nueva reserva",sc5:"Invitar por la app",sc6:"Confirmación",sc7:"Notificación",sc8:"Home",
+    s7l:"Testeo con usuarios",s7h:"4 entrevistas, feedback real",
+    s7p1:"Se diseñó un guión de entrevista y se realizaron 4 sesiones de testeo mostrando las 4 propuestas para obtener feedback honesto sobre su utilidad, facilidad de uso y valor percibido.",
+    c1_1t:"Calendar & Contacts",c1_1n:"Le pareció intuitivo vincular sus cuentas para acceder a reservas desde distintas apps.",
+    c1_2t:"Reserva",c1_2n:"Piensa que tiene demasiados pasos y se podría acortar el recorrido.",
+    c2_1t:"Calendar & Contacts",c2_1n:"\"Me ha parecido muy intuitivo, no hay pérdida\" — la opción más útil de todas para él.",
+    c2_2t:"Invitar por la app",c2_2n:"\"Esto es justo como lo imaginaba yo\" — le parece perfecto.",
+    c3_1t:"Cuenta compartida",c3_1n:"No entendió bien por qué medio se comparte la cuenta — generó confusión.",
+    c3_2t:"Reserva",c3_2n:"Sugiere mostrar información del restaurante como código de vestimenta o condiciones.",
+    c4_1t:"Cuenta compartida",c4_1n:"No comprendió la utilidad — no estaba bien comunicada visual ni textualmente.",
+    c4_2t:"Reserva",c4_2n:"Muy intuitivo, fácil de comprender, logró completar el flujo sin problema.",
+    s7conc:"De las 4 propuestas, \"Vincular con Calendar y Contacts\" y \"Nuevo proceso de reserva\" fueron las mejor valoradas de forma consistente. \"Cuenta compartida\" necesitaba más claridad visual sobre cómo funciona el compartir.",
+    s8l:"Aprendizajes",s8h:"Reflexión y conclusiones",
+    cc1:"Un Design Sprint requiere planificación exhaustiva, pero hay que estar preparado para adaptarse a imprevistos sin perder de vista el objetivo principal.",
+    cc2:"La participación activa del facilitador es vital: debe mantener al equipo enfocado en los objetivos durante toda la dinámica.",
+    cc3:"Un entorno dinámico que permita movimiento y participación activa ayuda a mantener la atención en sesiones intensas.",
+    cc4:"Seleccionar cuidadosamente las herramientas es clave — tener demasiadas puede afectar negativamente el proceso.",
+    cc5:"Definir roles claros y limitar actividades en sesiones cortas evita confusiones y mantiene el enfoque en los objetivos.",
+    prev_lbl:"WiseCook",next_lbl:"Linkers",all_projects:"Ver todos los proyectos",footer:"Diseñadora Multidisciplinar"
+  },
+  en:{
+    skip:"Skip to content",back:"Back to portfolio",
+    sector:"Design Sprint · Innovation · March 2024",tag1:"Design Sprint",tag2:"Onboarding UX",tag3:"Team Project",
+    ml_sector:"Sector",mv_sector:"Restaurant Bookings",ml_role:"My role",mv_role:"Facilitation & UX Design",ml_team:"Team",ml_duration:"Duration",
+    s1l:"The challenge",s1h:"Understanding and improving Velada's onboarding",
+    s1p1:"A Design Sprint is a methodology that effectively tackles design processes within a short timeframe. This project documents the planning and execution of a real Design Sprint applied to the onboarding of Velada, a restaurant booking app.",
+    s1p2:"The Sprint's goal was clear: understand Velada's current onboarding, identify problems and develop improvement proposals — all within a single 2.5-hour session.",
+    o1:"Understand the proper way to plan and run a Design Sprint",
+    o2:"Prepare a session defining useful tools for the process",
+    o3:"Understand the phases and how they connect for a smooth process",
+    s2l:"Planning",s2h:"Workshop Design Canvas",
+    s2p1:"The process started with a Workshop Design Canvas, a tool for thinking through key elements before the workshop: the session's goal, desired scope, required inputs, and the tools and materials to prepare.",
+    s2p2:"The process was structured in 3 phases: Planning (define objectives and deliverables), Sprint (execute and gather information), and Post Sprint (process the workshop results).",
+    s2q:"Participants were students of the Master's in User Experience Design at Universidad de Diseño, Innovación y Tecnología (UDIT) — with a design background already familiar with many of the process tools.",
+    s3l:"Timeline",s3h:"Four phases in 2h 30min",
+    s3p1:"The session was organized into four phases — Understand, Diverge, Converge and Prototype — without including a testing phase, which due to time constraints happened after the Sprint.",
+    ph1:"Understand",ph1t1:"Setup, Sprint intro and app context",ph1t2:"Participants download the Velada app",ph1t3:"Create User Persona and current Customer Journey",ph1t4:"How Might We — reframe problems as opportunities",
+    ph2:"Diverge",ph2t1:"Lighting Demos — inspiration from existing references",ph2t2:"Capture ideas with quick sketches",ph2t3:"Individual ideation — 6-3-5 technique",
+    ph3:"Converge",ph3t1:"Art Museum and Heat Map — sticker voting",ph3t2:"Discuss standout ideas and vote",ph3t3:"Group chosen ideas into a single prototype",
+    ph4:"Prototype",ph4t1:"Service Blueprint creation",ph4t2:"Paper prototyping with wireframe templates",ph4t3:"Closing, thanks and session feedback",
+    s4l:"Preparation",s4h:"Tools and materials",
+    m1t:"Process & tools",m1i1:"Agenda and intro presentation",m1i2:"30 circle drawing challenge",m1i3:"6-3-5 ideation",m1i4:"Art Museum and Heat Map",m1i5:"Paper prototyping",
+    m2t:"Materials",m2i1:"Post-its, markers, paper, scissors",m2i2:"Phone templates for wireframes",m2i3:"Presentation slides and app context",m2i4:"Printed 30-circle sheets",
+    s5l:"Execution",s5h:"The live session",
+    s5p1:"A board layout was designed so participants could clearly see the process order and progress at all times — being able to stand up and interact with the board made the process more dynamic and less monotonous.",
+    s5p2:"At the start, the real available time was set at 2 hours, which meant adjusting the process on the fly. During How Might We, participants questioned whether they were on the right track — the facilitator had to remind the team of the session's focus.",
+    s5p3:"In the Converge phase, time pressure ended up affecting the decision: a proposal not fully aligned with the initial objective was chosen. A key lesson about the facilitator's vital role in keeping the process on track.",
+    stat1:"Ideas generated in 20 min (6-3-5)",stat2:"Prototyping minutes, cut short by time",stat3:"Team participants",
+    s6l:"Post Sprint",s6h:"Returning to the right focus",
+    s6p1:"As a team, it was concluded that focus had been lost in the final phase of the Sprint. The team decided to go back and review the 6-3-5 proposals, choosing those best aligned with improving onboarding:",
+    p1n:"Proposal 01",p1t:"Link with Google Calendar and Contacts",
+    p2n:"Proposal 02",p2t:"Create a shared account",
+    p3n:"Proposal 03",p3t:"A new booking process",
+    p4n:"Proposal 04",p4t:"Invite a person through the app",
+    screens_label:"Proposal screens",
+    sc1:"Link Calendar",sc2:"Link Contacts",sc3:"Shared account",sc4:"New booking",sc5:"Invite via app",sc6:"Confirmation",sc7:"Notification",sc8:"Home",
+    s7l:"User testing",s7h:"4 interviews, real feedback",
+    s7p1:"An interview script was designed and 4 testing sessions were held showing the 4 proposals to gather honest feedback on usefulness, ease of use and perceived value.",
+    c1_1t:"Calendar & Contacts",c1_1n:"Found it intuitive to link accounts for accessing bookings across apps.",
+    c1_2t:"Booking",c1_2n:"Thinks it has too many steps and the flow could be shortened.",
+    c2_1t:"Calendar & Contacts",c2_1n:"\"It felt very intuitive, no confusion\" — the most useful option for him.",
+    c2_2t:"Invite via app",c2_2n:"\"This is exactly what I imagined\" — found it perfect.",
+    c3_1t:"Shared account",c3_1n:"Didn't fully understand how the account is shared — caused confusion.",
+    c3_2t:"Booking",c3_2n:"Suggests showing restaurant info like dress code or conditions.",
+    c4_1t:"Shared account",c4_1n:"Didn't understand its usefulness — poorly communicated visually and textually.",
+    c4_2t:"Booking",c4_2n:"Very intuitive, easy to understand, completed the flow with no issues.",
+    s7conc:"Of the 4 proposals, \"Link Calendar and Contacts\" and \"New booking process\" were consistently rated best. \"Shared account\" needed clearer visual communication of how sharing works.",
+    s8l:"Learnings",s8h:"Reflection and conclusions",
+    cc1:"A Design Sprint requires thorough planning, but you must be ready to adapt to the unexpected without losing sight of the main goal.",
+    cc2:"Active facilitator participation is vital: they must keep the team focused on objectives throughout the dynamic.",
+    cc3:"A dynamic environment that allows movement and active participation helps maintain attention during intense sessions.",
+    cc4:"Carefully selecting tools is key — having too many can negatively affect the process.",
+    cc5:"Defining clear roles and limiting activities in short sessions avoids confusion and keeps the focus on objectives.",
+    prev_lbl:"WiseCook",next_lbl:"Linkers",all_projects:"View all projects",footer:"Multidisciplinary Designer"
+  }
+};
+let lang="es";
+function setLang(l){
+  lang=l;document.documentElement.lang=l;
+  document.querySelectorAll("[data-t]").forEach(el=>{const k=el.getAttribute("data-t");if(T[l]&&T[l][k]!==undefined)el.textContent=T[l][k];});
+  document.getElementById("btn-es").setAttribute("aria-pressed",l==="es"?"true":"false");
+  document.getElementById("btn-en").setAttribute("aria-pressed",l==="en"?"true":"false");
+}
+function toggleTheme(){
+  const dark=document.documentElement.getAttribute("data-theme")==="dark";
+  const next=dark?"light":"dark";
+  document.documentElement.setAttribute("data-theme",next);
+  localStorage.setItem("va-theme",next);
+  syncIcons();
+}
+function syncIcons(){
+  const dark=document.documentElement.getAttribute("data-theme")==="dark";
+  document.getElementById("icon-moon").style.display=dark?"block":"none";
+  document.getElementById("icon-sun").style.display=dark?"none":"block";
+}
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("visible");io.unobserve(x.target);}}),{threshold:0.08});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+syncIcons();
+setLang("es");
+</script>
+</body>
+</html>
