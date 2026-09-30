@@ -17,7 +17,9 @@
       "Wireframing",
       "Prototipado"
     ],
-    "link": "thunder-gym.html"
+    "link": "thunder-gym.html",
+    "textDark": "#7678f3",
+    "textLight": "#4f46e5"
   },
   {
     "id": "hexalud-wellness",
@@ -37,7 +39,9 @@
       "Prototipos",
       "Adobe Suite"
     ],
-    "link": "hexalud-wellness.html"
+    "link": "hexalud-wellness.html",
+    "textDark": "#0abab5",
+    "textLight": "#067370"
   },
   {
     "id": "wisecook",
@@ -56,7 +60,51 @@
       "Modelado 3D",
       "Research"
     ],
-    "link": "wisecook.html"
+    "link": "wisecook.html",
+    "textDark": "#34a853",
+    "textLight": "#25793c"
+  },
+  {
+    "id": "velada",
+    "category": "uxui",
+    "color": "#FF6B35",
+    "titleEs": "Velada",
+    "titleEn": "Velada",
+    "tagEs": "Design Sprint · Facilitación UX",
+    "tagEn": "Design Sprint · UX Facilitation",
+    "descEs": "Design Sprint de 2h30 con un equipo de 5 personas para resolver la fricción al reservar veladas grupales: comprender, diverger, converger, prototipar y testear con usuarios reales en una sola sesión.",
+    "descEn": "A 2.5-hour Design Sprint with a 5-person team to solve the friction of booking group reservations: understand, diverge, converge, prototype and test with real users in a single session.",
+    "image": "assets/velada-hero.jpg",
+    "tags": [
+      "Design Sprint",
+      "Facilitación",
+      "Figma",
+      "Testeo con usuarios"
+    ],
+    "link": "velada.html",
+    "textDark": "#ff8259",
+    "textLight": "#c94e1c"
+  },
+  {
+    "id": "linkers",
+    "category": "uxui",
+    "color": "#4F6BFF",
+    "titleEs": "Linkers",
+    "titleEn": "Linkers",
+    "tagEs": "TFM · Accesibilidad Digital",
+    "tagEn": "Master's Thesis · Digital Accessibility",
+    "descEs": "Trabajo de Fin de Máster: una plataforma que conecta diseñadores con testers con discapacidad para integrar la accesibilidad desde las primeras fases del diseño, en lugar de como una auditoría final.",
+    "descEn": "Master's Thesis project: a platform connecting designers with testers with disabilities to build accessibility in from the earliest design phases, instead of as a final audit.",
+    "image": "assets/linkers-hero.jpg",
+    "tags": [
+      "UX Research",
+      "Accesibilidad",
+      "Figma",
+      "Benchmark"
+    ],
+    "link": "linkers.html",
+    "textDark": "#7a90ff",
+    "textLight": "#2d47cc"
   },
   {
     "id": "chiltepik",
@@ -75,7 +123,9 @@
       "Canva",
       "IA"
     ],
-    "link": "chiltepik.html"
+    "link": "chiltepik.html",
+    "textDark": "#edc491",
+    "textLight": "#7b664b"
   },
   {
     "id": "habemus-pizza",
@@ -94,7 +144,9 @@
       "Canva",
       "IA"
     ],
-    "link": "habemus-pizza.html"
+    "link": "habemus-pizza.html",
+    "textDark": "#d76038",
+    "textLight": "#c43100"
   },
   {
     "id": "jaguares",
@@ -113,7 +165,9 @@
       "Canva",
       "IA"
     ],
-    "link": "jaguares.html"
+    "link": "jaguares.html",
+    "textDark": "#8fab6c",
+    "textLight": "#5c6d45"
   },
   {
     "id": "eka-active",
@@ -132,7 +186,9 @@
       "Canva",
       "IA"
     ],
-    "link": "eka-active.html"
+    "link": "eka-active.html",
+    "textDark": "#86e1dd",
+    "textLight": "#43706e"
   },
   {
     "id": "holly-body",
@@ -151,6 +207,8 @@
       "Canva",
       "IA"
     ],
-    "link": "holly-body.html"
+    "link": "holly-body.html",
+    "textDark": "#7ba7bc",
+    "textLight": "#516e7c"
   }
 ]
