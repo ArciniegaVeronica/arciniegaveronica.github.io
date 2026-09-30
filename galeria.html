@@ -1,111 +1,127 @@
-```html
 <!doctype html>
 <html lang="es" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trabajo Gráfico — Verónica Arciniega</title>
-  <meta name="description" content="Galería completa del trabajo gráfico de Verónica Arciniega: identidad de marca, social media, branding y piezas editoriales.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0a0a0f;--surface:#16161d;--card:#1a1a24;--card-soft:#0d0d14;
-      --text:#f5f5f7;--muted:rgba(245,245,247,0.55);--faint:rgba(245,245,247,0.22);
-      --primary:#6366f1;--secondary:#ec4899;--tiffany:#0ABAB5;
-      --border:rgba(255,255,255,0.07);--border-mid:rgba(255,255,255,0.13);
-      --font:'Plus Jakarta Sans',sans-serif;--mono:'Space Mono',monospace;
-      --ease:0.4s cubic-bezier(0.4,0,0.2,1);--bounce:0.5s cubic-bezier(0.34,1.56,.64,1);
-    }
-    [data-theme="light"]{
-      --bg:#f4f4f8;--surface:#ffffff;--card:#ffffff;--card-soft:#ececf4;
-      --text:#0a0a0f;--muted:rgba(10,10,15,0.55);--faint:rgba(10,10,15,0.22);
-      --border:rgba(0,0,0,0.07);--border-mid:rgba(0,0,0,0.13);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:68px}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background var(--ease),color var(--ease)}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    button{font-family:inherit;cursor:pointer;border:none;background:none}
-    :focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
-    .skip{position:fixed;top:-100px;left:16px;z-index:9999;padding:12px 20px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:top .2s}
-    .skip:focus{top:16px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabajo Gráfico — Verónica Arciniega</title>
+<meta name="description" content="Galería completa del trabajo gráfico de Verónica Arciniega: identidad de marca, social media, branding, reels y piezas editoriales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f;--surface:#16161d;--card:#1a1a24;--card-soft:#0d0d14;
+  --text:#f5f5f7;--muted:rgba(245,245,247,0.68);--faint:rgba(245,245,247,0.58);
+  --primary:#6366f1;--secondary:#ec4899;--tiffany:#0ABAB5;
+  --border:rgba(255,255,255,0.07);--border-mid:rgba(255,255,255,0.13);
+  --font:'Plus Jakarta Sans',sans-serif;--mono:'Space Mono',monospace;
+  --ease:0.4s cubic-bezier(0.4,0,0.2,1);--bounce:0.5s cubic-bezier(0.34,1.56,.64,1);
+}
+[data-theme="light"]{
+  --bg:#f4f4f8;--surface:#ffffff;--card:#ffffff;--card-soft:#ececf4;
+  --text:#0a0a0f;--muted:rgba(10,10,15,0.72);--faint:rgba(10,10,15,0.64);
+  --border:rgba(0,0,0,0.07);--border-mid:rgba(0,0,0,0.13);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:68px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background var(--ease),color var(--ease)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
+.skip{position:fixed;top:-100px;left:16px;z-index:9999;padding:12px 20px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:top .2s}
+.skip:focus{top:16px}
 
-    /* NAV */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-mid);background:rgba(10,10,15,0.92);box-shadow:0 4px 24px rgba(0,0,0,.2);transition:background var(--ease)}
-    [data-theme="light"] .nav{background:rgba(248,248,252,0.94)}
-    .nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    @media(min-width:768px){.nav__inner{padding:0 48px}}
-    .nav__back{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);transition:color var(--ease)}
-    .nav__back:hover{color:var(--text)}
-    .nav__back svg{width:16px;height:16px;transition:transform var(--ease)}
-    .nav__back:hover svg{transform:translateX(-3px)}
-    .nav__right{display:flex;align-items:center;gap:12px}
-    .lang-sep{color:var(--faint);font-size:11px}
-    .lang-btn{font-family:var(--mono);font-size:11px;background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;font-weight:400;color:var(--faint);transition:color .3s,font-weight .3s,background .3s;letter-spacing:.05em}
-    .lang-btn[aria-pressed="true"]{color:var(--primary);font-weight:800;background:rgba(99,102,241,0.12)}
-    [data-theme="light"] .lang-btn[aria-pressed="true"]{background:rgba(79,70,229,0.10)}
-    .lang-btn:hover:not([aria-pressed="true"]){color:var(--text);background:rgba(255,255,255,0.06)}
-    [data-theme="light"] .lang-btn:hover:not([aria-pressed="true"]){background:rgba(0,0,0,0.05)}
-    .theme-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-mid);color:var(--muted);transition:background var(--ease),transform var(--bounce),border-color var(--ease),color var(--ease)}
-    .theme-btn:hover{background:var(--surface);transform:rotate(20deg);color:var(--text)}
-    [data-theme="light"] .theme-btn{background:rgba(79,70,229,0.10);border-color:var(--primary);color:var(--primary)}
-    [data-theme="light"] .theme-btn:hover{background:var(--primary);color:#fff}
-    .theme-btn svg{width:16px;height:16px}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-mid);background:rgba(10,10,15,0.92);box-shadow:0 4px 24px rgba(0,0,0,.2);transition:background var(--ease)}
+[data-theme="light"] .nav{background:rgba(248,248,252,0.94)}
+.nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+@media(min-width:768px){.nav__inner{padding:0 48px}}
+.nav__back{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);transition:color var(--ease)}
+.nav__back:hover{color:var(--text)}
+.nav__back svg{width:16px;height:16px;transition:transform var(--ease)}
+.nav__back:hover svg{transform:translateX(-3px)}
+.nav__right{display:flex;align-items:center;gap:12px}
+.lang-sep{color:var(--faint);font-size:11px}
+.lang-btn{font-family:var(--mono);font-size:11px;background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;font-weight:400;color:var(--faint);transition:color .3s,font-weight .3s,background .3s;letter-spacing:.05em}
+.lang-btn[aria-pressed="true"]{color:var(--primary);font-weight:800;background:rgba(99,102,241,0.14)}
+[data-theme="light"] .lang-btn[aria-pressed="true"]{background:rgba(79,70,229,0.10)}
+.lang-btn:hover:not([aria-pressed="true"]){color:var(--text);background:rgba(255,255,255,0.06)}
+[data-theme="light"] .lang-btn:hover:not([aria-pressed="true"]){background:rgba(0,0,0,0.05)}
+.theme-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-mid);color:var(--muted);transition:background var(--ease),transform var(--bounce),border-color var(--ease),color var(--ease)}
+.theme-btn:hover{background:var(--surface);transform:rotate(20deg);color:var(--text)}
+[data-theme="light"] .theme-btn{background:rgba(79,70,229,0.10);border-color:var(--primary);color:var(--primary)}
+[data-theme="light"] .theme-btn:hover{background:var(--primary);color:#fff}
+.theme-btn svg{width:16px;height:16px}
 
-    /* HERO / HEADER */
-    .g-header{padding:140px 24px 56px;max-width:1280px;margin:0 auto}
-    @media(min-width:768px){.g-header{padding:150px 48px 64px}}
-    .g-eyebrow{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--primary);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px}
-    .g-eyebrow::before{content:'';width:32px;height:1px;background:var(--primary)}
-    .g-title{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:16px}
-    .g-desc{font-size:16px;color:var(--muted);max-width:560px;line-height:1.7}
+/* HERO / HEADER */
+.g-header{padding:140px 24px 48px;max-width:1280px;margin:0 auto}
+@media(min-width:768px){.g-header{padding:150px 48px 56px}}
+.g-eyebrow{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--primary);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.g-eyebrow::before{content:'';width:32px;height:1px;background:var(--primary)}
+.g-title{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:16px}
+.g-desc{font-size:16px;color:var(--muted);max-width:560px;line-height:1.7}
 
-    /* FILTERS */
-    .g-filters{display:flex;flex-wrap:wrap;gap:10px;max-width:1280px;margin:0 auto;padding:0 24px 40px}
-    @media(min-width:768px){.g-filters{padding:0 48px 48px}}
-    .g-filter-btn{padding:9px 20px;border-radius:100px;border:1px solid var(--border-mid);background:var(--card-soft);color:var(--muted);font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;transition:all var(--ease)}
-    .g-filter-btn:hover{border-color:var(--primary);color:var(--text)}
-    .g-filter-btn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+/* FILTERS — sticky bar, orden claro */
+.g-filters-bar{position:sticky;top:68px;z-index:40;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 24px;transition:background var(--ease)}
+@media(min-width:768px){.g-filters-bar{padding:18px 48px}}
+.g-filters{display:flex;flex-wrap:wrap;gap:8px;max-width:1280px;margin:0 auto}
+.g-filter-btn{padding:9px 18px;border-radius:100px;border:1px solid var(--border-mid);background:var(--card-soft);color:var(--muted);font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;transition:all var(--ease);white-space:nowrap}
+.g-filter-btn:hover{border-color:var(--primary);color:var(--text)}
+.g-filter-btn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+.g-count{font-family:var(--mono);font-size:10px;color:var(--faint);margin-left:auto;align-self:center;padding-left:12px;white-space:nowrap}
 
-    /* MASONRY */
-    .g-wrap{max-width:1280px;margin:0 auto;padding:0 24px 100px}
-    @media(min-width:768px){.g-wrap{padding:0 48px 120px}}
-    .masonry{display:flex;gap:14px;align-items:flex-start}
-    .masonry__col{display:flex;flex-direction:column;gap:14px;flex:1;min-width:0}
+/* GALERÍA — masonry real vía CSS columns: cada imagen conserva su
+   proporción natural (sin recortar), y como cada columna fluye de forma
+   independiente y continua, nunca quedan huecos feos entre piezas. */
+.g-wrap{max-width:1400px;margin:0 auto;padding:32px 24px 100px}
+@media(min-width:768px){.g-wrap{padding:40px 48px 120px}}
+.g-grid{column-count:2;column-gap:14px}
+@media(min-width:560px){.g-grid{column-count:3;column-gap:16px}}
+@media(min-width:900px){.g-grid{column-count:4}}
+@media(min-width:1400px){.g-grid{column-count:5}}
 
-    .g-item{
-      position:relative;border-radius:16px;overflow:hidden;
-      border:1px solid var(--border);background:var(--card-soft);
-      cursor:pointer;
-      opacity:0;transform:translateY(18px);
-      transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease,border-color .3s ease;
-    }
-    .g-item.visible{animation:gIn .55s ease forwards}
-    @keyframes gIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    @media(prefers-reduced-motion:reduce){.g-item{opacity:1;transform:none;animation:none!important}}
-    .g-item:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(0,0,0,.35);border-color:var(--border-mid);z-index:2}
-    .g-item img{width:100%;height:auto;display:block;transition:transform .6s ease}
-    .g-item:hover img{transform:scale(1.05)}
-    /* Sin overlay de texto — solo la imagen, minimalista */
+.g-item{
+  position:relative;display:block;width:100%;
+  break-inside:avoid;-webkit-column-break-inside:avoid;
+  margin:0 0 14px;border-radius:14px;overflow:hidden;
+  border:1px solid var(--border);background:var(--card-soft);
+  cursor:pointer;
+  opacity:0;transform:translateY(14px) scale(.98);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,border-color .3s ease;
+}
+@media(min-width:560px){.g-item{margin-bottom:16px}}
+.g-item.visible{animation:gIn .55s ease forwards}
+@keyframes gIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.g-item{opacity:1;transform:none;animation:none!important}}
+.g-item:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.32);border-color:var(--border-mid);z-index:2}
+.g-item img,.g-item video{width:100%;height:auto;display:block;transition:transform .5s ease}
+.g-item:hover img,.g-item:hover video{transform:scale(1.035)}
+/* Sin overlay de texto en el grid — solo la imagen, minimalista */
 
-    /* EMPTY STATE */
-    .g-empty{grid-column:1/-1;text-align:center;padding:80px 0;color:var(--muted);font-size:14px}
+/* REELS */
+.g-item--reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%);pointer-events:none}
+.g-item__play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform var(--ease),background var(--ease)}
+.g-item--reel:hover .g-item__play{transform:translate(-50%,-50%) scale(1.1);background:rgba(255,255,255,.28)}
+.g-item__play svg{width:18px;height:18px;fill:#fff;margin-left:2px}
+.g-item__reel-tag{position:absolute;bottom:10px;left:10px;z-index:2;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.4);padding:4px 9px;border-radius:100px}
 
-    /* LIGHTBOX */
-    .lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:40px 24px;backdrop-filter:blur(8px)}
-    .lightbox.open{display:flex}
-    .lightbox__img{max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.6)}
-    .lightbox__close{position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}
-    .lightbox__close:hover{background:rgba(255,255,255,.18);transform:rotate(90deg)}
-    .lightbox__close svg{width:18px;height:18px}
-    .lightbox__caption{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.7);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+/* EMPTY STATE */
+.g-empty{column-span:all;text-align:center;padding:80px 0;color:var(--muted);font-size:14px}
 
-    footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--faint)}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-  </style>
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:40px 24px;backdrop-filter:blur(8px)}
+.lightbox.open{display:flex}
+.lightbox__img{max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.lightbox__video{max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.6);background:#000}
+.lightbox__close{position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}
+.lightbox__close:hover{background:rgba(255,255,255,.18);transform:rotate(90deg)}
+.lightbox__close svg{width:18px;height:18px}
+.lightbox__caption{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.7);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+
+footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--faint)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
 <script>
@@ -140,13 +156,17 @@
   <div class="g-header">
     <p class="g-eyebrow" data-t="eyebrow">Archivo Visual</p>
     <h1 class="g-title" data-t="title">Trabajo Gráfico</h1>
-    <p class="g-desc" data-t="desc">Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad y branding para distintas industrias.</p>
+    <p class="g-desc" data-t="desc">Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad, reels y branding para distintas industrias.</p>
   </div>
 
-  <div class="g-filters" id="g-filters" role="group" aria-label="Filtrar por marca"></div>
+  <div class="g-filters-bar">
+    <div class="g-filters" id="g-filters" role="group" aria-label="Filtrar por marca">
+      <span class="g-count" id="g-count"></span>
+    </div>
+  </div>
 
   <div class="g-wrap">
-    <div class="masonry" id="masonry" aria-live="polite" aria-label="Galería de piezas gráficas"></div>
+    <div class="g-grid" id="grid" aria-live="polite" aria-label="Galería de piezas gráficas"></div>
   </div>
 </main>
 
@@ -156,25 +176,30 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
   <img class="lightbox__img" id="lightbox-img" src="" alt="">
+  <video class="lightbox__video" id="lightbox-video" controls autoplay playsinline style="display:none"></video>
   <p class="lightbox__caption" id="lightbox-caption"></p>
 </div>
 
 <footer><p>© 2026 Verónica Arciniega — <span data-t="footer">Diseñadora Multidisciplinar</span></p></footer>
 
 <script>
-/* ══════════════════════════════════════════
-   PIEZAS — agrega aquí cada imagen nueva
-   
-  
-   PROYECTO:
-   { src:"assets/imagen.jpg", brand:"nombre", nameEs:"Nombre", typeEs:"Post", typeEn:"Post" }
+/* ══════════════════════════════════════════════════════════
+   PIEZAS — agrega aquí cada imagen o reel nuevo
 
-   IMAGEN INDEPENDIENTE:
+   IMAGEN DE PROYECTO (crea/usa un filtro):
+   { src:"assets/imagen.jpg", brand:"nombre-marca", nameEs:"Nombre", typeEs:"Post", typeEn:"Post" }
+
+   IMAGEN INDEPENDIENTE (no crea filtro, solo aparece en "Todas"):
    { src:"assets/imagen.jpg", brand:null }
 
-   Las imágenes independientes aparecen en "Todas"
-   pero no crean ningún filtro.
-════════════════════════════════════════════ */
+   REEL / VIDEO (mismo patrón + type:"reel", con poster de portada):
+   { type:"reel", src:"assets/mi-reel.mp4", poster:"assets/mi-reel-poster.jpg", brand:"nombre-marca", nameEs:"Nombre", typeEs:"Reel", typeEn:"Reel" }
+   — Si el reel es independiente: brand:null, sin nameEs (aparece solo en "Todas" y en el filtro "Reels").
+
+   No importa el tamaño ni la proporción de la imagen: la galería es un
+   masonry real (columnas fluidas), cada pieza conserva su forma original
+   completa — vertical, cuadrada u horizontal — sin recortes ni huecos.
+════════════════════════════════════════════════════════════ */
 const PIECES = [
 
   // Chiltepiik
@@ -195,6 +220,7 @@ const PIECES = [
   { src:"assets/chiltepik-15.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
   { src:"assets/chiltepik-16.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
   { src:"assets/chiltepik-17.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
+  { type:"reel", src:"assets/reel-chiltepik-01.mp4", poster:"assets/reel-chiltepik-01-poster.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Reel", typeEn:"Reel" },
 
   // Habemus Pizza
   { src:"assets/habemus-pizza-01.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
@@ -213,6 +239,7 @@ const PIECES = [
   { src:"assets/habemus-pizza-14.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
   { src:"assets/habemus-pizza-15.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
   { src:"assets/habemus-pizza-pauta.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Pauta", typeEn:"Ad" },
+  { type:"reel", src:"assets/reel-habemus-pizza-01.mp4", poster:"assets/reel-habemus-pizza-01-poster.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Reel", typeEn:"Reel" },
 
   // Jaguares
   { src:"assets/jaguares-01.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
@@ -226,6 +253,7 @@ const PIECES = [
   { src:"assets/jaguares-09.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
   { src:"assets/jaguares-10.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
   { src:"assets/jaguares-11.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
+  { type:"reel", src:"assets/reel-jaguares-01.mp4", poster:"assets/reel-jaguares-01-poster.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Reel", typeEn:"Reel" },
 
   // EKA Active
   { src:"assets/eka-active-01.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
@@ -234,6 +262,7 @@ const PIECES = [
   { src:"assets/eka-active-04.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
   { src:"assets/eka-active-05.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
   { src:"assets/eka-active-06.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
+  { type:"reel", src:"assets/reel-eka-active-01.mp4", poster:"assets/reel-eka-active-01-poster.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Reel", typeEn:"Reel" },
 
   // Holly Body
   { src:"assets/holly-body-01.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
@@ -242,10 +271,12 @@ const PIECES = [
   { src:"assets/holly-body-04.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
   { src:"assets/holly-body-05.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
   { src:"assets/holly-body-pauta.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Pauta", typeEn:"Ad" },
+  { type:"reel", src:"assets/reel-holly-body-01.mp4", poster:"assets/reel-holly-body-01-poster.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Reel", typeEn:"Reel" },
 
   // ═══════════════════════════════════════
   // IMÁGENES INDEPENDIENTES
-  
+  // No pertenecen a ningún proyecto. No crean filtros nuevos. Aparecen únicamente en "Todas".
+
   { src:"assets/4me-Gral.jpg", brand:null },
   { src:"assets/4me-01.jpg", brand:null },
   { src:"assets/4me-02.jpg", brand:null },
@@ -333,29 +364,21 @@ const PIECES = [
   { src:"assets/ardin-01.jpg", brand:null },
   { src:"assets/ardin-02.jpg", brand:null },
   { src:"assets/Bebeauty-01.jpg", brand:null },
-  
-  
-  // No pertenecen a ningún proyecto.
-  // No crean filtros nuevos.
-  // Aparecen únicamente en "Todas".
-  // ═══════════════════════════════════════
 
-  // Ejemplo:
-  // { src:"assets/trabajo-01.jpg", brand:null },
-  // { src:"assets/trabajo-02.jpg", brand:null },
-  // { src:"assets/trabajo-03.jpg", brand:null },
+  // Ejemplo de reel independiente (no pertenece a ningún proyecto):
+  // { type:"reel", src:"assets/reel-independiente-01.mp4", poster:"assets/reel-independiente-01-poster.jpg", brand:null },
 
 ];
 
 const T = {
   es:{ skip:"Saltar al contenido", back:"Volver al portfolio",
        eyebrow:"Archivo Visual", title:"Trabajo Gráfico",
-       desc:"Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad y branding para distintas industrias.",
-       f_all:"Todas", footer:"Diseñadora Multidisciplinar" },
+       desc:"Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad, reels y branding para distintas industrias.",
+       f_all:"Todas", f_reels:"Reels", footer:"Diseñadora Multidisciplinar" },
   en:{ skip:"Skip to content", back:"Back to portfolio",
        eyebrow:"Visual Archive", title:"Graphic Work",
-       desc:"A full look at the pieces I've designed: brand identity, social media, advertising and branding across different industries.",
-       f_all:"All", footer:"Multidisciplinary Designer" }
+       desc:"A full look at the pieces I've designed: brand identity, social media, advertising, reels and branding across different industries.",
+       f_all:"All", f_reels:"Reels", footer:"Multidisciplinary Designer" }
 };
 
 let lang="es";
@@ -369,7 +392,7 @@ function setLang(l){
   });
   document.getElementById("btn-es").setAttribute("aria-pressed",l==="es"?"true":"false");
   document.getElementById("btn-en").setAttribute("aria-pressed",l==="en"?"true":"false");
-  renderMasonry();
+  renderGrid();
   buildFilters();
 }
 
@@ -387,81 +410,70 @@ function syncIcons(){
   document.getElementById("icon-sun").style.display=dark?"none":"block";
 }
 
-/* ── ADAPTIVE MASONRY ──────────────────────────────────
-   Calcula el número de columnas según el ancho de pantalla,
-   y distribuye cada pieza en la columna más corta actual
-   (balanced masonry) — se adapta a cualquier cantidad
-   de imágenes sin importar su tamaño u orientación. */
-function getColumnCount(){
-  const w = window.innerWidth;
-  if (w < 560) return 2;
-  if (w < 900) return 3;
-  if (w < 1300) return 4;
-  return 5;
-}
-
-function renderMasonry(){
-  const container = document.getElementById('masonry');
-  container.innerHTML = '';
+/* ── GRID limpio y ordenado (no masonry) ──────────────────
+   Tiles de tamaño uniforme (aspect-ratio 4/5, object-fit:cover),
+   en columnas fijas que se adaptan al ancho de pantalla. */
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
 
   const filtered = currentBrand === 'all'
     ? PIECES
-    : PIECES.filter(p => p.brand === currentBrand);
+    : currentBrand === 'reels'
+      ? PIECES.filter(p => p.type === 'reel')
+      : PIECES.filter(p => p.brand === currentBrand);
+
+  document.getElementById('g-count').textContent =
+    `${filtered.length} ${lang==='es' ? 'piezas' : 'pieces'}`;
 
   if (filtered.length === 0){
-    container.innerHTML = `<p class="g-empty">${lang==='es' ? 'No hay piezas en esta categoría todavía.' : 'No pieces in this category yet.'}</p>`;
+    grid.innerHTML = `<p class="g-empty">${lang==='es' ? 'No hay piezas en esta categoría todavía.' : 'No pieces in this category yet.'}</p>`;
     return;
   }
 
-  const colCount = getColumnCount();
-  const cols = [];
-
-  for (let i=0;i<colCount;i++){
-    const col = document.createElement('div');
-    col.className = 'masonry__col';
-    container.appendChild(col);
-    cols.push({el: col, height: 0});
-  }
-
   filtered.forEach((piece, idx) => {
-    // Find shortest column to balance heights
-    const target = cols.reduce((min, c) => c.height < min.height ? c : min, cols[0]);
-
     const item = document.createElement('figure');
-    item.className = 'g-item';
-    item.style.transitionDelay = `${(idx % 8) * 0.05}s`;
+    item.className = piece.type === 'reel' ? 'g-item g-item--reel' : 'g-item';
+    item.style.transitionDelay = `${(idx % 10) * 0.04}s`;
     item.setAttribute('data-brand', piece.brand || 'independent');
 
-    // Caption para proyectos; sin caption para imágenes independientes
-    const caption = piece.brand
-      ? `${piece.nameEs} — ${lang==='es'?piece.typeEs:piece.typeEn}`
-      : '';
+    const typeLabel = piece.brand ? (lang === 'es' ? piece.typeEs : piece.typeEn) : '';
+    const caption = piece.brand ? `${piece.nameEs} — ${typeLabel}` : '';
+    const altText = piece.brand ? `${piece.nameEs} — ${typeLabel}` : (piece.type==='reel' ? 'Reel' : 'Trabajo gráfico independiente');
 
-    item.onclick = () => openLightbox(piece.src, caption);
+    if (piece.type === 'reel') {
+      item.onclick = () => openLightbox(piece.src, caption, true);
+      item.innerHTML = `
+        <img src="${piece.poster}" alt="${altText}" loading="lazy"
+             onerror="this.closest('.g-item').style.display='none'">
+        <span class="g-item__reel-tag">Reel</span>
+        <span class="g-item__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>`;
+    } else {
+      item.onclick = () => openLightbox(piece.src, caption, false);
+      item.innerHTML = `
+        <img src="${piece.src}" alt="${altText}" loading="lazy"
+             onerror="this.closest('.g-item').style.display='none'">`;
+    }
 
-    const typeLabel = piece.brand
-      ? (lang === 'es' ? piece.typeEs : piece.typeEn)
-      : '';
-
-    const altText = piece.brand
-      ? `${piece.nameEs} — ${typeLabel}`
-      : 'Trabajo gráfico independiente';
-
-    item.innerHTML = `
-      <img src="${piece.src}" alt="${altText}" loading="lazy"
-           onerror="this.closest('.g-item').style.display='none'">`;
-
-    target.el.appendChild(item);
-
-    // Estimate height added
-    target.height += 1;
+    grid.appendChild(item);
   });
 
   observeReveal();
 }
 
-function openLightbox(src, caption){
-  document.getElementById('lightbox-img').src = src;
+function openLightbox(src, caption, isVideo){
+  const img = document.getElementById('lightbox-img');
+  const vid = document.getElementById('lightbox-video');
+  if (isVideo) {
+    img.style.display = 'none'; img.src = '';
+    vid.style.display = 'block';
+    vid.src = src;
+    vid.play().catch(()=>{});
+  } else {
+    vid.style.display = 'none'; vid.pause(); vid.removeAttribute('src'); vid.load();
+    img.style.display = 'block';
+    img.src = src;
+  }
   document.getElementById('lightbox-caption').textContent = caption;
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -470,6 +482,8 @@ function openLightbox(src, caption){
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
+  const vid = document.getElementById('lightbox-video');
+  vid.pause();
 }
 
 document.addEventListener('keydown', e => {
@@ -489,12 +503,12 @@ function observeReveal(){
   document.querySelectorAll('.g-item:not(.visible)').forEach(el=>io.observe(el));
 }
 
-/* Filters — solo se generan desde las marcas presentes en PIECES */
+/* Filters — se generan desde las marcas presentes en PIECES, + "Reels" si hay alguno */
 function buildFilters(){
   const container = document.getElementById('g-filters');
+  const countEl = document.getElementById('g-count');
   container.innerHTML = '';
 
-  // "Todas" siempre primero
   const allBtn = document.createElement('button');
   allBtn.className = 'g-filter-btn';
   allBtn.dataset.brand = 'all';
@@ -503,15 +517,11 @@ function buildFilters(){
   allBtn.onclick = () => selectFilter('all');
   container.appendChild(allBtn);
 
-  // Marcas únicas, ignorando imágenes independientes (brand:null)
   const seen = new Set();
-
   PIECES.forEach(p => {
     if (!p.brand) return;
-
     if (!seen.has(p.brand)) {
       seen.add(p.brand);
-
       const btn = document.createElement('button');
       btn.className = 'g-filter-btn';
       btn.dataset.brand = p.brand;
@@ -521,25 +531,27 @@ function buildFilters(){
       container.appendChild(btn);
     }
   });
+
+  if (PIECES.some(p => p.type === 'reel')) {
+    const reelBtn = document.createElement('button');
+    reelBtn.className = 'g-filter-btn';
+    reelBtn.dataset.brand = 'reels';
+    reelBtn.setAttribute('aria-pressed', currentBrand === 'reels' ? 'true' : 'false');
+    reelBtn.textContent = T[lang].f_reels;
+    reelBtn.onclick = () => selectFilter('reels');
+    container.appendChild(reelBtn);
+  }
+
+  container.appendChild(countEl);
 }
 
 function selectFilter(brand){
   currentBrand = brand;
-
   document.querySelectorAll('.g-filter-btn').forEach(b=>{
     b.setAttribute('aria-pressed', b.dataset.brand === brand ? 'true' : 'false');
   });
-
-  renderMasonry();
+  renderGrid();
 }
-
-/* Re-render on resize (debounced) — keeps it adaptive */
-let resizeTimer;
-
-window.addEventListener('resize', ()=>{
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(renderMasonry, 200);
-});
 
 syncIcons();
 buildFilters();
@@ -547,4 +559,3 @@ setLang('es');
 </script>
 </body>
 </html>
-```
