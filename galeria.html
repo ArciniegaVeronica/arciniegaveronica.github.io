@@ -1,561 +1,400 @@
-<!doctype html>
-<html lang="es" data-theme="dark">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Trabajo Gráfico — Verónica Arciniega</title>
-<meta name="description" content="Galería completa del trabajo gráfico de Verónica Arciniega: identidad de marca, social media, branding, reels y piezas editoriales.">
+<meta name="description" content="Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad, reels y branding para distintas industrias.">
+<meta name="author" content="Verónica Arciniega">
+<meta property="og:title" content="Trabajo Gráfico — Verónica Arciniega">
+<meta property="og:description" content="Identidad de marca, social media, publicidad, reels y branding.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta name="theme-color" content="#0e1014">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..800&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">
 <style>
+/* Galería: misma identidad que el portfolio. Cada marca es un capítulo con su punto de color; las piezas se organizan como un moodboard en columnas y se abren en un visor */
 :root{
-  --bg:#0a0a0f;--surface:#16161d;--card:#1a1a24;--card-soft:#0d0d14;
-  --text:#f5f5f7;--muted:rgba(245,245,247,0.68);--faint:rgba(245,245,247,0.58);
-  --primary:#6366f1;--secondary:#ec4899;--tiffany:#0ABAB5;
-  --border:rgba(255,255,255,0.07);--border-mid:rgba(255,255,255,0.13);
-  --font:'Plus Jakarta Sans',sans-serif;--mono:'Space Mono',monospace;
-  --ease:0.4s cubic-bezier(0.4,0,0.2,1);--bounce:0.5s cubic-bezier(0.34,1.56,.64,1);
+  --bg:#0e1014;--surface:rgba(255,255,255,.05);--surface-2:rgba(255,255,255,.08);--line:rgba(225,220,245,.13);
+  --fg:#f1eff6;--muted:#a6a3b5;--teal:#7fe3d8;--lilac:#c4a8ff;--pink:#f7b6d3;--header:rgba(14,16,20,.68);--leak-op:.18;
+  --grad:linear-gradient(100deg,var(--teal),var(--lilac) 55%,var(--pink));
+  --pastel:linear-gradient(100deg,#7fe3d8,#c4a8ff 55%,#f7b6d3);
+  --display:"Lexend",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Atkinson Hyperlegible Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --gutter:clamp(16px,4vw,56px);--max:1180px;color-scheme:dark;
 }
-[data-theme="light"]{
-  --bg:#f4f4f8;--surface:#ffffff;--card:#ffffff;--card-soft:#ececf4;
-  --text:#0a0a0f;--muted:rgba(10,10,15,0.72);--faint:rgba(10,10,15,0.64);
-  --border:rgba(0,0,0,0.07);--border-mid:rgba(0,0,0,0.13);
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]):not([data-user-theme]){--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0f8d84;--lilac:#7655dd;--pink:#c64a87;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:68px}
-body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background var(--ease),color var(--ease)}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
-:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
-.skip{position:fixed;top:-100px;left:16px;z-index:9999;padding:12px 20px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:top .2s}
-.skip:focus{top:16px}
+:root[data-theme="light"]{--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0f8d84;--lilac:#7655dd;--pink:#c64a87;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;font-weight:500;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 16px;border-radius:999px;background:var(--fg);color:var(--bg);text-decoration:none;font:500 14px var(--display)}
+.skip:focus{top:12px}
+.leak{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.leak i{position:absolute;border-radius:50%;filter:blur(110px);opacity:var(--leak-op)}
+.leak i:nth-child(1){width:44vw;height:44vw;background:#c4a8ff;top:-20vw;right:-12vw}
+.leak i:nth-child(2){width:36vw;height:36vw;background:#7fe3d8;top:50vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
+main,header,footer{position:relative;z-index:1}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-mid);background:rgba(10,10,15,0.92);box-shadow:0 4px 24px rgba(0,0,0,.2);transition:background var(--ease)}
-[data-theme="light"] .nav{background:rgba(248,248,252,0.94)}
-.nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-@media(min-width:768px){.nav__inner{padding:0 48px}}
-.nav__back{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);transition:color var(--ease)}
-.nav__back:hover{color:var(--text)}
-.nav__back svg{width:16px;height:16px;transition:transform var(--ease)}
-.nav__back:hover svg{transform:translateX(-3px)}
-.nav__right{display:flex;align-items:center;gap:12px}
-.lang-sep{color:var(--faint);font-size:11px}
-.lang-btn{font-family:var(--mono);font-size:11px;background:none;border:none;cursor:pointer;padding:5px 8px;border-radius:6px;font-weight:400;color:var(--faint);transition:color .3s,font-weight .3s,background .3s;letter-spacing:.05em}
-.lang-btn[aria-pressed="true"]{color:var(--primary);font-weight:800;background:rgba(99,102,241,0.14)}
-[data-theme="light"] .lang-btn[aria-pressed="true"]{background:rgba(79,70,229,0.10)}
-.lang-btn:hover:not([aria-pressed="true"]){color:var(--text);background:rgba(255,255,255,0.06)}
-[data-theme="light"] .lang-btn:hover:not([aria-pressed="true"]){background:rgba(0,0,0,0.05)}
-.theme-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-mid);color:var(--muted);transition:background var(--ease),transform var(--bounce),border-color var(--ease),color var(--ease)}
-.theme-btn:hover{background:var(--surface);transform:rotate(20deg);color:var(--text)}
-[data-theme="light"] .theme-btn{background:rgba(79,70,229,0.10);border-color:var(--primary);color:var(--primary)}
-[data-theme="light"] .theme-btn:hover{background:var(--primary);color:#fff}
-.theme-btn svg{width:16px;height:16px}
+/* cabecera */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:var(--header);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.mark{font-family:var(--display);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.mark i{width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.mark b{font-weight:600}.mark span{color:var(--muted)}
+.tools{display:flex;align-items:center;gap:8px}
+.back{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--display);text-decoration:none;padding:8px 16px;border-radius:999px;color:var(--fg);border:1px solid var(--line);background:var(--surface);transition:border-color .25s}
+.back:hover{border-color:color-mix(in srgb,var(--fg) 45%,transparent)}
+.back svg{width:14px;height:14px;transition:transform .3s}
+.back:hover svg{transform:translateX(-3px)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font:500 13px var(--body);background:none;border:0;color:var(--muted);padding:5px 10px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--pastel);color:#17131f}
+.theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer}
+.theme svg{width:17px;height:17px}
+@media (max-width:620px){.mark span{display:none}.back span{display:none}.back{padding:8px 11px}}
 
-/* HERO / HEADER */
-.g-header{padding:140px 24px 48px;max-width:1280px;margin:0 auto}
-@media(min-width:768px){.g-header{padding:150px 48px 56px}}
-.g-eyebrow{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--primary);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px}
-.g-eyebrow::before{content:'';width:32px;height:1px;background:var(--primary)}
-.g-title{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:16px}
-.g-desc{font-size:16px;color:var(--muted);max-width:560px;line-height:1.7}
+/* cabecera de la galería */
+.intro{padding-block:clamp(64px,9vw,120px) clamp(28px,4vw,44px)}
+.kicker{font-family:var(--display);font-size:15px;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--grad)}
+.intro h1{font-size:clamp(44px,7.5vw,104px);line-height:.98;letter-spacing:-.04em;font-weight:400}
+.intro h1 .stop{display:inline-block;width:.18em;height:.18em;border-radius:50%;background:var(--grad);margin-left:.05em}
+.intro p{margin-top:22px;color:var(--muted);max-width:56ch;font-size:18px}
+.counts{margin-top:28px;display:flex;flex-wrap:wrap;gap:0}
+.counts div{padding-right:24px;margin-right:24px;border-right:1px solid var(--line)}
+.counts div:last-child{border:0;margin:0;padding:0}
+.counts b{display:block;font:500 26px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.counts span{font-size:13.5px;color:var(--muted)}
 
-/* FILTERS — sticky bar, orden claro */
-.g-filters-bar{position:sticky;top:68px;z-index:40;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 24px;transition:background var(--ease)}
-@media(min-width:768px){.g-filters-bar{padding:18px 48px}}
-.g-filters{display:flex;flex-wrap:wrap;gap:8px;max-width:1280px;margin:0 auto}
-.g-filter-btn{padding:9px 18px;border-radius:100px;border:1px solid var(--border-mid);background:var(--card-soft);color:var(--muted);font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;transition:all var(--ease);white-space:nowrap}
-.g-filter-btn:hover{border-color:var(--primary);color:var(--text)}
-.g-filter-btn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
-.g-count{font-family:var(--mono);font-size:10px;color:var(--faint);margin-left:auto;align-self:center;padding-left:12px;white-space:nowrap}
+/* filtros pegajosos */
+.filters-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 61px);z-index:15;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.filters-bar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding-block:12px}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:8px;font:500 14px var(--body);color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:7px 14px;border-radius:999px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--grad))}
+.chip:hover{color:var(--fg)}
+.chip[aria-pressed="true"]{color:var(--fg);border-color:color-mix(in srgb,var(--fg) 50%,transparent);background:var(--surface-2)}
+.types{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.types button{font:500 13px var(--body);color:var(--muted);background:none;border:0;padding:6px 13px;border-radius:999px;cursor:pointer}
+.types button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
 
-/* GALERÍA — masonry real vía CSS columns: cada imagen conserva su
-   proporción natural (sin recortar), y como cada columna fluye de forma
-   independiente y continua, nunca quedan huecos feos entre piezas. */
-.g-wrap{max-width:1400px;margin:0 auto;padding:32px 24px 100px}
-@media(min-width:768px){.g-wrap{padding:40px 48px 120px}}
-.g-grid{column-count:2;column-gap:14px}
-@media(min-width:560px){.g-grid{column-count:3;column-gap:16px}}
-@media(min-width:900px){.g-grid{column-count:4}}
-@media(min-width:1400px){.g-grid{column-count:5}}
+/* capítulos por marca */
+.brand{padding-block:clamp(48px,6vw,80px) 0}
+.brand-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 16px;align-items:center;margin-bottom:24px}
+.brand-dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 22%,transparent)}
+.brand-head h2{font-size:clamp(26px,3.2vw,38px);letter-spacing:-.03em}
+.brand-head p{grid-column:2;color:var(--muted);font-size:15px}
+.brand-head .case{grid-column:3;grid-row:1/span 2;display:inline-flex;align-items:center;gap:8px;font:500 14px var(--display);text-decoration:none;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:border-color .25s}
+.brand-head .case:hover{border-color:var(--c)}
+.brand-head .case svg{width:13px;height:13px;transition:transform .3s}
+.brand-head .case:hover svg{transform:translateX(3px)}
+@media (max-width:620px){.brand-head{grid-template-columns:auto minmax(0,1fr)}.brand-head .case{grid-column:2;grid-row:auto;justify-self:start;margin-top:8px}}
 
-.g-item{
-  position:relative;display:block;width:100%;
-  break-inside:avoid;-webkit-column-break-inside:avoid;
-  margin:0 0 14px;border-radius:14px;overflow:hidden;
-  border:1px solid var(--border);background:var(--card-soft);
-  cursor:pointer;
-  opacity:0;transform:translateY(14px) scale(.98);
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,border-color .3s ease;
-}
-@media(min-width:560px){.g-item{margin-bottom:16px}}
-.g-item.visible{animation:gIn .55s ease forwards}
-@keyframes gIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-@media(prefers-reduced-motion:reduce){.g-item{opacity:1;transform:none;animation:none!important}}
-.g-item:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.32);border-color:var(--border-mid);z-index:2}
-.g-item img,.g-item video{width:100%;height:auto;display:block;transition:transform .5s ease}
-.g-item:hover img,.g-item:hover video{transform:scale(1.035)}
-/* Sin overlay de texto en el grid — solo la imagen, minimalista */
+/* moodboard en columnas */
+.board{columns:3 260px;column-gap:14px}
+.piece{break-inside:avoid;margin:0 0 14px;position:relative;border-radius:18px;overflow:hidden;cursor:zoom-in;display:block;width:100%;padding:0;border:1px solid var(--line);background:linear-gradient(150deg,var(--a),var(--b));color:#fff;text-align:left;font:inherit;isolation:isolate}
+.piece .ph{display:block;width:100%;aspect-ratio:var(--r,4/5)}
+.piece img,.piece video{width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.piece:has(img),.piece:has(video){background:var(--surface)}
+.piece:has(img) .ph,.piece:has(video) .ph{display:none}
+.piece:hover img,.piece:hover video{transform:scale(1.03)}
+.piece .meta{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;display:flex;justify-content:space-between;align-items:end;gap:10px;background:linear-gradient(to top,rgba(10,11,15,.7),transparent);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.piece:hover .meta,.piece:focus-visible .meta{opacity:1;transform:none}
+.piece .meta b{font:500 14px var(--display)}
+.piece .meta small{font-size:12px;opacity:.85}
+.badge{position:absolute;top:12px;left:12px;z-index:1;display:inline-flex;align-items:center;gap:6px;font:500 11.5px var(--display);color:#17131f;background:rgba(255,255,255,.88);padding:4px 10px;border-radius:999px}
+.badge svg{width:10px;height:10px}
+.empty{color:var(--muted);padding:40px 0}
+.brand.others{margin-top:clamp(32px,4vw,56px);border-top:1px solid var(--line)}
+.brand.others .brand-dot{background:var(--grad);box-shadow:0 0 0 5px color-mix(in srgb,var(--lilac) 20%,transparent)}
+.chip:not([style]) i{background:var(--grad)}
 
-/* REELS */
-.g-item--reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%);pointer-events:none}
-.g-item__play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform var(--ease),background var(--ease)}
-.g-item--reel:hover .g-item__play{transform:translate(-50%,-50%) scale(1.1);background:rgba(255,255,255,.28)}
-.g-item__play svg{width:18px;height:18px;fill:#fff;margin-left:2px}
-.g-item__reel-tag{position:absolute;bottom:10px;left:10px;z-index:2;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.4);padding:4px 9px;border-radius:100px}
+/* visor */
+.viewer{position:fixed;inset:0;z-index:50;display:grid;grid-template-rows:auto 1fr auto;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:calc(env(safe-area-inset-top,0px) + 16px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 16px)}
+.v-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.v-info{display:flex;align-items:center;gap:12px;min-width:0}
+.v-info i{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+.v-info b{font:500 17px var(--display)}
+.v-info span{color:var(--muted);font-size:14px}
+.v-close,.v-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer;flex:none;transition:border-color .2s}
+.v-close:hover,.v-nav:hover{border-color:color-mix(in srgb,var(--fg) 50%,transparent)}
+.v-close svg,.v-nav svg{width:18px;height:18px}
+.v-stage{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;min-height:0;padding-block:16px}
+.v-media{height:100%;min-height:0;display:grid;place-items:center}
+.v-media img,.v-media video{max-height:100%;max-width:100%;width:auto;height:auto;border-radius:14px;object-fit:contain}
+.v-media .ph{height:min(70vh,640px);aspect-ratio:var(--r,4/5);max-width:100%;border-radius:14px;background:linear-gradient(150deg,var(--a),var(--b))}
+.v-foot{text-align:center;font:400 13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:620px){.v-stage{grid-template-columns:minmax(0,1fr)}.v-nav{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 10px)}.v-prev{left:var(--gutter)}.v-next{right:var(--gutter)}}
 
-/* EMPTY STATE */
-.g-empty{column-span:all;text-align:center;padding:80px 0;color:var(--muted);font-size:14px}
+/* pie */
+.cta{padding-block:clamp(80px,10vw,128px) clamp(56px,7vw,88px);text-align:left}
+.cta h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.03em;max-width:20ch}
+.cta-row{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+.btn-key{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:10px;text-decoration:none;border-radius:999px;color:var(--fg);font:500 16px var(--display);padding:12px 24px;border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box;transition:transform .25s}
+.btn-key::after{content:"";position:absolute;inset:-2px;border-radius:inherit;background:var(--pastel);filter:blur(12px);opacity:0;z-index:-1;transition:opacity .35s}
+.btn-key:hover{transform:translateY(-1px)}.btn-key:hover::after{opacity:.55}
+.btn-key svg{width:15px;height:15px}
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:14px}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.foot a{font:600 20px var(--display);text-decoration:none;color:var(--fg);display:inline-flex;align-items:baseline}
+.foot a i{width:.3em;height:.3em;border-radius:50%;background:var(--grad);margin-left:.08em}
 
-/* LIGHTBOX */
-.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:40px 24px;backdrop-filter:blur(8px)}
-.lightbox.open{display:flex}
-.lightbox__img{max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.6)}
-.lightbox__video{max-width:100%;max-height:85vh;border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.6);background:#000}
-.lightbox__close{position:absolute;top:24px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}
-.lightbox__close:hover{background:rgba(255,255,255,.18);transform:rotate(90deg)}
-.lightbox__close svg{width:18px;height:18px}
-.lightbox__caption{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.7);font-family:var(--mono);font-size:11px;letter-spacing:.05em}
-
-footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--faint)}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<script>
-(function(){var t=localStorage.getItem('va-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();
-</script>
+<a class="skip" href="#galeria">Saltar al contenido principal</a>
+<div class="leak" aria-hidden="true"><i></i><i></i></div>
 
-<a href="#main" class="skip" data-t="skip">Saltar al contenido</a>
-
-<nav class="nav" role="navigation">
-  <div class="nav__inner">
-    <a href="index.html" class="nav__back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      <span data-t="back">Volver al portfolio</span>
-    </a>
-
-    <div class="nav__right">
-      <div style="display:flex;align-items:center;gap:6px">
-        <button class="lang-btn" id="btn-es" onclick="setLang('es')" aria-pressed="true">ES</button>
-        <span class="lang-sep">|</span>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="index.html"><i></i><b>Verónica</b><span>Arciniega</span></a>
+    <div class="tools">
+      <a class="back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg><span data-en="Back to portfolio">Volver al portfolio</span></a>
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-
-      <button class="theme-btn" onclick="toggleTheme()">
-        <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
-      </button>
+      <button class="theme" type="button" id="themeBtn" aria-label="Cambiar a modo claro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" id="themeIcon"></svg></button>
     </div>
   </div>
-</nav>
+</header>
 
-<main id="main">
-  <div class="g-header">
-    <p class="g-eyebrow" data-t="eyebrow">Archivo Visual</p>
-    <h1 class="g-title" data-t="title">Trabajo Gráfico</h1>
-    <p class="g-desc" data-t="desc">Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad, reels y branding para distintas industrias.</p>
-  </div>
+<main id="galeria">
+  <section class="wrap intro">
+    <p class="kicker"><i></i><span data-en="Graphic design &amp; art direction">Diseño gráfico y dirección de arte</span></p>
+    <h1><span data-en="Graphic Work">Trabajo Gráfico</span><span class="stop" aria-hidden="true"></span></h1>
+    <p data-en="A complete look at the pieces I’ve designed: brand identity, social media, advertising, reels and branding for different industries.">Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad, reels y branding para distintas industrias.</p>
+    <div class="counts" id="counts"></div>
+  </section>
 
-  <div class="g-filters-bar">
-    <div class="g-filters" id="g-filters" role="group" aria-label="Filtrar por marca">
-      <span class="g-count" id="g-count"></span>
+  <div class="filters-bar">
+    <div class="wrap">
+      <div class="chips" id="brandChips" role="group" aria-label="Filtrar por marca"></div>
+      <div class="types" id="types" role="group" aria-label="Filtrar por tipo de pieza"></div>
     </div>
   </div>
 
-  <div class="g-wrap">
-    <div class="g-grid" id="grid" aria-live="polite" aria-label="Galería de piezas gráficas"></div>
-  </div>
+  <div class="wrap" id="chapters"></div>
+
+  <section class="wrap cta">
+    <h2 data-en="Want to see how I think, not just what I make?">¿Quieres ver cómo pienso, además de lo que hago?</h2>
+    <div class="cta-row">
+      <a class="btn-key" href="index.html#proyectos"><span data-en="See UX/UI projects">Ver proyectos UX/UI</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a class="back" href="index.html#contacto"><span data-en="Let's talk">¿Hablamos?</span></a>
+    </div>
+  </section>
 </main>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" onclick="if(event.target===this)closeLightbox()">
-  <button class="lightbox__close" onclick="closeLightbox()" aria-label="Cerrar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  </button>
-  <img class="lightbox__img" id="lightbox-img" src="" alt="">
-  <video class="lightbox__video" id="lightbox-video" controls autoplay playsinline style="display:none"></video>
-  <p class="lightbox__caption" id="lightbox-caption"></p>
+<footer>
+  <div class="wrap foot">
+    <a href="index.html">Verónica Arciniega<i aria-hidden="true"></i></a>
+    <p data-en="© 2026 — Multidisciplinary Designer">© 2026 — Diseñadora Multidisciplinar</p>
+  </div>
+</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Visor de piezas" hidden>
+  <div class="v-top">
+    <div class="v-info"><i id="vDot"></i><b id="vBrand"></b><span id="vType"></span></div>
+    <button class="v-close" type="button" id="vClose" aria-label="Cerrar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+  <div class="v-stage">
+    <button class="v-nav v-prev" type="button" id="vPrev" aria-label="Anterior"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 3 5 8l5 5"/></svg></button>
+    <div class="v-media" id="vMedia"></div>
+    <button class="v-nav v-next" type="button" id="vNext" aria-label="Siguiente"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></button>
+  </div>
+  <p class="v-foot" id="vCount"></p>
 </div>
 
-<footer><p>© 2026 Verónica Arciniega — <span data-t="footer">Diseñadora Multidisciplinar</span></p></footer>
-
 <script>
-/* ══════════════════════════════════════════════════════════
-   PIEZAS — agrega aquí cada imagen o reel nuevo
+(() => {
+  /* =========================================================
+     TUS PIEZAS
+     Añade aquí cada pieza: marca, tipo ('post', 'reel', 'print')
+     y la ruta de la imagen (src) o del vídeo (video).
+     r = proporción del hueco mientras no haya imagen (4/5, 9/16, 1/1, 16/9).
+     El orden de las marcas es el orden en que aparecen.
 
-   IMAGEN DE PROYECTO (crea/usa un filtro):
-   { src:"assets/imagen.jpg", brand:"nombre-marca", nameEs:"Nombre", typeEs:"Post", typeEn:"Post" }
+     PIEZAS SIN PROYECTO EN EL PORTFOLIO
+     - Si la marca no tiene página de caso, añádela a "brands" sin "page"
+       (no saldrá el botón "Ver caso").
+     - Si es una pieza suelta, ponle brand:'otros' y, si quieres,
+       client:'Nombre del cliente' o title:'Nombre de la pieza'.
+       Todas se agrupan al final en "Más trabajo gráfico".
+     - Tipos disponibles: 'post', 'reel', 'print', 'branding'.
+     ========================================================= */
+  const brands = [
+    { id:'chiltepik', name:'Chiltepiik', a:'#edc491', b:'#5C6B3A', c:'#c9a46b', page:'chiltepik.html', tag:['Dirección de Arte · Social Media','Art Direction · Social Media'] },
+    { id:'habemus', name:'Habemus Pizza', a:'#E8650A', b:'#CC3300', c:'#e0602a', page:'habemus-pizza.html', tag:['Social Media · Material Impreso','Social Media · Print Material'] },
+    { id:'jaguares', name:'Jaguares de Nayarit', a:'#8fab6c', b:'#2D6B45', c:'#7d9c5c', page:'jaguares.html', tag:['Social Media · Identidad Deportiva','Social Media · Sports Identity'] },
+    { id:'eka', name:'EKA Active', a:'#86e1dd', b:'#5C7A4A', c:'#5fc4bf', page:'eka-active.html', tag:['Social Media · Dirección Visual','Social Media · Visual Direction'] },
+    { id:'holly', name:'Holly Body', a:'#E8D5C4', b:'#7BA7BC', c:'#7BA7BC', page:'holly-body.html', tag:['Social Media · Publicidad Digital','Social Media · Digital Advertising'] }
+  ];
+  const pieces = [
+    { brand:'chiltepik', type:'post',  src:'assets/galeria/chiltepik-01.jpg', r:'4/5' },
+    { brand:'chiltepik', type:'reel',  video:'assets/galeria/chiltepik-reel.mp4', r:'9/16' },
+    { brand:'chiltepik', type:'post',  src:'assets/galeria/chiltepik-02.jpg', r:'1/1' },
+    { brand:'chiltepik', type:'post',  src:'assets/galeria/chiltepik-03.jpg', r:'4/5' },
+    { brand:'chiltepik', type:'post',  src:'assets/galeria/chiltepik-04.jpg', r:'1/1' },
+    { brand:'habemus',   type:'post',  src:'assets/galeria/habemus-01.jpg', r:'4/5' },
+    { brand:'habemus',   type:'print', src:'assets/galeria/habemus-packaging.jpg', r:'16/10' },
+    { brand:'habemus',   type:'reel',  video:'assets/galeria/habemus-reel.mp4', r:'9/16' },
+    { brand:'habemus',   type:'post',  src:'assets/galeria/habemus-02.jpg', r:'1/1' },
+    { brand:'jaguares',  type:'post',  src:'assets/galeria/jaguares-01.jpg', r:'4/5' },
+    { brand:'jaguares',  type:'post',  src:'assets/galeria/jaguares-02.jpg', r:'4/5' },
+    { brand:'jaguares',  type:'post',  src:'assets/galeria/jaguares-03.jpg', r:'1/1' },
+    { brand:'eka',       type:'post',  src:'assets/galeria/eka-01.jpg', r:'4/5' },
+    { brand:'eka',       type:'reel',  video:'assets/galeria/eka-reel.mp4', r:'9/16' },
+    { brand:'eka',       type:'post',  src:'assets/galeria/eka-02.jpg', r:'1/1' },
+    { brand:'holly',     type:'post',  src:'assets/galeria/holly-01.jpg', r:'4/5' },
+    { brand:'holly',     type:'print', src:'assets/galeria/holly-banner.jpg', r:'16/9' },
+    { brand:'holly',     type:'post',  src:'assets/galeria/holly-02.jpg', r:'1/1' },
+    // Ejemplos de piezas sueltas (cámbialos por las tuyas)
+    { brand:'otros', client:'Goveman Estudio Creativo', type:'branding', src:'assets/galeria/otros-01.jpg', r:'1/1' },
+    { brand:'otros', title:'Campaña digital', type:'post', src:'assets/galeria/otros-02.jpg', r:'4/5' },
+    { brand:'otros', title:'Banner', type:'print', src:'assets/galeria/otros-03.jpg', r:'16/9' },
+    { brand:'otros', type:'reel', video:'assets/galeria/otros-reel.mp4', r:'9/16' },
+    { brand:'otros', type:'post', src:'assets/galeria/otros-04.jpg', r:'1/1' }
+  ];
+  // Capítulo final para todo lo que no tiene proyecto propio
+  const others = { id:'otros', name:'Más trabajo gráfico', nameEn:'More graphic work', a:'#c4a8ff', b:'#7fe3d8', c:'', tag:['Branding, campañas y piezas para otros clientes','Branding, campaigns and pieces for other clients'] };
+  /* ========================================================= */
 
-   IMAGEN INDEPENDIENTE (no crea filtro, solo aparece en "Todas"):
-   { src:"assets/imagen.jpg", brand:null }
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+  let lang = 'es', brandF = 'all', typeF = 'all', visible = [], cur = 0;
+  const T = (es, en) => lang === 'es' ? es : en;
+  const types = { all:['Todo','All'], post:['Posts','Posts'], reel:['Reels','Reels'], print:['Impreso y publicidad','Print & ads'], branding:['Branding','Branding'] };
+  const typeName = { post:['Post','Post'], reel:['Reel','Reel'], print:['Impreso','Print'], branding:['Branding','Branding'] };
+  const tn = t => (typeName[t] || [t, t])[lang === 'es' ? 0 : 1];
+  const known = new Set(brands.map(b => b.id));
+  pieces.forEach(p => { if (!known.has(p.brand)) { p.client = p.client || (p.brand !== 'otros' ? p.brand : ''); p.brand = 'otros'; } });
+  const allBrands = pieces.some(p => p.brand === 'otros') ? [...brands, others] : brands;
+  const B = id => allBrands.find(b => b.id === id);
+  const bName = b => b.id === 'otros' ? T(b.name, b.nameEn) : b.name;
+  const label = p => p.client || p.title || bName(B(p.brand));
+  const play = '<svg viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M2 1l7 4-7 4z"/></svg>';
+  const arrow = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 
-   REEL / VIDEO (mismo patrón + type:"reel", con poster de portada):
-   { type:"reel", src:"assets/mi-reel.mp4", poster:"assets/mi-reel-poster.jpg", brand:"nombre-marca", nameEs:"Nombre", typeEs:"Reel", typeEn:"Reel" }
-   — Si el reel es independiente: brand:null, sin nameEs (aparece solo en "Todas" y en el filtro "Reels").
-
-   No importa el tamaño ni la proporción de la imagen: la galería es un
-   masonry real (columnas fluidas), cada pieza conserva su forma original
-   completa — vertical, cuadrada u horizontal — sin recortes ni huecos.
-════════════════════════════════════════════════════════════ */
-const PIECES = [
-
-  // Chiltepiik
-  { src:"assets/chiltepik-01.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-02.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-03.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-04.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-05.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-06.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-07.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-08.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-09.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-10.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-11.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-12.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-13.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-14.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-15.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-16.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/chiltepik-17.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Post", typeEn:"Post" },
-  { type:"reel", src:"assets/reel-chiltepik-01.mp4", poster:"assets/reel-chiltepik-01-poster.jpg", brand:"chiltepik", nameEs:"Chiltepiik", typeEs:"Reel", typeEn:"Reel" },
-
-  // Habemus Pizza
-  { src:"assets/habemus-pizza-01.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-02.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-03.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-04.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Mockup", typeEn:"Mockup" },
-  { src:"assets/habemus-pizza-05.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-06.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-07.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-08.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-09.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-10.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-11.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-12.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-13.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-14.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-15.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/habemus-pizza-pauta.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Pauta", typeEn:"Ad" },
-  { type:"reel", src:"assets/reel-habemus-pizza-01.mp4", poster:"assets/reel-habemus-pizza-01-poster.jpg", brand:"habemus-pizza", nameEs:"Habemus Pizza", typeEs:"Reel", typeEn:"Reel" },
-
-  // Jaguares
-  { src:"assets/jaguares-01.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-02.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-03.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-04.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-05.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-06.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-07.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-08.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-09.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-10.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/jaguares-11.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Post", typeEn:"Post" },
-  { type:"reel", src:"assets/reel-jaguares-01.mp4", poster:"assets/reel-jaguares-01-poster.jpg", brand:"jaguares", nameEs:"Jaguares de Nayarit", typeEs:"Reel", typeEn:"Reel" },
-
-  // EKA Active
-  { src:"assets/eka-active-01.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/eka-active-02.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/eka-active-03.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/eka-active-04.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/eka-active-05.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/eka-active-06.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Post", typeEn:"Post" },
-  { type:"reel", src:"assets/reel-eka-active-01.mp4", poster:"assets/reel-eka-active-01-poster.jpg", brand:"eka-active", nameEs:"EKA Active", typeEs:"Reel", typeEn:"Reel" },
-
-  // Holly Body
-  { src:"assets/holly-body-01.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/holly-body-02.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/holly-body-03.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Banner", typeEn:"Banner" },
-  { src:"assets/holly-body-04.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/holly-body-05.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Post", typeEn:"Post" },
-  { src:"assets/holly-body-pauta.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Pauta", typeEn:"Ad" },
-  { type:"reel", src:"assets/reel-holly-body-01.mp4", poster:"assets/reel-holly-body-01-poster.jpg", brand:"holly-body", nameEs:"Holly Body", typeEs:"Reel", typeEn:"Reel" },
-
-  // ═══════════════════════════════════════
-  // IMÁGENES INDEPENDIENTES
-  // No pertenecen a ningún proyecto. No crean filtros nuevos. Aparecen únicamente en "Todas".
-
-  { src:"assets/4me-Gral.jpg", brand:null },
-  { src:"assets/4me-01.jpg", brand:null },
-  { src:"assets/4me-02.jpg", brand:null },
-  { src:"assets/4me-03.jpg", brand:null },
-  { src:"assets/4me-04.jpg", brand:null },
-  { src:"assets/4me-05.jpg", brand:null },
-  { src:"assets/4me-06.jpg", brand:null },
-  { src:"assets/4me-07.jpg", brand:null },
-  { src:"assets/4me-08.jpg", brand:null },
-  { src:"assets/4me-09.jpg", brand:null },
-  { src:"assets/4me-10.jpg", brand:null },
-  { src:"assets/Dkc-Gral.jpg", brand:null },
-  { src:"assets/ElaK-01.jpg", brand:null },
-  { src:"assets/Surya-01.jpg", brand:null },
-  { src:"assets/Surya-02.jpg", brand:null },
-  { src:"assets/Surya-03.jpg", brand:null },
-  { src:"assets/Surya-04.jpg", brand:null },
-  { src:"assets/Surya-05.jpg", brand:null },
-  { src:"assets/Funding-Gral.jpg", brand:null },
-  { src:"assets/Legal-Gral.jpg", brand:null },
-  { src:"assets/Legal-01.jpg", brand:null },
-  { src:"assets/Legal-02.jpg", brand:null },
-  { src:"assets/Legal-03.jpg", brand:null },
-  { src:"assets/Legal-04.jpg", brand:null },
-  { src:"assets/Legal-05.jpg", brand:null },
-  { src:"assets/Legal-06.jpg", brand:null },
-  { src:"assets/Legal-07.jpg", brand:null },
-  { src:"assets/Legal-08.jpg", brand:null },
-  { src:"assets/Legal-09.jpg", brand:null },
-  { src:"assets/Legal-10.jpg", brand:null },
-  { src:"assets/Xasxas-Gral.jpg", brand:null },
-  { src:"assets/xasxas-01.jpg", brand:null },
-  { src:"assets/xasxas-02.jpg", brand:null },
-  { src:"assets/xasxas-03.jpg", brand:null },
-  { src:"assets/xasxas-04.jpg", brand:null },
-  { src:"assets/xasxas-05.jpg", brand:null },
-  { src:"assets/xasxas-06.jpg", brand:null },
-  { src:"assets/xasxas-07.jpg", brand:null },
-  { src:"assets/xasxas-08.jpg", brand:null },
-  { src:"assets/xasxas-09.jpg", brand:null },
-  { src:"assets/xasxas-10.jpg", brand:null },
-  { src:"assets/xasxas-11.jpg", brand:null },
-  { src:"assets/xasxas-12.jpg", brand:null },
-  { src:"assets/xasxas-13.jpg", brand:null },
-  { src:"assets/GineLiz-Gral.jpg", brand:null },
-  { src:"assets/JSC-Gral.jpg", brand:null },
-  { src:"assets/JSC-01.jpg", brand:null },
-  { src:"assets/JSC-02.jpg", brand:null },
-  { src:"assets/JSC-03.jpg", brand:null },
-  { src:"assets/JSC-04.jpg", brand:null },
-  { src:"assets/JSC-05.jpg", brand:null },
-  { src:"assets/JSC-06.jpg", brand:null },
-  { src:"assets/JSC-07.jpg", brand:null },
-  { src:"assets/JSC-11.jpg", brand:null },
-  { src:"assets/JSC-13.jpg", brand:null },
-  { src:"assets/Llevele-Gral.jpg", brand:null },
-  { src:"assets/Llevele-01.jpg", brand:null },
-  { src:"assets/Llevele-02.jpg", brand:null },
-  { src:"assets/Llevele-03.jpg", brand:null },
-  { src:"assets/Llevele-04.jpg", brand:null },
-  { src:"assets/Llevele-05.jpg", brand:null },
-  { src:"assets/Llevele-06.jpg", brand:null },
-  { src:"assets/PasionM-Gral.jpg", brand:null },
-  { src:"assets/Notaria-01.jpg", brand:null },
-  { src:"assets/Notaria-02.jpg", brand:null },
-  { src:"assets/Notaria-03.jpg", brand:null },
-  { src:"assets/Notaria-04.jpg", brand:null },
-  { src:"assets/Laspalmas-Gral.jpg", brand:null },
-  { src:"assets/Laspalmas-01.jpg", brand:null },
-  { src:"assets/Laspalmas-02.jpg", brand:null },
-  { src:"assets/Laspalmas-04.jpg", brand:null },
-  { src:"assets/Laspalmas-05.jpg", brand:null },
-  { src:"assets/Laspalmas-06.jpg", brand:null },
-  { src:"assets/Laspalmas-07.jpg", brand:null },
-  { src:"assets/Laspalmas-08.jpg", brand:null },
-  { src:"assets/Laspalmas-09.jpg", brand:null },
-  { src:"assets/Laspalmas-10.jpg", brand:null },
-  { src:"assets/VainillaCanela-Gral.jpg", brand:null },
-  { src:"assets/VainillaC-01.jpg", brand:null },
-  { src:"assets/VainillaC-02.jpg", brand:null },
-  { src:"assets/VainillaC-03.jpg", brand:null },
-  { src:"assets/VainillaC-04.jpg", brand:null },
-  { src:"assets/VainillaC-05.jpg", brand:null },
-  { src:"assets/VainillaC-06.jpg", brand:null },
-  { src:"assets/ardin-01.jpg", brand:null },
-  { src:"assets/ardin-02.jpg", brand:null },
-  { src:"assets/Bebeauty-01.jpg", brand:null },
-
-  // Ejemplo de reel independiente (no pertenece a ningún proyecto):
-  // { type:"reel", src:"assets/reel-independiente-01.mp4", poster:"assets/reel-independiente-01-poster.jpg", brand:null },
-
-];
-
-const T = {
-  es:{ skip:"Saltar al contenido", back:"Volver al portfolio",
-       eyebrow:"Archivo Visual", title:"Trabajo Gráfico",
-       desc:"Un vistazo completo a las piezas que he diseñado: identidad de marca, social media, publicidad, reels y branding para distintas industrias.",
-       f_all:"Todas", f_reels:"Reels", footer:"Diseñadora Multidisciplinar" },
-  en:{ skip:"Skip to content", back:"Back to portfolio",
-       eyebrow:"Visual Archive", title:"Graphic Work",
-       desc:"A full look at the pieces I've designed: brand identity, social media, advertising, reels and branding across different industries.",
-       f_all:"All", f_reels:"Reels", footer:"Multidisciplinary Designer" }
-};
-
-let lang="es";
-let currentBrand="all";
-
-function setLang(l){
-  lang=l;document.documentElement.lang=l;
-  document.querySelectorAll("[data-t]").forEach(el=>{
-    const k=el.getAttribute("data-t");
-    if(T[l][k]!==undefined)el.textContent=T[l][k];
-  });
-  document.getElementById("btn-es").setAttribute("aria-pressed",l==="es"?"true":"false");
-  document.getElementById("btn-en").setAttribute("aria-pressed",l==="en"?"true":"false");
-  renderGrid();
-  buildFilters();
-}
-
-function toggleTheme(){
-  const dark=document.documentElement.getAttribute("data-theme")==="dark";
-  const next=dark?"light":"dark";
-  document.documentElement.setAttribute("data-theme",next);
-  localStorage.setItem("va-theme",next);
-  syncIcons();
-}
-
-function syncIcons(){
-  const dark=document.documentElement.getAttribute("data-theme")==="dark";
-  document.getElementById("icon-moon").style.display=dark?"block":"none";
-  document.getElementById("icon-sun").style.display=dark?"none":"block";
-}
-
-/* ── GRID limpio y ordenado (no masonry) ──────────────────
-   Tiles de tamaño uniforme (aspect-ratio 4/5, object-fit:cover),
-   en columnas fijas que se adaptan al ancho de pantalla. */
-function renderGrid(){
-  const grid = document.getElementById('grid');
-  grid.innerHTML = '';
-
-  const filtered = currentBrand === 'all'
-    ? PIECES
-    : currentBrand === 'reels'
-      ? PIECES.filter(p => p.type === 'reel')
-      : PIECES.filter(p => p.brand === currentBrand);
-
-  document.getElementById('g-count').textContent =
-    `${filtered.length} ${lang==='es' ? 'piezas' : 'pieces'}`;
-
-  if (filtered.length === 0){
-    grid.innerHTML = `<p class="g-empty">${lang==='es' ? 'No hay piezas en esta categoría todavía.' : 'No pieces in this category yet.'}</p>`;
-    return;
+  function media(p, big) {
+    const b = B(p.brand);
+    const ph = `<span class="ph" style="--r:${p.r || '4/5'}"></span>`;
+    if (p.video) return ph + `<video src="${p.video}" ${big ? 'controls autoplay' : 'muted loop playsinline preload="metadata"'} onerror="this.remove()"></video>`;
+    return ph + `<img src="${p.src}" alt="${label(p)}, ${tn(p.type)}" loading="lazy" onerror="this.remove()">`;
   }
 
-  filtered.forEach((piece, idx) => {
-    const item = document.createElement('figure');
-    item.className = piece.type === 'reel' ? 'g-item g-item--reel' : 'g-item';
-    item.style.transitionDelay = `${(idx % 10) * 0.04}s`;
-    item.setAttribute('data-brand', piece.brand || 'independent');
+  function renderControls() {
+    const bc = document.getElementById('brandChips');
+    bc.innerHTML = `<button class="chip" type="button" data-b="all" aria-pressed="${brandF === 'all'}"><i></i>${T('Todas las marcas', 'All brands')}</button>` +
+      allBrands.map(b => `<button class="chip" type="button" data-b="${b.id}" ${b.c ? `style="--c:${b.c}"` : ''} aria-pressed="${brandF === b.id}"><i></i>${bName(b)}</button>`).join('');
+    bc.querySelectorAll('button').forEach(x => x.onclick = () => { brandF = x.dataset.b; render(); });
+    const tc = document.getElementById('types');
+    tc.innerHTML = Object.keys(types).map(k => `<button type="button" data-t="${k}" aria-pressed="${typeF === k}">${types[k][lang === 'es' ? 0 : 1]}</button>`).join('');
+    tc.querySelectorAll('button').forEach(x => x.onclick = () => { typeF = x.dataset.t; render(); });
+    const n = t => pieces.filter(p => t === 'all' || p.type === t).length;
+    document.getElementById('counts').innerHTML =
+      `<div><b>${brands.length}${allBrands.length > brands.length ? '+' : ''}</b><span>${T('marcas', 'brands')}</span></div><div><b>${n('post') + n('print')}</b><span>${T('piezas gráficas', 'graphic pieces')}</span></div><div><b>${n('reel')}</b><span>reels</span></div>`;
+  }
 
-    const typeLabel = piece.brand ? (lang === 'es' ? piece.typeEs : piece.typeEn) : '';
-    const caption = piece.brand ? `${piece.nameEs} — ${typeLabel}` : '';
-    const altText = piece.brand ? `${piece.nameEs} — ${typeLabel}` : (piece.type==='reel' ? 'Reel' : 'Trabajo gráfico independiente');
-
-    if (piece.type === 'reel') {
-      item.onclick = () => openLightbox(piece.src, caption, true);
-      item.innerHTML = `
-        <img src="${piece.poster}" alt="${altText}" loading="lazy"
-             onerror="this.closest('.g-item').style.display='none'">
-        <span class="g-item__reel-tag">Reel</span>
-        <span class="g-item__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>`;
-    } else {
-      item.onclick = () => openLightbox(piece.src, caption, false);
-      item.innerHTML = `
-        <img src="${piece.src}" alt="${altText}" loading="lazy"
-             onerror="this.closest('.g-item').style.display='none'">`;
+  function render() {
+    renderControls();
+    const out = document.getElementById('chapters');
+    visible = [];
+    const html = allBrands.filter(b => brandF === 'all' || brandF === b.id).map(b => {
+      const list = pieces.filter(p => p.brand === b.id && (typeF === 'all' || p.type === typeF));
+      if (!list.length) return '';
+      const items = list.map(p => {
+        const i = visible.push(p) - 1;
+        return `<button class="piece" type="button" data-i="${i}" style="--a:${b.a};--b:${b.b}" aria-label="${T('Ver', 'View')} ${label(p)}, ${tn(p.type)}">
+          ${p.type === 'reel' ? `<span class="badge">${play}Reel</span>` : ''}
+          ${media(p)}
+          <span class="meta"><b>${label(p)}</b><small>${tn(p.type)}</small></span>
+        </button>`;
+      }).join('');
+      return `<section class="brand${b.id === 'otros' ? ' others' : ''}" ${b.c ? `style="--c:${b.c}"` : ''} aria-labelledby="h-${b.id}">
+        <div class="brand-head"><span class="brand-dot" aria-hidden="true"></span><h2 id="h-${b.id}">${bName(b)}</h2>${b.tag ? `<p>${b.tag[lang === 'es' ? 0 : 1]}</p>` : ''}${b.page ? `<a class="case" href="${b.page}">${T('Ver caso', 'View case')}${arrow}</a>` : ''}</div>
+        <div class="board">${items}</div>
+      </section>`;
+    }).join('');
+    out.innerHTML = html || `<p class="empty">${T('No hay piezas de este tipo para esta marca todavía.', 'No pieces of this type for this brand yet.')}</p>`;
+    out.querySelectorAll('.piece').forEach(el => el.onclick = () => open(+el.dataset.i));
+    // los reels se reproducen solos, sin sonido, solo cuando se ven
+    if (!still && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(e => { const v = e.target; e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }), { threshold: .4 });
+      out.querySelectorAll('video').forEach(v => io.observe(v));
     }
-
-    grid.appendChild(item);
-  });
-
-  observeReveal();
-}
-
-function openLightbox(src, caption, isVideo){
-  const img = document.getElementById('lightbox-img');
-  const vid = document.getElementById('lightbox-video');
-  if (isVideo) {
-    img.style.display = 'none'; img.src = '';
-    vid.style.display = 'block';
-    vid.src = src;
-    vid.play().catch(()=>{});
-  } else {
-    vid.style.display = 'none'; vid.pause(); vid.removeAttribute('src'); vid.load();
-    img.style.display = 'block';
-    img.src = src;
-  }
-  document.getElementById('lightbox-caption').textContent = caption;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-  const vid = document.getElementById('lightbox-video');
-  vid.pause();
-}
-
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') closeLightbox();
-});
-
-function observeReveal(){
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, {threshold:0.08});
-
-  document.querySelectorAll('.g-item:not(.visible)').forEach(el=>io.observe(el));
-}
-
-/* Filters — se generan desde las marcas presentes en PIECES, + "Reels" si hay alguno */
-function buildFilters(){
-  const container = document.getElementById('g-filters');
-  const countEl = document.getElementById('g-count');
-  container.innerHTML = '';
-
-  const allBtn = document.createElement('button');
-  allBtn.className = 'g-filter-btn';
-  allBtn.dataset.brand = 'all';
-  allBtn.setAttribute('aria-pressed', currentBrand === 'all' ? 'true' : 'false');
-  allBtn.textContent = T[lang].f_all;
-  allBtn.onclick = () => selectFilter('all');
-  container.appendChild(allBtn);
-
-  const seen = new Set();
-  PIECES.forEach(p => {
-    if (!p.brand) return;
-    if (!seen.has(p.brand)) {
-      seen.add(p.brand);
-      const btn = document.createElement('button');
-      btn.className = 'g-filter-btn';
-      btn.dataset.brand = p.brand;
-      btn.setAttribute('aria-pressed', currentBrand === p.brand ? 'true' : 'false');
-      btn.textContent = p.nameEs;
-      btn.onclick = () => selectFilter(p.brand);
-      container.appendChild(btn);
-    }
-  });
-
-  if (PIECES.some(p => p.type === 'reel')) {
-    const reelBtn = document.createElement('button');
-    reelBtn.className = 'g-filter-btn';
-    reelBtn.dataset.brand = 'reels';
-    reelBtn.setAttribute('aria-pressed', currentBrand === 'reels' ? 'true' : 'false');
-    reelBtn.textContent = T[lang].f_reels;
-    reelBtn.onclick = () => selectFilter('reels');
-    container.appendChild(reelBtn);
   }
 
-  container.appendChild(countEl);
-}
-
-function selectFilter(brand){
-  currentBrand = brand;
-  document.querySelectorAll('.g-filter-btn').forEach(b=>{
-    b.setAttribute('aria-pressed', b.dataset.brand === brand ? 'true' : 'false');
+  /* visor */
+  const viewer = document.getElementById('viewer'), vMedia = document.getElementById('vMedia');
+  let lastFocus;
+  function show(i) {
+    cur = (i + visible.length) % visible.length;
+    const p = visible[cur], b = B(p.brand);
+    vMedia.style.setProperty('--a', b.a); vMedia.style.setProperty('--b', b.b);
+    vMedia.innerHTML = media(p, true);
+    document.getElementById('vDot').style.background = b.c || 'linear-gradient(135deg,var(--teal),var(--lilac),var(--pink))';
+    document.getElementById('vBrand').textContent = label(p);
+    document.getElementById('vType').textContent = tn(p.type);
+    document.getElementById('vCount').textContent = `${cur + 1} / ${visible.length}`;
+  }
+  function open(i) { lastFocus = document.activeElement; viewer.hidden = false; document.body.style.overflow = 'hidden'; show(i); document.getElementById('vClose').focus(); }
+  function close() { viewer.hidden = true; vMedia.innerHTML = ''; document.body.style.overflow = ''; lastFocus && lastFocus.focus(); }
+  document.getElementById('vClose').onclick = close;
+  document.getElementById('vPrev').onclick = () => show(cur - 1);
+  document.getElementById('vNext').onclick = () => show(cur + 1);
+  viewer.addEventListener('click', e => { if (e.target === viewer || e.target.classList.contains('v-stage')) close(); });
+  addEventListener('keydown', e => {
+    if (viewer.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
   });
-  renderGrid();
-}
+  let sx = null;
+  viewer.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
+  viewer.addEventListener('touchend', e => { if (sx === null) return; const d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 50) show(cur + (d < 0 ? 1 : -1)); sx = null; });
 
-syncIcons();
-buildFilters();
-setLang('es');
+  /* idioma (se comparte con la portada) */
+  const i18n = [...document.querySelectorAll('[data-en]')];
+  i18n.forEach(el => el.dataset.es = el.innerHTML);
+  function setLang(l) {
+    lang = l; root.lang = l;
+    document.querySelectorAll('.lang button').forEach(x => x.setAttribute('aria-pressed', x.dataset.lang === l));
+    i18n.forEach(el => el.innerHTML = l === 'en' ? el.dataset.en : el.dataset.es);
+    document.getElementById('vClose').setAttribute('aria-label', T('Cerrar', 'Close'));
+    document.getElementById('vPrev').setAttribute('aria-label', T('Anterior', 'Previous'));
+    document.getElementById('vNext').setAttribute('aria-label', T('Siguiente', 'Next'));
+    render(); setThemeLabel();
+  }
+  document.querySelectorAll('.lang button').forEach(b => b.onclick = () => { setLang(b.dataset.lang); try { localStorage.setItem('va-lang', b.dataset.lang); } catch (e) {} });
+
+  /* tema (se comparte con la portada) */
+  const themeBtn = document.getElementById('themeBtn'), icon = document.getElementById('themeIcon');
+  const sun = '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>';
+  const moon = '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>';
+  const isLight = () => getComputedStyle(root).colorScheme.includes('light');
+  function setThemeLabel() { const l = isLight(); icon.innerHTML = l ? moon : sun; themeBtn.setAttribute('aria-label', l ? T('Cambiar a modo oscuro', 'Switch to dark mode') : T('Cambiar a modo claro', 'Switch to light mode')); }
+  themeBtn.onclick = () => { root.dataset.theme = isLight() ? 'dark' : 'light'; root.dataset.userTheme = '1'; try { localStorage.setItem('va-theme', root.dataset.theme); } catch (e) {} setThemeLabel(); };
+  new MutationObserver(setThemeLabel).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  try { const t = localStorage.getItem('va-theme'); if (t) { root.dataset.theme = t; root.dataset.userTheme = '1'; } } catch (e) {}
+
+  let saved = 'es'; try { saved = localStorage.getItem('va-lang') || 'es'; } catch (e) {}
+  setLang(saved);
+})();
 </script>
 </body>
 </html>

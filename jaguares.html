@@ -1,459 +1,95 @@
-<!doctype html>
-<html lang="es" data-theme="dark">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaguares de Nayarit — Verónica Arciniega</title>
-  <meta name="description" content="Proyecto de diseño gráfico para Jaguares de Nayarit. Deporte & Entretenimiento. Portfolio de Verónica Arciniega.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0a0a0f; --surface:#16161d; --card:#1a1a24; --card-soft:#0d0d14;
-      --text:#f5f5f7; --muted:rgba(245,245,247,0.55); --faint:rgba(245,245,247,0.22);
-      --primary:#6366f1; --border:rgba(255,255,255,0.07); --border-mid:rgba(255,255,255,0.13);
-      --shadow:0 24px 64px rgba(0,0,0,.45);
-      --font:'Plus Jakarta Sans',sans-serif; --mono:'Space Mono',monospace;
-      --ease:0.4s cubic-bezier(0.4,0,0.2,1); --bounce:0.5s cubic-bezier(0.34,1.56,0.64,1);
-      --brand-a:#8fab6c; --brand-b:#2D6B45;
-    }
-    [data-theme="light"]{
-      --bg:#f4f4f8; --surface:#ffffff; --card:#ffffff; --card-soft:#ececf4;
-      --text:#0a0a0f; --muted:rgba(10,10,15,0.55); --faint:rgba(10,10,15,0.22);
-      --border:rgba(0,0,0,0.07); --border-mid:rgba(0,0,0,0.13);
-      --shadow:0 24px 64px rgba(0,0,0,.1);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:68px}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;transition:background var(--ease),color var(--ease)}
-    img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
-    button{font-family:inherit;cursor:pointer;border:none;background:none}
-    :focus-visible{outline:2px solid var(--brand-a);outline-offset:3px;border-radius:4px}
-
-    .skip{position:fixed;top:-100px;left:16px;z-index:9999;padding:12px 20px;background:var(--brand-a);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:top .2s}
-    .skip:focus{top:16px}
-
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-mid);background:rgba(10,10,15,0.92);box-shadow:0 4px 24px rgba(0,0,0,.2)}
-    [data-theme="light"] .nav{background:rgba(248,248,252,0.94)}
-    [data-theme="light"] .nav{background:rgba(248,248,252,0.94)}
-    .nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    @media(min-width:768px){.nav__inner{padding:0 48px}}
-    .nav__back{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);transition:color var(--ease)}
-    .nav__back:hover{color:var(--text)}
-    .nav__back svg{width:16px;height:16px;transition:transform var(--ease)}
-    .nav__back:hover svg{transform:translateX(-3px)}
-    .nav__right{display:flex;align-items:center;gap:12px}
-    .lang-sep{color:var(--faint);font-size:11px}
-    .lang-btn{
-      font-family:var(--mono);font-size:11px;
-      background:none;border:none;cursor:pointer;
-      padding:5px 8px;border-radius:6px;
-      font-weight:400;color:var(--faint);
-      transition:color .3s ease,font-weight .3s ease,background .3s ease;
-      letter-spacing:.05em;
-    }
-    .lang-btn[aria-pressed="true"]{
-      color:var(--brand-a);font-weight:800;
-      background:rgba(99,102,241,0.12);
-    }
-    [data-theme="light"] .lang-btn[aria-pressed="true"]{
-      background:rgba(79,70,229,0.10);
-    }
-    .lang-btn:hover:not([aria-pressed="true"]){
-      color:var(--text);background:rgba(255,255,255,0.06);
-    }
-    [data-theme="light"] .lang-btn:hover:not([aria-pressed="true"]){
-      background:rgba(0,0,0,0.05);
-    }
-    .theme-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-mid);color:var(--muted);transition:background var(--ease),transform var(--bounce),border-color var(--ease),color var(--ease)}
-    .theme-btn:hover{background:var(--surface);transform:rotate(20deg);color:var(--text)}
-    [data-theme="light"] .theme-btn{background:rgba(79,70,229,0.10);border-color:var(--primary);color:var(--primary)}
-    [data-theme="light"] .theme-btn:hover{background:var(--primary);color:#fff;transform:rotate(20deg)}
-    .theme-btn svg{width:16px;height:16px}
-
-    /* HERO */
-    .hero{position:relative;height:92svh;min-height:540px;overflow:hidden;display:flex;align-items:flex-end;padding-top:68px}
-    .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 8s ease}
-    .hero:hover .hero__img{transform:scale(1.03)}
-    .hero__overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.4) 45%,rgba(0,0,0,.15) 100%)}
-    .hero__content{position:relative;z-index:1;width:100%;max-width:1280px;margin:0 auto;padding:0 24px 72px}
-    @media(min-width:768px){.hero__content{padding:0 48px 88px}}
-    .hero__eyebrow{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:var(--brand-a);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeUp .7s .1s ease forwards}
-    .hero__eyebrow::before{content:'';width:32px;height:1px;background:var(--brand-a)}
-    .hero__title{font-size:clamp(44px,9vw,104px);font-weight:800;letter-spacing:-.045em;line-height:.92;color:#fff;opacity:0;animation:fadeUp .8s .25s ease forwards;margin-bottom:24px}
-    .hero__chips{display:flex;flex-wrap:wrap;gap:8px;opacity:0;animation:fadeUp .8s .4s ease forwards}
-    .hero__chip{padding:8px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);backdrop-filter:blur(8px);font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.08em}
-    .hero__chip--accent{border-color:var(--brand-a);background:rgba(99,102,241,0.2);color:#fff}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-    /* META */
-    .meta-strip{background:var(--surface);border-bottom:1px solid var(--border)}
-    .meta-inner{max-width:1280px;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
-    @media(min-width:640px){.meta-inner{grid-template-columns:repeat(4,1fr)}}
-    .meta-block{background:var(--surface);padding:24px 28px}
-    @media(min-width:768px){.meta-block{padding:28px 48px}}
-    .meta-block:first-child{padding-left:24px} @media(min-width:768px){.meta-block:first-child{padding-left:48px}}
-    .meta-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--brand-a);font-weight:700;margin-bottom:8px}
-    .meta-value{font-size:13px;font-weight:600;color:var(--text);line-height:1.5}
-
-    /* LAYOUT */
-    .wrap{max-width:900px;margin:0 auto;padding:0 24px}
-    @media(min-width:768px){.wrap{padding:0 48px}}
-    .cs-sec{padding:80px 0} .cs-sec--alt{background:var(--surface)}
-    .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-    .eyebrow__num{font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:700;letter-spacing:.1em}
-    .eyebrow__line{flex:1;height:1px;background:var(--border)}
-    .lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--brand-a);font-weight:700}
-    h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.03em;margin:10px 0 16px}
-    .prose{font-size:16px;color:var(--muted);line-height:1.8;max-width:680px}
-    .prose strong{color:var(--text);font-weight:700}
-
-    /* DELIVERABLES */
-    .del-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:32px}
-    .del-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;transition:all var(--ease)}
-    .del-card:hover{border-color:var(--brand-a);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.25)}
-    .del-card__icon{font-size:24px;margin-bottom:12px}
-    .del-card__title{font-size:13px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:4px}
-    .del-card__sub{font-size:12px;color:var(--muted)}
-
-    /* GALLERY */
-
-
-    /* ── EDITORIAL GALLERY ─────────────────────────────── */
-    .e-gallery { margin-top: 32px; }
-
-    .e-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      grid-auto-flow: dense;
-      align-items: start;
-    }
-    @media(max-width:600px){
-      .e-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    }
-
-    /* Column span pattern — creates organic editorial rhythm */
-    .e-item:nth-child(1) { grid-column: span 2; }
-    .e-item:nth-child(4) { grid-column: span 2; }
-    .e-item:nth-child(6) { grid-column: span 2; }
-
-    .e-item {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--card-soft);
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: transform .4s cubic-bezier(.34,1.56,.64,1),
-                  box-shadow .4s ease, border-color .3s ease;
-    }
-    .e-gallery.visible .e-item { animation: eIn .5s ease forwards; }
-    .e-gallery.visible .e-item:nth-child(1){animation-delay:.04s}
-    .e-gallery.visible .e-item:nth-child(2){animation-delay:.08s}
-    .e-gallery.visible .e-item:nth-child(3){animation-delay:.12s}
-    .e-gallery.visible .e-item:nth-child(4){animation-delay:.16s}
-    .e-gallery.visible .e-item:nth-child(5){animation-delay:.20s}
-    .e-gallery.visible .e-item:nth-child(6){animation-delay:.24s}
-    .e-gallery.visible .e-item:nth-child(7){animation-delay:.28s}
-    .e-gallery.visible .e-item:nth-child(8){animation-delay:.32s}
-    @keyframes eIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-    @media(prefers-reduced-motion:reduce){.e-item{opacity:1;transform:none;animation:none!important}}
-
-    .e-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.32);
-      border-color: var(--brand-a);
-      z-index: 2;
-    }
-    .e-item img {
-      width: 100%; height: auto;
-      display: block;
-      transition: transform .6s ease;
-    }
-    .e-item:hover img { transform: scale(1.04); }
-
-    /* Pauta — contain so nothing clips */
-    .e-item--pauta img {
-      object-fit: contain;
-      padding: 18px;
-      background: var(--card-soft);
-    }
-    .e-item--pauta:hover img { transform: scale(1.02); }
-
-    /* Reel — fixed portrait ratio, integrated naturally */
-    .e-item--reel { aspect-ratio: 9/16; background: #000; }
-    .e-item--reel video { width:100%;height:100%;object-fit:cover;display:block; }
-    .e-reel-play {
-      position:absolute;inset:0;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-      background:rgba(0,0,0,.32);transition:background .3s;
-    }
-    .e-item--reel:hover .e-reel-play { background:rgba(0,0,0,.1); }
-    .e-reel-icon {
-      width:46px;height:46px;border-radius:50%;background:var(--brand-a);
-      display:flex;align-items:center;justify-content:center;
-      transition:transform .3s cubic-bezier(.34,1.56,.64,1);
-    }
-    .e-item--reel:hover .e-reel-icon { transform:scale(1.1); }
-    .e-reel-icon svg{width:18px;height:18px;fill:#fff;margin-left:2px}
-    .e-reel-txt{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.75)}
-
-    /* Hover label */
-    .e-ov {
-      position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 46%);
-      opacity:0;transition:opacity .3s;
-      display:flex;align-items:flex-end;padding:12px 14px;pointer-events:none;
-    }
-    .e-item:hover .e-ov { opacity:1; }
-    .e-lbl {
-      font-family:var(--mono);font-size:9px;font-weight:700;
-      text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.9);
-    }
-    .e-ph{min-height:140px;display:flex;align-items:center;justify-content:center;opacity:.1}
-    .e-ph svg{width:26px;height:26px}
-
-    /* PROJ NAV */
-    .proj-nav{background:var(--surface);border-top:1px solid var(--border);padding:36px 0}
-    .proj-nav__inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    @media(min-width:768px){.proj-nav__inner{padding:0 48px}}
-    .nav-proj{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--muted);padding:11px 20px;border-radius:100px;border:1px solid var(--border);transition:all var(--ease)}
-    .nav-proj:hover{color:var(--text);border-color:var(--border-mid);background:var(--card)}
-    .nav-proj--prev:hover{transform:translateX(-4px)}
-    .nav-proj--next:hover{transform:translateX(4px)}
-    .nav-proj svg{width:15px;height:15px;flex-shrink:0}
-    .nav-home{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff;padding:11px 24px;border-radius:100px;background:var(--brand-a);border:1px solid var(--brand-a);transition:all var(--bounce)}
-    .nav-home:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(99,102,241,0.35)}
-
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-    footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--faint)}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jaguares de Nayarit — Case Study · Verónica Arciniega</title>
+<meta name="description" content="Jaguares de Nayarit: piezas visuales para un equipo de béisbol profesional que fusionan identidad deportiva y cultura nayarita.">
+<meta name="author" content="Verónica Arciniega">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jaguares de Nayarit — Verónica Arciniega">
+<meta property="og:description" content="Jaguares de Nayarit: piezas visuales para un equipo de béisbol profesional que fusionan identidad deportiva y cultura nayarita.">
+<meta property="og:image" content="assets/jaguares-hero.jpg">
+<meta name="theme-color" content="#0e1014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..800&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/case.css">
+<style>:root{--pc:#8fab6c}</style>
 </head>
 <body>
-<script>
-(function(){
-  var t=localStorage.getItem('va-theme')||'dark';
-  document.documentElement.setAttribute('data-theme',t);
-})();
-</script>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="leak" aria-hidden="true"><i></i><i></i></div>
 
-<a href="#main" class="skip" data-t="skip">Saltar al contenido</a>
-
-<nav class="nav" role="navigation">
-  <div class="nav__inner">
-    <a href="index.html" class="nav__back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      <span data-t="back">Volver al portfolio</span>
-    </a>
-    <div class="nav__right">
-      <div style="display:flex;align-items:center;gap:6px">
-        <button class="lang-btn" id="btn-es" onclick="setLang('es')" aria-pressed="true">ES</button>
-        <span class="lang-sep">|</span>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="index.html"><i></i><b>Verónica</b><span>Arciniega</span></a>
+    <div class="tools">
+      <a class="ghost back" href="index.html#proyectos"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg><span data-en="Back to portfolio">Volver al portfolio</span></a>
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <button class="theme-btn" onclick="toggleTheme()">
-        <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<main id="main">
-
-<header class="hero">
-  <img class="hero__img" src="assets/jaguares-hero.jpg" alt="Hero del proyecto Jaguares de Nayarit" loading="eager"
-       onerror="this.style.background='linear-gradient(135deg,#1B3D6E22,#2D6B4522)';this.style.opacity='0'">
-  <div class="hero__overlay" aria-hidden="true"></div>
-  <div class="hero__content">
-    <p class="hero__eyebrow" data-t="sector">Deporte & Entretenimiento</p>
-    <h1 class="hero__title">Jaguares de Nayarit</h1>
-    <div class="hero__chips">
-      <span class="hero__chip hero__chip--accent" data-t="tag1">Social Media</span>
-      <span class="hero__chip" data-t="tag2">Identidad Deportiva</span>
-      <span class="hero__chip">Diseñadora Gráfica</span>
+      <button class="theme" type="button" id="themeBtn" aria-label="Cambiar a modo claro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" id="themeIcon"></svg></button>
     </div>
   </div>
 </header>
 
-<div class="meta-strip">
-  <div class="meta-inner">
-    <div class="meta-block"><p class="meta-label" data-t="ml_sector">Sector</p><p class="meta-value" data-t="mv_sector">Deporte & Entretenimiento</p></div>
-    <div class="meta-block"><p class="meta-label" data-t="ml_role">Rol</p><p class="meta-value" data-t="mv_role">Diseñadora Gráfica</p></div>
-    <div class="meta-block"><p class="meta-label" data-t="ml_tools">Herramientas</p><p class="meta-value">Adobe Photoshop · Illustrator · Canva · IA</p></div>
-    <div class="meta-block"><p class="meta-label" data-t="ml_del">Entregables</p><p class="meta-value" data-t="mv_del">Posts para redes sociales con enfoque innovador y cultural</p></div>
-  </div>
-</div>
+<main id="main">
+  <section class="wrap c-hero">
+    <p class="kicker"><i></i><span data-en="Sport &amp; Entertainment">Deporte & Entretenimiento</span></p>
+    <h1>Jaguares de Nayarit<span class="stop" aria-hidden="true"></span></h1>
+    <div class="tags"><span data-en="Social Media">Social Media</span><span data-en="Sports Identity">Identidad Deportiva</span></div>
+    <p class="lead" data-en="Visual pieces for a professional baseball team fusing sports identity and Nayarit culture. An innovative proposal the team chose to publish in their official feed.">Piezas visuales para un equipo de béisbol profesional que fusionan identidad deportiva y cultura nayarita. Propuesta innovadora que el equipo eligió publicar en su feed oficial.</p>
+    <dl class="meta"><div><dt data-en="Sector">Sector</dt><dd data-en="Sport &amp; Entertainment">Deporte & Entretenimiento</dd></div><div><dt data-en="Role">Rol</dt><dd data-en="Graphic Designer">Diseñadora Gráfica</dd></div><div><dt data-en="Tools">Herramientas</dt><dd data-en="Adobe Photoshop · Illustrator · Canva · AI">Adobe Photoshop · Illustrator · Canva · IA</dd></div><div><dt data-en="Deliverables">Entregables</dt><dd data-en="Social media posts with an innovative, cultural approach">Posts para redes sociales con enfoque innovador y cultural</dd></div></dl>
+    
+    <div class="hero-img"><img src="assets/jaguares-hero.jpg" alt="Jaguares de Nayarit" onerror="this.remove()"></div>
+    
+  </section>
 
-<section class="cs-sec">
-  <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">01</span><div class="eyebrow__line"></div><span class="lbl" data-t="s1l">El proyecto</span></div>
-    <h2 data-t="s1h">Contexto y reto</h2>
-    <p class="prose reveal" data-t="s1p">Jaguares de Nayarit buscaba crear piezas para redes sociales que conectaran la identidad del equipo con la cultura de Nayarit. El reto consistía en encontrar una manera de integrar elementos representativos del estado con recursos visuales propios de Jaguares, creando composiciones que fueran reconocibles tanto por su vínculo con el territorio como por su identidad deportiva. La propuesta partió de explorar símbolos, referencias y elementos culturales de Nayarit para reinterpretarlos dentro del universo visual del equipo, buscando que cada pieza tuviera una conexión clara entre lugar, cultura y deporte.</p>
-  </div>
-</section>
-
-<section class="cs-sec cs-sec--alt">
-  <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">02</span><div class="eyebrow__line"></div><span class="lbl" data-t="s2l">El trabajo</span></div>
-    <h2 data-t="s2h">Lo que desarrollé</h2>
-    <p class="prose reveal" data-t="s2p">Desarrollé una serie de piezas gráficas para redes sociales a partir de diferentes elementos representativos de Nayarit y de la identidad de Jaguares. Exploré cómo combinar referencias culturales, elementos del equipo, tipografía, composición y recursos gráficos para construir piezas visualmente atractivas y coherentes con su comunicación. La propuesta buscó que la cultura local no funcionara únicamente como decoración, sino como parte del concepto de cada pieza, creando una conexión visual entre Jaguares y Nayarit.</p>
-    <div class="del-grid reveal">
-      <div class="del-card">
-        <div class="del-card__icon" aria-hidden="true">📸</div>
-        <p class="del-card__title" data-t="del0t">Posts para redes sociales</p>
-        <p class="del-card__sub" data-t="del0s">Publicados en el feed oficial</p>
-      </div>
-      <div class="del-card">
-        <div class="del-card__icon" aria-hidden="true">🏟️</div>
-        <p class="del-card__title" data-t="del1t">Identidad cultural</p>
-        <p class="del-card__sub" data-t="del1s">Fusión deporte y cultura nayarita</p>
-      </div>
+  <div class="wrap c-body">
+    <aside class="toc" aria-label="Índice del caso"><p data-en="In this case">En este caso</p><ol id="tocList"></ol></aside>
+    <div>
+      <section class="sec" id="proyecto" aria-labelledby="h-proyecto"><p class="sec-k"><b>01</b><span data-en="The project">El proyecto</span></p><h2 id="h-proyecto" data-en="Context and challenge">Contexto y reto</h2><p class="p" data-en="Jaguares de Nayarit wanted social media pieces that connected the team’s identity with Nayarit culture. The challenge was to find a way to combine elements representative of the state with Jaguares’ own visual resources, creating compositions recognisable both for their link to the region and for their sporting identity.">Jaguares de Nayarit buscaba crear piezas para redes sociales que conectaran la identidad del equipo con la cultura de Nayarit. El reto consistía en encontrar una manera de integrar elementos representativos del estado con recursos visuales propios de Jaguares, creando composiciones que fueran reconocibles tanto por su vínculo con el territorio como por su identidad deportiva.</p></section><section class="sec" id="trabajo" aria-labelledby="h-trabajo"><p class="sec-k"><b>02</b><span data-en="The work">El trabajo</span></p><h2 id="h-trabajo" data-en="What I developed">Lo que desarrollé</h2><p class="p" data-en="I developed a series of social media graphics built from different elements representative of Nayarit and of the Jaguares identity.">Desarrollé una serie de piezas gráficas para redes sociales a partir de diferentes elementos representativos de Nayarit y de la identidad de Jaguares.</p><div class="cards"><article class="card"><h4 data-en="Social media posts">Posts para redes sociales</h4><p data-en="Published on the official feed">Publicados en el feed oficial</p></article><article class="card"><h4 data-en="Cultural identity">Identidad cultural</h4><p data-en="Sport meets Nayarit culture">Fusión deporte y cultura nayarita</p></article></div></section><section class="sec" id="galeria" aria-labelledby="h-galeria"><p class="sec-k"><b>03</b><span data-en="Gallery">Galería</span></p><h2 id="h-galeria" data-en="Selected pieces">Piezas seleccionadas</h2><div class="board"><button class="piece" type="button" data-view="assets/jaguares-01.jpg" data-cap="Pieza" aria-label="Ampliar: Pieza"><span class="ph"></span><img src="assets/jaguares-01.jpg" alt="Pieza" loading="lazy" onerror="this.remove()"></button><button class="piece" type="button" data-view="assets/jaguares-02.jpg" data-cap="Pieza" aria-label="Ampliar: Pieza"><span class="ph"></span><img src="assets/jaguares-02.jpg" alt="Pieza" loading="lazy" onerror="this.remove()"></button><button class="piece" type="button" data-view="assets/jaguares-03.jpg" data-cap="Pieza" aria-label="Ampliar: Pieza"><span class="ph"></span><img src="assets/jaguares-03.jpg" alt="Pieza" loading="lazy" onerror="this.remove()"></button><button class="piece" type="button" data-view="assets/jaguares-04.jpg" data-cap="Pieza" aria-label="Ampliar: Pieza"><span class="ph"></span><img src="assets/jaguares-04.jpg" alt="Pieza" loading="lazy" onerror="this.remove()"></button><button class="piece" type="button" data-view="assets/jaguares-05.jpg" data-cap="Pieza" aria-label="Ampliar: Pieza"><span class="ph"></span><img src="assets/jaguares-05.jpg" alt="Pieza" loading="lazy" onerror="this.remove()"></button><button class="piece" type="button" data-view="assets/jaguares-06.jpg" data-cap="Pieza" aria-label="Ampliar: Pieza"><span class="ph"></span><img src="assets/jaguares-06.jpg" alt="Pieza" loading="lazy" onerror="this.remove()"></button></div></section>
     </div>
   </div>
-</section>
 
-<section class="cs-sec">
-  <div class="wrap">
-    <div class="eyebrow reveal"><span class="eyebrow__num">03</span><div class="eyebrow__line"></div><span class="lbl" data-t="s3l">Galería</span></div>
-    <h2 data-t="s3h">Piezas seleccionadas</h2>
-                <div class="e-gallery reveal" role="list">
-      <div class="e-grid">
+  <nav class="pager wrap" aria-label="Proyectos">
+  <a class="prev" href="habemus-pizza.html"><small data-en="Previous project">Proyecto anterior</small><b>Habemus Pizza</b></a>
+  <a class="all" href="index.html#proyectos"><b data-en="See all projects">Ver todos los proyectos</b></a>
+  <a class="next" href="eka-active.html"><small data-en="Next project">Siguiente proyecto</small><b>EKA Active</b></a>
+</nav>
 
-        <div class="e-item">
-          <img src="assets/jaguares-01.jpg" alt="Post" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="e-ph" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <div class="e-ov"><span class="e-lbl">Post</span></div>
-        </div>
-        <div class="e-item">
-          <img src="assets/jaguares-02.jpg" alt="Post" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="e-ph" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <div class="e-ov"><span class="e-lbl">Post</span></div>
-        </div>
-        <div class="e-item">
-          <img src="assets/jaguares-03.jpg" alt="Post" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="e-ph" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <div class="e-ov"><span class="e-lbl">Post</span></div>
-        </div>
-        <div class="e-item">
-          <img src="assets/jaguares-04.jpg" alt="Post" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="e-ph" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <div class="e-ov"><span class="e-lbl">Post</span></div>
-        </div>
-        <div class="e-item">
-          <img src="assets/jaguares-05.jpg" alt="Post" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="e-ph" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <div class="e-ov"><span class="e-lbl">Post</span></div>
-        </div>
-        <div class="e-item">
-          <img src="assets/jaguares-06.jpg" alt="Post" loading="lazy"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="e-ph" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-          <div class="e-ov"><span class="e-lbl">Post</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+  <section class="wrap closing">
+    <h2 data-en="Shall we work together?">¿Trabajamos juntos?</h2>
+    <p data-en="If this project gives you an idea of how I work, I’d love to tell you more.">Si este proyecto te da una idea de cómo trabajo, me encantaría contarte más.</p>
+    <a class="key" href="index.html#contacto"><span data-en="Get in touch">Contactar</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+  </section>
 </main>
 
-<div class="proj-nav">
-  <div class="proj-nav__inner">
-    <a href="habemus-pizza.html" class="nav-proj nav-proj--prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg><span data-t="prev_lbl">Proyecto anterior</span></a>
-    <a href="index.html#projects" class="nav-home" data-t="all_projects">Ver todos los proyectos</a>
-    <a href="eka-active.html" class="nav-proj nav-proj--next"><span data-t="next_lbl">Siguiente proyecto</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<footer>
+  <div class="wrap foot">
+    <a href="index.html">Verónica Arciniega<i aria-hidden="true"></i></a>
+    <p data-en="© 2026 — Multidisciplinary Designer">© 2026 — Diseñadora Multidisciplinar</p>
   </div>
+</footer>
+
+<a class="to-top" id="toTop" href="#main" aria-label="Volver arriba" data-en-aria="Back to top">
+  <svg class="tt-ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" class="tt-track"/><circle cx="24" cy="24" r="22" class="tt-prog" id="ttProg"/></svg>
+  <svg class="tt-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4"/></svg>
+  <span class="tt-label" data-en="Back to top">Ir arriba</span>
+</a>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Visor" hidden>
+  <div class="v-top"><b id="vCap"></b><button class="v-btn" type="button" id="vClose" aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
+  <div class="v-stage">
+    <button class="v-btn v-prev" type="button" id="vPrev" aria-label="Anterior" data-en-aria="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 3 5 8l5 5"/></svg></button>
+    <div class="v-media" id="vMedia"></div>
+    <button class="v-btn v-next" type="button" id="vNext" aria-label="Siguiente" data-en-aria="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></button>
+  </div>
+  <p class="v-count" id="vCount"></p>
 </div>
 
-<footer><p>© 2026 Verónica Arciniega — <span data-t="footer">Diseñadora Multidisciplinar</span></p></footer>
-
-<script>
-const T = {
-  es: {
-    skip:"Saltar al contenido", back:"Volver al portfolio",
-    sector:"Deporte & Entretenimiento", tag1:"Social Media", tag2:"Identidad Deportiva",
-    ml_sector:"Sector", mv_sector:"Deporte & Entretenimiento",
-    ml_role:"Rol", mv_role:"Diseñadora Gráfica",
-    ml_tools:"Herramientas", ml_del:"Entregables", mv_del:"Posts para redes sociales con enfoque innovador y cultural",
-    s1l:"El proyecto", s1h:"Contexto y reto", s1p:"Jaguares de Nayarit buscaba crear piezas para redes sociales que conectaran la identidad del equipo con la cultura de Nayarit. El reto consistía en encontrar una manera de integrar elementos representativos del estado con recursos visuales propios de Jaguares, creando composiciones que fueran reconocibles tanto por su vínculo con el territorio como por su identidad deportiva. La propuesta partió de explorar símbolos, referencias y elementos culturales de Nayarit para reinterpretarlos dentro del universo visual del equipo, buscando que cada pieza tuviera una conexión clara entre lugar, cultura y deporte.",
-    s2l:"El trabajo", s2h:"Lo que desarrollé", s2p:"Desarrollé una serie de piezas gráficas para redes sociales a partir de diferentes elementos representativos de Nayarit y de la identidad de Jaguares. Exploré cómo combinar referencias culturales, elementos del equipo, tipografía, composición y recursos gráficos para construir piezas visualmente atractivas y coherentes con su comunicación. La propuesta buscó que la cultura local no funcionara únicamente como decoración, sino como parte del concepto de cada pieza, creando una conexión visual entre Jaguares y Nayarit.",
-    del0t:"Posts para redes sociales", del0s:"Publicados en el feed oficial",
-    del1t:"Identidad cultural", del1s:"Fusión deporte y cultura nayarita",
-    reel_lbl:"Reel", s3l:"Galería", s3h:"Piezas seleccionadas",
-    prev_lbl:"Proyecto anterior", next_lbl:"Siguiente proyecto",
-    all_projects:"Ver todos los proyectos", footer:"Diseñadora Multidisciplinar"
-  },
-  en: {
-    skip:"Skip to content", back:"Back to portfolio",
-    sector:"Sports & Entertainment", tag1:"Social Media", tag2:"Sports Identity",
-    ml_sector:"Sector", mv_sector:"Sports & Entertainment",
-    ml_role:"Role", mv_role:"Graphic Designer",
-    ml_tools:"Tools", ml_del:"Deliverables", mv_del:"Social media posts with innovative and cultural approach",
-    s1l:"The project", s1h:"Context & challenge", s1p:"Jaguares de Nayarit wanted to create social media pieces that connected the team's identity with the culture of Nayarit. The challenge was to find a way to integrate representative elements of the state with visual resources from Jaguares, creating compositions that were recognizable both through their connection to the territory and through their sports identity. The proposal began by exploring symbols, references and cultural elements from Nayarit and reinterpreting them within the team's visual universe, seeking to create a clear connection between place, culture and sport in each piece.",
-    s2l:"The work", s2h:"What I developed", s2p:"I developed a series of graphic pieces for social media based on different representative elements of Nayarit and Jaguares' identity. I explored how to combine cultural references, team elements, typography, composition and graphic resources to create visually engaging pieces that remained coherent with the team's communication. The proposal sought to make local culture more than a decorative element, turning it into part of each piece's concept and creating a visual connection between Jaguares and Nayarit.",
-    del0t:"Social media posts", del0s:"Published in official feed",
-    del1t:"Cultural identity", del1s:"Sports & Nayarit culture fusion",
-    reel_lbl:"Reel", s3l:"Gallery", s3h:"Selected pieces",
-    prev_lbl:"Previous project", next_lbl:"Next project",
-    all_projects:"View all projects", footer:"Multidisciplinary Designer"
-  }
-};
-let lang="es";
-function setLang(l){
-  lang=l; document.documentElement.lang=l;
-  document.querySelectorAll("[data-t]").forEach(el=>{const k=el.getAttribute("data-t");if(T[l]&&T[l][k]!==undefined)el.textContent=T[l][k];});
-  document.getElementById("btn-es").setAttribute("aria-pressed", l==="es" ? "true" : "false");
-  document.getElementById("btn-en").setAttribute("aria-pressed", l==="en" ? "true" : "false");
-}
-function toggleTheme(){
-  const dark=document.documentElement.getAttribute("data-theme")==="dark";
-  document.documentElement.setAttribute("data-theme",dark?"light":"dark");
-  document.getElementById("icon-moon").style.display=dark?"none":"block";
-  document.getElementById("icon-sun").style.display=dark?"block":"none";
-}
-const io=new IntersectionObserver(
-  e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("visible");io.unobserve(x.target);}}),
-  {threshold:0.08}
-);
-document.querySelectorAll(".reveal, .e-gallery").forEach(el=>io.observe(el));
-function syncIcons(){
-  const dark=document.documentElement.getAttribute("data-theme")==="dark";
-  const moon=document.getElementById("icon-moon");
-  const sun=document.getElementById("icon-sun");
-  if(moon) moon.style.display=dark?"block":"none";
-  if(sun) sun.style.display=dark?"none":"block";
-}
-setLang("es");
-syncIcons();
-
-  function playReel(overlay) {
-    const fig = overlay.closest('.e-item--reel');
-    const vid = fig ? fig.querySelector('video') : null;
-    if (!vid) return;
-    if (vid.paused) {
-      vid.play().catch(()=>{});
-      overlay.style.opacity='0';
-      overlay.style.pointerEvents='none';
-    } else {
-      vid.pause();
-      overlay.style.opacity='1';
-      overlay.style.pointerEvents='auto';
-    }
-  }
-
-
-</script>
+<script src="assets/case.js" defer></script>
 </body>
 </html>
