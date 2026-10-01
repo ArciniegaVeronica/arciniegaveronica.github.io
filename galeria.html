@@ -12,7 +12,8 @@
 <meta name="theme-color" content="#0e1014">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..800&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..600&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..600&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400&display=swap"></noscript>
 <style>
 /* Galería: misma identidad que el portfolio. Cada marca es un capítulo con su punto de color; las piezas se organizan como un moodboard en columnas y se abren en un visor */
 :root{
@@ -26,9 +27,9 @@
   --gutter:clamp(16px,4vw,56px);--max:1180px;color-scheme:dark;
 }
 @media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]):not([data-user-theme]){--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0f8d84;--lilac:#7655dd;--pink:#c64a87;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
+  :root:not([data-theme="dark"]):not([data-user-theme]){--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0b7169;--lilac:#6a48d4;--pink:#a93a72;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
 }
-:root[data-theme="light"]{--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0f8d84;--lilac:#7655dd;--pink:#c64a87;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
+:root[data-theme="light"]{--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0b7169;--lilac:#6a48d4;--pink:#a93a72;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 html,body{margin:0}
@@ -43,9 +44,9 @@ p{margin:0}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 16px;border-radius:999px;background:var(--fg);color:var(--bg);text-decoration:none;font:500 14px var(--display)}
 .skip:focus{top:12px}
 .leak{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.leak i{position:absolute;border-radius:50%;filter:blur(110px);opacity:var(--leak-op)}
-.leak i:nth-child(1){width:44vw;height:44vw;background:#c4a8ff;top:-20vw;right:-12vw}
-.leak i:nth-child(2){width:36vw;height:36vw;background:#7fe3d8;top:50vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
+.leak i{position:absolute;border-radius:50%;opacity:var(--leak-op);background:radial-gradient(closest-side,var(--lc),transparent)!important}
+.leak i:nth-child(1){width:44vw;height:44vw;--lc:#c4a8ff;top:-20vw;right:-12vw}
+.leak i:nth-child(2){width:36vw;height:36vw;--lc:#7fe3d8;top:50vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
 main,header,footer{position:relative;z-index:1}
 
 /* cabecera */
@@ -154,6 +155,8 @@ footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);fo
 .foot a i{width:.3em;height:.3em;border-radius:50%;background:var(--grad);margin-left:.08em}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+html,body{overflow-x:hidden;overflow-x:clip}
 </style>
 </head>
 <body>
@@ -294,7 +297,7 @@ footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);fo
     const b = B(p.brand);
     const ph = `<span class="ph" style="--r:${p.r || '4/5'}"></span>`;
     if (p.video) return ph + `<video src="${p.video}" ${big ? 'controls autoplay' : 'muted loop playsinline preload="metadata"'} onerror="this.remove()"></video>`;
-    return ph + `<img src="${p.src}" alt="${label(p)}, ${tn(p.type)}" loading="lazy" onerror="this.remove()">`;
+    return ph + `<img src="${p.src}" alt="${label(p)}, ${tn(p.type)}" loading="lazy" decoding="async" onerror="this.remove()">`;
   }
 
   function renderControls() {
