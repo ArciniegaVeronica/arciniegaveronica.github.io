@@ -36,9 +36,9 @@ strong{font-weight:600;color:var(--fg)}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 16px;border-radius:999px;background:var(--fg);color:var(--bg);text-decoration:none;font:500 14px var(--display)}
 .skip:focus{top:12px}
 .leak{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.leak i{position:absolute;border-radius:50%;filter:blur(110px);opacity:var(--leak-op)}
-.leak i:nth-child(1){width:44vw;height:44vw;background:#c4a8ff;top:-20vw;right:-12vw}
-.leak i:nth-child(2){width:36vw;height:36vw;background:#7fe3d8;top:55vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
+.leak i{position:absolute;border-radius:50%;opacity:var(--leak-op);background:radial-gradient(closest-side,var(--lc),transparent)!important}
+.leak i:nth-child(1){width:44vw;height:44vw;--lc:#c4a8ff;top:-20vw;right:-12vw}
+.leak i:nth-child(2){width:36vw;height:36vw;--lc:#7fe3d8;top:55vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
 main,header,footer{position:relative;z-index:1}
 
 /* ---------- cabecera ---------- */
