@@ -88,8 +88,10 @@ main,header,footer{position:relative;z-index:1}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:var(--header);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
 .mark{font-family:var(--display);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
-.mark i{width:18px;height:36px;flex:none;background:var(--fg);-webkit-mask:url(assets/logo-av.png) center/contain no-repeat;mask:url(assets/logo-av.png) center/contain no-repeat;transition:background .3s}
-.mark:hover i{background:var(--grad)}
+.mark i{width:19px;height:37px;flex:none;background:url("Logo%20blanco.png") -17.6px -11.5px/58.98px 58.98px no-repeat;transition:transform .35s}
+.mark:hover i{transform:scale(1.06)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]):not([data-user-theme]) .mark i{background-image:url("Logo%20neg.png")}}
+:root[data-theme="light"] .mark i{background-image:url("Logo%20neg.png")}
 .mark b{font-weight:600}
 .mark span{color:var(--muted)}
 .top nav{display:flex;gap:30px;font-size:15px;color:var(--muted)}
@@ -130,7 +132,8 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-
 .tag.rest{opacity:0}
 .tag.rest.show{opacity:1}
 .tag em{font:400 11px/1 var(--mono);font-style:normal;color:var(--muted);font-variant-numeric:tabular-nums}
-@media (max-width:900px){#tags{display:none}}
+.tag.nofit{opacity:0!important}
+@media (max-width:900px){.tag{font-size:11px;padding:4px 9px 4px 7px;gap:6px}.tag em{font-size:10px}}
 .hero-inner{position:relative;pointer-events:none}
 .hero-inner > *{pointer-events:auto}
 .hero-inner .between{width:fit-content;max-width:100%}
@@ -1162,7 +1165,7 @@ html,body{overflow-x:hidden;overflow-x:clip}
       tagBox.appendChild(t);
       return { el: t, w: 0, h: 0, side: 0 };
     });
-    requestAnimationFrame(() => labels.forEach((l, i) => { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; setTimeout(() => l.el.classList.add('on'), still ? 0 : 700 + i * 260); setTimeout(() => l.el.classList.add('rest'), still ? 0 : 5200 + i * 120); }));
+    requestAnimationFrame(() => labels.forEach((l, i) => { l.w = l.el.offsetWidth; l.h = l.el.offsetHeight; setTimeout(() => l.el.classList.add('on'), still ? 0 : 700 + i * 260); }));
     frame(performance.now(), true);
   }
   let heroOn = true, looping = true;
@@ -1218,6 +1221,8 @@ html,body{overflow-x:hidden;overflow-x:clip}
         return ![...placed, ...obstacles, ...nodeBoxes].some(o => hit(box, o));
       };
       let k = free(cands[l.side]) ? l.side : cands.findIndex(free);
+      // si no cabe sin tapar texto u otra etiqueta, se oculta en vez de solaparse
+      l.el.classList.toggle('nofit', k < 0 && drag !== i);
       if (k < 0) k = l.side;
       l.side = k;
       const c = cands[k];
