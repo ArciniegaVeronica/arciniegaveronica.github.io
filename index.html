@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Verónica Arciniega — Diseñadora UX/UI &amp; Multidisciplinar</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
 <meta name="description" content="Portfolio de Verónica Arciniega, diseñadora UX/UI, producto y gráfica con más de 3 años de experiencia. Disponible para proyectos en España y a nivel internacional.">
 <meta name="author" content="Verónica Arciniega">
 <meta name="keywords" content="diseñadora UX UI, portfolio diseño, product designer, diseño gráfico, Figma, España">
@@ -12,11 +14,11 @@
 <meta property="og:url" content="https://averonicaarciniegap.github.io/">
 <meta property="og:title" content="Verónica Arciniega — Diseñadora UX/UI &amp; Multidisciplinar">
 <meta property="og:description" content="Portfolio de diseño UX/UI, producto y gráfico. Más de 3 años creando experiencias digitales estratégicas.">
-<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:image" content="FOTO4.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Verónica Arciniega — Diseñadora UX/UI">
 <meta name="twitter:description" content="Portfolio de diseño UX/UI, producto y gráfico.">
-<meta name="twitter:image" content="assets/og-image.jpg">
+<meta name="twitter:image" content="FOTO4.jpg">
 <meta name="theme-color" content="#0e1014">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,7 +88,8 @@ main,header,footer{position:relative;z-index:1}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:var(--header);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
 .mark{font-family:var(--display);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
-.mark i{width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.mark i{width:18px;height:36px;flex:none;background:var(--fg);-webkit-mask:url(assets/logo-av.png) center/contain no-repeat;mask:url(assets/logo-av.png) center/contain no-repeat;transition:background .3s}
+.mark:hover i{background:var(--grad)}
 .mark b{font-weight:600}
 .mark span{color:var(--muted)}
 .top nav{display:flex;gap:30px;font-size:15px;color:var(--muted)}
@@ -622,6 +625,13 @@ html,body{overflow-x:hidden;overflow-x:clip}
 @media (max-width:360px){.mark b{font-size:15px}.theme{width:34px;height:34px}}
 .l-photo span{position:relative;display:block}
 .l-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;border-radius:50%}
+
+.mark{gap:0}.mark i{margin-right:12px}
+.mark b,.mark span{display:inline-block;overflow:hidden;max-width:9em;transition:max-width .55s ease,opacity .4s ease,margin .55s ease}
+.mark b{margin-right:.3em}
+.top:not(.named) .mark b,.top:not(.named) .mark span{max-width:0;opacity:0;margin-right:0}
+@media (prefers-reduced-motion:reduce){.mark b,.mark span{transition:none}}
+@media (max-width:620px){.mark b,.mark span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}}
 </style>
 </head>
 <body>
@@ -1062,10 +1072,11 @@ html,body{overflow-x:hidden;overflow-x:clip}
   addEventListener('resize', () => { if (innerWidth > 980 && !mnav.hidden) setMenu(false); });
 
   /* ---------- botón volver arriba ---------- */
-  const toTop = document.getElementById('toTop'), ttProg = document.getElementById('ttProg');
+  const topBar = document.querySelector('.top'), toTop = document.getElementById('toTop'), ttProg = document.getElementById('ttProg');
   const onScrollTop = () => {
     const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
     toTop.classList.toggle('show', scrollY > innerHeight * .6);
+    topBar.classList.toggle('named', scrollY > innerHeight * .45);
     ttProg.style.strokeDashoffset = (138.2 * (1 - Math.min(1, scrollY / max))).toFixed(1);
   };
   addEventListener('scroll', onScrollTop, { passive: true }); onScrollTop();
