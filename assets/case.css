@@ -45,8 +45,10 @@ main,header,footer{position:relative;z-index:1}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:var(--header);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
 .mark{font-family:var(--display);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
-.mark i{width:18px;height:36px;flex:none;background:var(--fg);-webkit-mask:url(logo-av.png) center/contain no-repeat;mask:url(logo-av.png) center/contain no-repeat;transition:background .3s}
-.mark:hover i{background:var(--grad)}
+.mark i{width:19px;height:37px;flex:none;background:url("../Logo%20blanco.png") -17.6px -11.5px/58.98px 58.98px no-repeat;transition:transform .35s}
+.mark:hover i{transform:scale(1.06)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]):not([data-user-theme]) .mark i{background-image:url("../Logo%20neg.png")}}
+:root[data-theme="light"] .mark i{background-image:url("../Logo%20neg.png")}
 .mark b{font-weight:600}.mark span{color:var(--muted)}
 .tools{display:flex;align-items:center;gap:8px}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
