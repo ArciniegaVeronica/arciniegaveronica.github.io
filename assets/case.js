@@ -130,4 +130,5 @@
   let saved = 'es';
   try { saved = localStorage.getItem('va-lang') || 'es'; } catch (e) {}
   setLang(saved);
+  root.classList.remove('i18n-wait');
 })();
