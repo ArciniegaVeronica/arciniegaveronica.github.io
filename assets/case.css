@@ -441,3 +441,21 @@ footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);fo
 main .ghost{min-height:var(--btn-h);padding:12px 26px;gap:10px;font:500 16px/1.2 var(--display);white-space:nowrap;justify-content:center}
 main .ghost svg{width:16px;height:16px}
 .flow .ghost,.sec .ghost,.result .ghost{margin-top:20px}
+
+/* =========================================================
+   Jerarquía clara entre secciones
+   ========================================================= */
+.sec{position:relative;padding-top:clamp(36px,4.5vw,56px);margin-top:clamp(8px,2vw,24px);border-top:1px solid var(--line)}
+.sec:first-child{border-top:0;padding-top:0;margin-top:0}
+/* tramo de color sobre la línea, como un punto de la red */
+.sec::before{content:"";position:absolute;top:-1.5px;left:0;width:72px;height:3px;border-radius:3px;background:var(--grad)}
+.sec:first-child::before{display:none}
+.sec-k{gap:12px;margin-bottom:16px}
+.sec-k b{min-width:44px;height:32px;font-size:14px;color:var(--bg);border:0;background:var(--fg)}
+.sec-k span{font:600 13px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--pc,var(--muted))}
+.sec h2{font-size:clamp(32px,4.2vw,52px)}
+/* subapartados: marca lateral para distinguirlos del título principal */
+.sec h3,.group-t{position:relative;padding-left:16px}
+.sec h3::before{content:"";position:absolute;left:0;top:.2em;bottom:.2em;width:3px;border-radius:3px;background:var(--grad)}
+.sec h3{font-weight:600}
+.flow h3{padding-left:0}.flow h3::before{display:none}
