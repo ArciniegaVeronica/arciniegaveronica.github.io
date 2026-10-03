@@ -358,3 +358,37 @@ footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);fo
   .jx-col{scroll-snap-align:start}
   .jx-hint{display:block}
 }
+
+
+/* =========================================================
+   Sin huecos: marcos que se ocultan si falta la imagen,
+   tarjetas compactas y botones con un único estilo
+   ========================================================= */
+.is-empty,[hidden]{display:none!important}
+/* criterios de accesibilidad: solo el contenedor es tarjeta */
+.checks > div{align-items:flex-start}
+.checks div div{display:block;padding:0;border:0;border-radius:0;background:none;gap:0}
+.checks div div b{display:block}
+.checks div div span{display:block;margin-top:2px}
+/* tarjetas y fichas: se ajustan al contenido, sin vacío inferior */
+.cards{align-items:start}
+.persona{align-items:start}
+.persona .id{align-self:start}
+.card ul,.card p{margin-bottom:0}
+.card{padding:20px 22px}
+.cards:has(> .card:only-child){grid-template-columns:minmax(0,1fr)}
+.sec{padding-bottom:clamp(40px,5vw,64px)}
+.flow{margin-top:26px;padding-top:18px}
+.screens{margin-top:18px}
+.screens:has(> .shot:only-child){grid-template-columns:minmax(0,220px)}
+/* medios sueltos centrados y con su ancho natural */
+.media{max-width:100%}
+.media:has(video){margin-inline:auto}
+/* botones: un solo lenguaje visual */
+.key,.pager a,.file,.v-btn,.jx-btn{font-family:var(--display)}
+.key{min-height:48px;justify-content:center;white-space:nowrap}
+.hero .key,.c-hero .key{margin-top:0}
+.closing .key{margin-top:24px}
+.pager a{min-height:76px;align-content:center}
+.pager .all{min-height:76px}
+.v-btn,.jx-btn{width:44px;height:44px}
