@@ -4,14 +4,23 @@
    lila y rosa, Lexend + Atkinson Hyperlegible.
    --pc es el color propio de cada proyecto (solo como acento).
    ========================================================= */
+/* fuentes de reserva con las mismas medidas que Lexend y Atkinson: cuando llega la fuente real, el texto no cambia de tamaño ni empuja nada */
+@font-face{font-family:"Lexend Fallback";font-weight:100 349;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:105.94%;ascent-override:94.39%;descent-override:23.60%;line-gap-override:0%}
+@font-face{font-family:"Lexend Fallback";font-weight:350 449;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:108.64%;ascent-override:92.05%;descent-override:23.01%;line-gap-override:0%}
+@font-face{font-family:"Lexend Fallback";font-weight:450 549;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:110.78%;ascent-override:90.27%;descent-override:22.57%;line-gap-override:0%}
+@font-face{font-family:"Lexend Fallback";font-weight:550 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold');size-adjust:105.11%;ascent-override:95.14%;descent-override:23.78%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:100 349;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:95.64%;ascent-override:102.89%;descent-override:33.04%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:350 449;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:98.33%;ascent-override:100.07%;descent-override:32.14%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:450 549;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:101.22%;ascent-override:97.21%;descent-override:31.22%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:550 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold');size-adjust:96.29%;ascent-override:102.19%;descent-override:32.82%;line-gap-override:0%}
 :root{
   --bg:#0e1014;--surface:rgba(255,255,255,.05);--surface-2:rgba(255,255,255,.08);--line:rgba(225,220,245,.13);
   --fg:#f1eff6;--muted:#a6a3b5;--teal:#7fe3d8;--lilac:#c4a8ff;--pink:#f7b6d3;--node:#15171d;
   --header:rgba(14,16,20,.68);--leak-op:.18;--on-image:#fff;
   --grad:linear-gradient(100deg,var(--teal),var(--lilac) 55%,var(--pink));
   --pastel:linear-gradient(100deg,#7fe3d8,#c4a8ff 55%,#f7b6d3);
-  --display:"Lexend",ui-sans-serif,system-ui,sans-serif;
-  --body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Lexend","Lexend Fallback",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Atkinson Fallback",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"Atkinson Hyperlegible Mono",ui-monospace,"SF Mono",Menlo,monospace;
   --gutter:clamp(16px,4vw,56px);--max:1180px;--pc:var(--lilac);
   color-scheme:dark;
@@ -40,6 +49,7 @@ strong{font-weight:600;color:var(--fg)}
 .leak i:nth-child(1){width:44vw;height:44vw;--lc:#c4a8ff;top:-20vw;right:-12vw}
 .leak i:nth-child(2){width:36vw;height:36vw;--lc:#7fe3d8;top:55vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
 main,header,footer{position:relative;z-index:1}
+.i18n-wait .top,.i18n-wait main{visibility:hidden}
 
 /* ---------- cabecera ---------- */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:var(--header);border-bottom:1px solid var(--line)}
@@ -52,7 +62,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-
 .mark b{font-weight:600}.mark span{color:var(--muted)}
 .tools{display:flex;align-items:center;gap:8px}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{font:500 13px var(--body);background:none;border:0;color:var(--muted);padding:5px 10px;border-radius:999px;cursor:pointer}
+.lang button{font:500 13px var(--body);background:none;border:0;color:var(--muted);padding:5px 0;width:36px;text-align:center;border-radius:999px;cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--pastel);color:#17131f}
 .theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer}
 .theme svg{width:17px;height:17px}
@@ -75,6 +85,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-
 .kicker{font-family:var(--display);font-size:15px;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:14px;justify-content:center}
 .kicker i{width:8px;height:8px;border-radius:50%;background:var(--pc)}
 .c-hero h1{font-size:clamp(44px,8vw,112px);line-height:.98;letter-spacing:-.04em;font-weight:400}
+.c-hero h1 .nw{white-space:nowrap}
 .c-hero h1 .stop{display:inline-block;width:.18em;height:.18em;border-radius:50%;background:var(--grad);margin-left:.05em}
 .tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .tags span{display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
