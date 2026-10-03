@@ -389,6 +389,55 @@ footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);fo
 .key{min-height:48px;justify-content:center;white-space:nowrap}
 .hero .key,.c-hero .key{margin-top:0}
 .closing .key{margin-top:24px}
-.pager a{min-height:76px;align-content:center}
-.pager .all{min-height:76px}
 .v-btn,.jx-btn{width:44px;height:44px}
+
+/* =========================================================
+   Composición centrada y botones unificados
+   ========================================================= */
+:root{--col:1040px;--btn-h:50px}
+
+/* todo el caso comparte un mismo eje central */
+.hero-img,.meta,.stats{max-width:var(--col)}
+.c-body,.pager,.closing{max-width:none}
+.pager,.closing{width:min(100%,calc(var(--col) + 2*var(--gutter)));margin-inline:auto;padding-inline:var(--gutter)}
+.c-body{max-width:1480px}
+@media (min-width:1360px){
+  .c-body{grid-template-columns:minmax(0,1fr) minmax(0,var(--col)) minmax(0,1fr);column-gap:0}
+  .toc{grid-column:1;justify-self:end;width:156px;margin-right:32px}
+  .c-body > div:not(.toc){grid-column:2}
+}
+@media (min-width:981px) and (max-width:1359px){
+  .c-body{grid-template-columns:minmax(0,1fr);max-width:calc(var(--col) + 2*var(--gutter))}
+  .toc{display:none}
+}
+
+/* botones: mismas medidas, tipografía y radio en toda la página */
+.key,.ghost-btn,.pager a{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:var(--btn-h);padding:12px 26px;border-radius:999px;
+  font:500 16px/1.2 var(--display);text-decoration:none;white-space:nowrap;color:var(--fg);
+  transition:transform .25s,border-color .25s,background .25s
+}
+.key{border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box}
+.pager a,.ghost-btn{border:1px solid var(--line);background:var(--surface)}
+.pager a:hover,.ghost-btn:hover{border-color:color-mix(in srgb,var(--fg) 45%,transparent);background:var(--surface-2);transform:none}
+.key svg,.pager svg{width:16px;height:16px;flex:none}
+
+/* navegación entre proyectos: tres botones centrados */
+.pager{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;grid-template-columns:none}
+.pager small{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pager b{font:inherit}
+.pager .prev::before{content:"←"}
+.pager .next::after{content:"→"}
+.pager .next{text-align:center;order:3}
+.pager .all{order:2;border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box}
+.pager .prev{order:1}
+@media (max-width:700px){.pager .all{order:3;flex-basis:100%}.pager .prev,.pager .next{flex:1 1 40%}.pager a{white-space:normal;text-align:center}}
+
+/* cierre centrado */
+.closing{text-align:center}
+.closing p{margin-inline:auto}
+.closing .key{margin-top:24px}
+main .ghost{min-height:var(--btn-h);padding:12px 26px;gap:10px;font:500 16px/1.2 var(--display);white-space:nowrap;justify-content:center}
+main .ghost svg{width:16px;height:16px}
+.flow .ghost,.sec .ghost,.result .ghost{margin-top:20px}
