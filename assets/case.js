@@ -77,7 +77,9 @@
 
   /* Saber directamente qué tema está activo */
   function isLight() {
-    return root.getAttribute('data-theme') === 'light';
+    const t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t === 'light';
+    return matchMedia('(prefers-color-scheme: light)').matches;
   }
 
 
@@ -210,15 +212,16 @@
   const viewer = document.getElementById('viewer');
   const vMedia = document.getElementById('vMedia');
 
-  const items = [
-    ...document.querySelectorAll('[data-view]')
-  ];
+  const live = () => [...document.querySelectorAll('[data-view]')]
+    .filter(e => e.isConnected && !e.closest('.is-empty'));
+  let items = live();
 
   let cur = 0;
   let lastFocus;
 
 
   function show(i) {
+    items = live();
     if (!vMedia || items.length === 0) return;
 
     cur =
@@ -304,11 +307,11 @@
 
   if (viewer) {
 
-    items.forEach((el, i) => {
-      el.addEventListener(
-        'click',
-        () => openViewer(i)
-      );
+    document.querySelectorAll('[data-view]').forEach(el => {
+      el.addEventListener('click', () => {
+        items = live();
+        openViewer(items.indexOf(el));
+      });
     });
 
 
@@ -401,6 +404,41 @@
       }
     );
   }
+
+
+  /* ---------- sin huecos: si falta una imagen o vídeo se oculta todo su marco ---------- */
+
+  const FRAME = '.hero-img,.piece,.shot,.media,.embed';
+
+  function prune() {
+    document.querySelectorAll('.hero-img,.piece,.shot,.media:not(:has(iframe))').forEach(f => {
+      if (!f.querySelector('img,video')) f.classList.add('is-empty');
+    });
+    document.querySelectorAll('.screens,.board').forEach(g => {
+      const none = !g.querySelector(':scope > :not(.is-empty)');
+      g.classList.toggle('is-empty', none);
+      const fl = g.closest('.flow');
+      if (fl) fl.classList.toggle('is-empty', none);
+      const t = g.previousElementSibling;
+      if (t && t.classList.contains('group-t')) t.classList.toggle('is-empty', none);
+    });
+  }
+
+  addEventListener('error', e => {
+    const m = e.target;
+    if (!m || !/^(IMG|VIDEO|SOURCE)$/.test(m.tagName)) return;
+    const f = m.closest(FRAME);
+    if (f) f.classList.add('is-empty');
+    prune();
+  }, true);
+
+  document.querySelectorAll('img').forEach(im => {
+    if (im.complete && im.naturalWidth === 0 && im.getAttribute('src')) {
+      const f = im.closest(FRAME);
+      if (f) f.classList.add('is-empty');
+    }
+  });
+  prune();
 
 
   /* ---------- reels: reproducción al estar visibles ---------- */
