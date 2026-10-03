@@ -2,150 +2,204 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trabajo Gráfico · Puntos conectados</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>
+/* tema e idioma guardados: se aplican antes de pintar, así nada cambia de color ni de texto al recargar */
+(function(){var r=document.documentElement;r.classList.add('boot');
+try{var t=localStorage.getItem('va-theme');if(t==='light'||t==='dark'){r.setAttribute('data-theme',t);r.setAttribute('data-user-theme','1')}
+if(localStorage.getItem('va-lang')==='en'){r.lang='en';r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait')},1500)}}catch(e){}
+addEventListener('load',function(){setTimeout(function(){requestAnimationFrame(function(){r.classList.remove('boot')})},400)})})();
+</script>
+<title>Trabajo Gráfico — Verónica Arciniega</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta name="description" content="Trabajo gráfico de Verónica Arciniega: el proceso de cada marca, del reto al sistema visual y sus aplicaciones en redes, reels e impresos.">
+<meta name="author" content="Verónica Arciniega">
+<meta property="og:title" content="Trabajo Gráfico — Verónica Arciniega">
+<meta property="og:description" content="Identidad de marca, social media, publicidad, reels y branding.">
+<meta property="og:image" content="https://arciniegaveronica.github.io/assets/chiltepik-hero.jpg">
+<meta name="theme-color" content="#0e1014">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..600&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@300..600&family=Atkinson+Hyperlegible+Next:wght@300;400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400&display=swap"></noscript>
 <style>
+/* fuentes de reserva con las mismas medidas que Lexend y Atkinson: cuando llega la fuente real, el texto no cambia de tamaño ni empuja nada */
+@font-face{font-family:"Lexend Fallback";font-weight:100 349;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:105.94%;ascent-override:94.39%;descent-override:23.60%;line-gap-override:0%}
+@font-face{font-family:"Lexend Fallback";font-weight:350 449;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:108.64%;ascent-override:92.05%;descent-override:23.01%;line-gap-override:0%}
+@font-face{font-family:"Lexend Fallback";font-weight:450 549;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:110.78%;ascent-override:90.27%;descent-override:22.57%;line-gap-override:0%}
+@font-face{font-family:"Lexend Fallback";font-weight:550 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold');size-adjust:105.11%;ascent-override:95.14%;descent-override:23.78%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:100 349;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:95.64%;ascent-override:102.89%;descent-override:33.04%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:350 449;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:98.33%;ascent-override:100.07%;descent-override:32.14%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:450 549;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:101.22%;ascent-override:97.21%;descent-override:31.22%;line-gap-override:0%}
+@font-face{font-family:"Atkinson Fallback";font-weight:550 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold');size-adjust:96.29%;ascent-override:102.19%;descent-override:32.82%;line-gap-override:0%}
+/* Galería: misma identidad que el portfolio. Cada marca es un capítulo con su punto de color; las piezas se organizan como un moodboard en columnas y se abren en un visor */
 :root{
-  --bg:#f8f7fc;--surface:rgba(30,24,60,.035);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;
-  --teal:#0b7169;--lilac:#6a48d4;--pink:#a93a72;
+  --bg:#0e1014;--surface:rgba(255,255,255,.05);--surface-2:rgba(255,255,255,.08);--line:rgba(225,220,245,.13);
+  --fg:#f1eff6;--muted:#a6a3b5;--teal:#7fe3d8;--lilac:#c4a8ff;--pink:#f7b6d3;--header:rgba(14,16,20,.68);--leak-op:.18;
   --grad:linear-gradient(100deg,var(--teal),var(--lilac) 55%,var(--pink));
-  --gradv:linear-gradient(180deg,var(--teal),var(--lilac) 55%,var(--pink));
   --pastel:linear-gradient(100deg,#7fe3d8,#c4a8ff 55%,#f7b6d3);
-  --display:"Lexend",ui-sans-serif,system-ui,sans-serif;--body:"Atkinson Hyperlegible Next",ui-sans-serif,system-ui,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,monospace;
-  color-scheme:light;
+  --display:"Lexend","Lexend Fallback",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Atkinson Fallback",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Atkinson Hyperlegible Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --gutter:clamp(16px,4vw,56px);--max:1180px;color-scheme:dark;
 }
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]):not([data-user-theme]){--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0b7169;--lilac:#6a48d4;--pink:#a93a72;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
+}
+:root[data-theme="light"]{--bg:#f8f7fc;--surface:rgba(30,24,60,.035);--surface-2:rgba(30,24,60,.06);--line:rgba(30,24,60,.12);--fg:#1a1724;--muted:#5d596c;--teal:#0b7169;--lilac:#6a48d4;--pink:#a93a72;--header:rgba(248,247,252,.78);--leak-op:.3;color-scheme:light}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 html,body{margin:0}
-body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-button{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--lilac);outline-offset:3px;border-radius:8px}
-.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(16px,4vw,56px)}
-h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:-.03em;margin:0}
-.proto{position:sticky;top:0;z-index:50;padding:8px clamp(16px,4vw,56px);background:#1a1724;color:#fff;font:500 13px var(--display)}
-.proto b{background:var(--pastel);color:#17131f;border-radius:999px;padding:2px 10px;margin-right:8px}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;font-weight:500;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 16px;border-radius:999px;background:var(--fg);color:var(--bg);text-decoration:none;font:500 14px var(--display)}
+.skip:focus{top:12px}
+.leak{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.leak i{position:absolute;border-radius:50%;opacity:var(--leak-op);background:radial-gradient(closest-side,var(--lc),transparent)!important}
+.leak i:nth-child(1){width:44vw;height:44vw;--lc:#c4a8ff;top:-20vw;right:-12vw}
+.leak i:nth-child(2){width:36vw;height:36vw;--lc:#7fe3d8;top:50vh;left:-22vw;opacity:calc(var(--leak-op)*.7)}
+main,header,footer{position:relative;z-index:1}
 
-/* ---------- portada de la galería ---------- */
-.head{padding:clamp(36px,6vw,64px) 0 30px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:end}
-.kicker{font:15px var(--display);color:var(--muted);display:flex;gap:10px;align-items:center;margin:0}
-.kicker i{width:8px;height:8px;border-radius:50%;background:var(--lilac)}
-.head h1{font-size:clamp(44px,7.5vw,92px);line-height:1;margin-top:10px}
-.head h1 .nw{white-space:nowrap}
-.head h1 i{display:inline-block;width:.18em;height:.18em;border-radius:50%;background:var(--grad);margin-left:.04em}
-.head p{color:var(--muted);margin:0;max-width:46ch;font-size:18px}
-.head p b{color:var(--fg);font-weight:600}
+/* cabecera */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:var(--header);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.mark{font-family:var(--display);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.mark i{width:19px;height:37px;flex:none;background:url("Logo%20blanco.png") -17.6px -11.5px/58.98px 58.98px no-repeat;transition:transform .35s}
+.mark:hover i{transform:scale(1.06)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]):not([data-user-theme]) .mark i{background-image:url("Logo%20neg.png")}}
+:root[data-theme="light"] .mark i{background-image:url("Logo%20neg.png")}
+.mark b{font-weight:600}.mark span{color:var(--muted)}
+.tools{display:flex;align-items:center;gap:8px}
+.back{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--display);text-decoration:none;padding:8px 16px;border-radius:999px;color:var(--fg);border:1px solid var(--line);background:var(--surface);transition:border-color .25s}
+.back:hover{border-color:color-mix(in srgb,var(--fg) 45%,transparent)}
+.back svg{width:14px;height:14px;transition:transform .3s}
+.back:hover svg{transform:translateX(-3px)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font:500 13px var(--body);background:none;border:0;color:var(--muted);padding:5px 0;width:36px;text-align:center;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--pastel);color:#17131f}
+.theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer}
+.theme svg{width:17px;height:17px}
+@media (max-width:620px){.mark span{display:none}.back span{display:none}.back{padding:8px 11px}}
+
+/* ===== Galería: cada marca contada como puntos conectados ===== */
+.wide{max-width:1360px}
+.g-head{padding-block:clamp(56px,8vw,104px) 30px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:end}
+.kicker{font-family:var(--display);font-size:15px;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--grad)}
+.g-head h1{font-size:clamp(44px,7.5vw,104px);line-height:.98;letter-spacing:-.04em;font-weight:400}
+.g-head h1 .stop{display:inline-block;width:.18em;height:.18em;border-radius:50%;background:var(--grad);margin-left:.05em}
+.g-head .lead{color:var(--muted);max-width:46ch;font-size:18px}
+.g-head .lead b{color:var(--fg);font-weight:600}
 .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font:13px var(--mono);color:var(--muted)}
 .legend span{display:flex;gap:8px;align-items:center}
 .legend i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--lilac);background:var(--bg)}
 
 .brands{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
-.bcard{grid-column:span 2;border:0;padding:0;background:none;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:12px}
+.bcard{grid-column:span 2;border:0;padding:0;background:none;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:12px;color:var(--fg)}
 .bcard.big{grid-column:span 3}
-.cover{position:relative;aspect-ratio:16/10;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,var(--a),var(--b))}
+.cover{position:relative;aspect-ratio:16/10;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,var(--a),var(--b));border:1px solid var(--line)}
 .bcard.big .cover{aspect-ratio:16/9.5}
 .cover > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.collage{position:absolute;inset:0;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
-.collage .ph:first-child{grid-row:span 2}
-.collage .ph{height:100%}
 .bcard:hover .cover > img{transform:scale(1.035)}
-/* los puntos de la marca sobre la portada */
-.cdots{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:0;z-index:2}
+.collage{position:absolute;inset:0;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
+.collage .ph{height:100%}.collage .ph:first-child{grid-row:span 2}
+.cdots{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;z-index:2}
 .cdots i{width:14px;height:14px;border-radius:50%;background:var(--c);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 .cdots i + i{margin-left:-4px}
-.cdots em{font:500 12px var(--display);font-style:normal;color:#fff;margin-left:10px;text-shadow:0 1px 6px rgba(0,0,0,.4);opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
+.cdots em{font:500 12px var(--display);font-style:normal;color:#fff;margin-left:10px;text-shadow:0 1px 6px rgba(0,0,0,.45);opacity:0;transform:translateX(-4px);transition:opacity .3s,transform .3s}
 .bcard:hover .cdots em,.bcard:focus-visible .cdots em{opacity:1;transform:none}
 .bmeta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:0 4px}
-.bmeta h2{font-size:clamp(22px,2.2vw,30px)}
+.bmeta h2{font-size:clamp(22px,2.2vw,30px);font-weight:400;letter-spacing:-.03em}
 .bmeta p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
 .bmeta small{font:12.5px var(--mono);color:var(--muted);white-space:nowrap}
 
-.more{margin:80px 0 90px;padding-top:34px;border-top:1px solid var(--line)}
-.more h2{font-size:clamp(28px,3.4vw,42px)}
+.more{margin-top:clamp(64px,8vw,96px);padding-top:34px;border-top:1px solid var(--line)}
+.more h2{font-size:clamp(28px,3.4vw,42px);font-weight:400;letter-spacing:-.03em}
 .more > p{color:var(--muted);margin:8px 0 18px}
 .jrow{display:flex;gap:10px;margin-bottom:10px}
-.cell{flex:none;border:0;padding:0;background:none;cursor:zoom-in;text-align:left}
+.cell{flex:none;border:0;padding:0;background:none;cursor:zoom-in;text-align:left;color:var(--muted)}
 .cell .ph{border-radius:10px}
-.cell small{display:block;font:12px var(--body);color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell small{display:block;font-size:12px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* ---------- pieza ---------- */
-.ph{display:block;position:relative;overflow:hidden;background:linear-gradient(150deg,var(--a,#ddd),var(--b,#bbb))}
-.ph img,.ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph{display:block;position:relative;overflow:hidden;background:linear-gradient(150deg,var(--a,#8884),var(--b,#6664))}
+.ph img,.ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;max-width:none}
 .badge{position:absolute;top:7px;left:7px;z-index:2;font:500 10.5px var(--display);background:rgba(255,255,255,.92);color:#17131f;padding:2px 8px;border-radius:999px}
 
-/* ---------- historia de la marca ---------- */
-.story{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;display:none;overscroll-behavior:contain}
-.story.on{display:block}
-.sbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(16px,4vw,56px);background:rgba(248,247,252,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+/* historia de una marca */
+.story{position:fixed;inset:0;z-index:60;background:var(--bg);color:var(--fg);overflow-y:auto;overscroll-behavior:contain}
+.sbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px var(--gutter);background:var(--header);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .sbar .crumbs{font:13px var(--mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sbar .crumbs b{color:var(--fg);font-weight:500}
 .sbtns{display:flex;gap:8px;flex:none}
-.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font:500 13.5px var(--display);cursor:pointer;display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--fg)}
-.pill.dark{background:var(--fg);color:#fff;border-color:var(--fg)}
-
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font:500 13.5px var(--display);cursor:pointer;display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--fg)}
+.pill:hover{border-color:color-mix(in srgb,var(--fg) 45%,transparent)}
+.pill.dark{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .shero{padding:clamp(34px,5vw,60px) 0 10px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:end}
-.shero small{font:13px var(--mono);color:var(--muted)}
-.shero h2{font-size:clamp(46px,7vw,96px);line-height:1;margin-top:8px}
+.shero small{font:13px var(--mono);color:var(--muted);text-transform:uppercase}
+.shero h2{font-size:clamp(46px,7vw,96px);line-height:1;margin-top:8px;font-weight:400;letter-spacing:-.04em}
 .shero h2 i{display:inline-block;width:.16em;height:.16em;border-radius:50%;background:var(--c);margin-left:.04em}
-.shero p{margin:12px 0 0;color:var(--muted)}
-.draft{display:inline-block;margin-top:12px;font:500 12px var(--display);background:#fff4d6;color:#7a5a00;border:1px solid #f0d58a;border-radius:999px;padding:3px 10px}
-
-/* la cadena: 4 puntos unidos por la línea de la portada */
 .chain{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin:34px 0 10px;padding-top:6px}
 .chain::before{content:"";position:absolute;left:12.5%;right:12.5%;top:16px;height:2px;background:var(--grad);opacity:.75}
-.chain button{position:relative;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:0 6px}
+.chain button{position:relative;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:0 6px;color:var(--fg)}
 .chain button i{width:22px;height:22px;border-radius:50%;background:var(--bg);border:2px solid var(--lilac);transition:background .3s,transform .3s}
 .chain button[aria-current="true"] i{background:var(--grad);transform:scale(1.15);border-color:transparent}
 .chain button span{font:12.5px var(--mono);color:var(--muted)}
 .chain button b{font:400 18px var(--display);letter-spacing:-.02em}
-
 .step{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,4vw,60px);padding:clamp(44px,6vw,80px) 0;border-top:1px solid var(--line);scroll-margin-top:70px}
 .step > header small{font:13px var(--mono);color:var(--muted)}
-.step > header h3{font-size:28px;margin-top:6px;display:flex;gap:10px;align-items:center}
+.step > header h3{font-size:28px;line-height:1.1;margin-top:6px;display:flex;gap:10px;align-items:center;font-weight:400;letter-spacing:-.03em}
 .step > header h3 i{width:12px;height:12px;border-radius:50%;background:var(--grad)}
 .big{font:300 clamp(26px,3.2vw,44px)/1.2 var(--display);letter-spacing:-.025em;max-width:24ch;margin:0}
-.big em{font-style:normal;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--c) 35%,transparent) 62%)}
+.big em{font-style:normal;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--c) 40%,transparent) 62%)}
+.big.apl{font-size:clamp(20px,2vw,26px);max-width:32ch;margin-bottom:10px}
 .sub{margin:18px 0 0;color:var(--muted);max-width:60ch}
-
 .ingr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.box{border:1px solid var(--line);background:#fff;border-radius:20px;padding:20px}
-.box h4{font:500 12.5px var(--mono);color:var(--muted);letter-spacing:.04em;margin-bottom:14px}
+.box{border:1px solid var(--line);background:var(--surface-2);border-radius:20px;padding:20px}
+.box h4{font:500 12.5px var(--mono);color:var(--muted);letter-spacing:.04em;margin:0 0 14px}
 .sw{display:flex;flex-wrap:wrap;gap:12px}
 .sw div{display:flex;flex-direction:column;align-items:center;gap:6px;font:11.5px var(--mono);color:var(--muted)}
-.sw i{width:52px;height:52px;border-radius:50%;background:var(--v);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.sw i{width:52px;height:52px;border-radius:50%;background:var(--v);box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
 .type .aa{font:500 64px/1 var(--display);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .type p,.btxt{margin:12px 0 0;font-size:14.5px;line-height:1.55;color:var(--muted)}
-.big.apl{font-size:clamp(20px,2vw,26px);max-width:32ch;margin-bottom:10px}
 .motifs{display:flex;flex-wrap:wrap;gap:8px}
 .motifs span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;background:var(--surface)}
 .proof{margin-top:16px;display:flex;gap:12px;align-items:flex-end}
-.proof button{border:0;padding:0;background:none;cursor:zoom-in;flex:1;min-width:0}
+.proof button{border:0;padding:0;background:none;cursor:zoom-in;flex:1;min-width:0;color:var(--muted)}
 .proof .ph{border-radius:14px;height:clamp(180px,22vw,300px)}
-.proof small{display:block;font:12px var(--mono);color:var(--muted);margin-top:6px;text-align:left}
-
-/* piezas: perfil + presentación */
+.proof small{display:block;font:12px var(--mono);margin-top:6px;text-align:left}
 .pieces{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
 .presgrid{display:grid;gap:14px}
 .presgrid button{border:0;padding:0;background:none;cursor:zoom-in}
-.presgrid .ph{border-radius:16px;box-shadow:0 18px 30px -22px rgba(30,24,60,.5)}
-.presgrid h4{font:500 12.5px var(--mono);color:var(--muted);letter-spacing:.04em}
+.presgrid .ph{border-radius:16px;box-shadow:0 18px 30px -22px rgba(0,0,0,.5)}
+.presgrid h4{font:500 12.5px var(--mono);color:var(--muted);letter-spacing:.04em;margin:0}
 .nextb{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:40px 0 70px;border-top:1px solid var(--line)}
-.nextb button{border:0;background:none;cursor:pointer;text-align:right;padding:0}
+.nextb > span{font:13px var(--mono);color:var(--muted)}
+.nextb button{border:0;background:none;cursor:pointer;text-align:right;padding:0;color:var(--fg)}
 .nextb small{font:13px var(--mono);color:var(--muted);display:block}
 .nextb b{font:400 clamp(30px,4vw,52px)/1 var(--display);letter-spacing:-.04em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* teléfono */
-.phone{width:min(340px,82vw);aspect-ratio:9/19;border-radius:46px;background:#0b0b0e;padding:11px;box-shadow:0 40px 70px -34px rgba(30,24,60,.55),inset 0 0 0 2px #2a2a33;position:sticky;top:80px}
-.scr{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:#fff;color:#111;display:flex;flex-direction:column}
+/* teléfono (la interfaz de Instagram es siempre clara, como la app) */
+.phone{width:min(340px,82vw);aspect-ratio:9/19;border-radius:46px;background:#0b0b0e;padding:11px;box-shadow:0 40px 70px -34px rgba(0,0,0,.6),inset 0 0 0 2px #2a2a33;position:sticky;top:80px}
+.scr{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:#fff;color:#111;display:flex;flex-direction:column;font-family:var(--body)}
 .island{position:absolute;left:50%;top:9px;translate:-50% 0;width:32%;height:26px;border-radius:20px;background:#0b0b0e;z-index:6}
-.status{height:42px;flex:none;display:flex;justify-content:space-between;align-items:flex-end;padding:0 22px 5px;font:600 12px var(--body)}
-.pbar{flex:none;display:flex;justify-content:space-between;align-items:center;padding:6px 14px 4px;font:700 14.5px var(--body)}
-.pbar button{border:0;background:none;cursor:pointer;font:inherit;padding:0 4px}
+.status{height:42px;flex:none;display:flex;justify-content:space-between;align-items:flex-end;padding:0 22px 5px;font-weight:600;font-size:12px}
+.pbar{flex:none;display:flex;justify-content:space-between;align-items:center;padding:6px 14px 4px;font-weight:700;font-size:14.5px}
+.pbar button{border:0;background:none;cursor:pointer;font:inherit;color:inherit;padding:0 4px}
 .pbody{flex:1;overflow:auto;scrollbar-width:none;position:relative}
 .phead{display:flex;align-items:center;gap:16px;padding:8px 14px 4px}
 .phead .av{width:68px;height:68px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7);flex:none}
 .phead .av span{display:block;width:100%;height:100%;border-radius:50%;border:3px solid #fff;overflow:hidden;position:relative;background:linear-gradient(150deg,var(--a),var(--b))}
 .phead .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.stats{display:flex;gap:14px;text-align:center;font:11.5px/1.3 var(--body)}.stats b{display:block;font-size:15px}
-.pbio{padding:6px 14px 10px;font:12px/1.45 var(--body)}.pbio b{display:block;font-size:12.5px}
+.stats{display:flex;gap:14px;text-align:center;font-size:11.5px;line-height:1.3}.stats b{display:block;font-size:15px}
+.pbio{padding:6px 14px 10px;font-size:12px;line-height:1.45}.pbio b{display:block;font-size:12.5px}
 .ptabs{position:sticky;top:0;z-index:3;background:#fff;display:flex;border-top:1px solid #eee}
 .ptabs button{flex:1;border:0;background:none;padding:9px 0 7px;cursor:pointer;font-size:15px;color:#999;border-bottom:1.5px solid transparent}
 .ptabs button[aria-pressed="true"]{color:#111;border-color:#111}
@@ -153,31 +207,29 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:-.03em;mar
 .grid3 button{border:0;padding:0;background:none;cursor:pointer;display:block;aspect-ratio:4/5;overflow:hidden;position:relative}
 .grid3.reels button{aspect-ratio:9/16}
 .grid3 .ph{position:absolute;inset:0;height:100%}
-.post .h{display:flex;align-items:center;gap:9px;padding:9px 12px;font:600 12px var(--body)}
+.post .h{display:flex;align-items:center;gap:9px;padding:9px 12px;font-weight:600;font-size:12px}
 .post .h .av{width:26px;height:26px;border-radius:50%;padding:2px;background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
 .post .h .av span{display:block;width:100%;height:100%;border-radius:50%;border:2px solid #fff;background:var(--c)}
-.post .h .zoom{margin-left:auto;border:0;background:#f1f1f3;border-radius:999px;font:600 11px var(--body);padding:4px 10px;cursor:zoom-in}
+.post .h .zoom{margin-left:auto;border:0;background:#f1f1f3;color:#111;border-radius:999px;font-weight:600;font-size:11px;padding:4px 10px;cursor:zoom-in}
 .post .ph{width:100%;aspect-ratio:4/5}
 .post .acts{display:flex;gap:16px;padding:8px 12px 12px;font-size:18px}.post .acts .s{margin-left:auto}
 .post+.post{border-top:1px solid #f2f2f2}
 .reelv{position:absolute;inset:0;background:#000;z-index:4}
 .reelv .ph{position:absolute;inset:0;height:100%}
 .reelv .ui{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 30%)}
-.reelv .cap{position:absolute;left:14px;right:60px;bottom:18px;color:#fff;font:12px/1.4 var(--body)}
+.reelv .cap{position:absolute;left:14px;right:60px;bottom:18px;color:#fff;font-size:12px;line-height:1.4}
 .reelv .cap b{display:block}
-.reelv .x,.reelv .snd{position:absolute;top:10px;z-index:3;border:0;background:rgba(0,0,0,.45);color:#fff;border-radius:999px;padding:4px 10px;cursor:pointer;font:600 12px var(--body)}
+.reelv .x,.reelv .snd{position:absolute;top:10px;z-index:3;border:0;background:rgba(0,0,0,.45);color:#fff;border-radius:999px;padding:4px 10px;cursor:pointer;font-weight:600;font-size:12px}
 .reelv .x{left:10px}.reelv .snd{right:10px}
 .tab{flex:none;height:46px;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;font-size:15px;background:#fff}
 
-/* ampliar */
-.zoomer{position:fixed;inset:0;z-index:80;background:rgba(250,249,253,.98);display:none;place-items:center;padding:30px;cursor:zoom-out}
-.zoomer.on{display:grid}
-.zoomer .ph{max-width:min(92vw,1300px);max-height:88vh;border-radius:14px;box-shadow:0 30px 60px -30px rgba(30,24,60,.5)}
-.zoomer .ph img,.zoomer .ph video{object-fit:contain;background:#fff}
-.zoomer .x{position:absolute;right:26px;top:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font:20px var(--display)}
+.zoomer{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 97%,transparent);display:grid;place-items:center;padding:30px;cursor:zoom-out}
+.zoomer .ph{max-width:min(92vw,1300px);max-height:88vh;border-radius:14px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.zoomer .ph img,.zoomer .ph video{object-fit:contain;background:var(--bg)}
+.zoomer .x{position:absolute;right:26px;top:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;font:20px var(--display)}
 
 @media (max-width:1000px){
-  .head{grid-template-columns:1fr;gap:16px}
+  .g-head{grid-template-columns:1fr;gap:16px}
   .brands{grid-template-columns:repeat(2,minmax(0,1fr))}
   .bcard,.bcard.big{grid-column:span 1}.bcard.big:first-child{grid-column:span 2}
   .step{grid-template-columns:1fr;gap:18px}
@@ -189,343 +241,584 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:-.03em;mar
   .brands{grid-template-columns:1fr}.bcard.big:first-child{grid-column:span 1}.bcard .cover{aspect-ratio:4/3}
   .shero{grid-template-columns:1fr}
   .chain{grid-template-columns:1fr;gap:14px;margin-left:4px}
-  .chain::before{left:10px;right:auto;top:10px;bottom:10px;width:2px;height:auto;background:var(--gradv)}
+  .chain::before{left:10px;right:auto;top:10px;bottom:10px;width:2px;height:auto;background:linear-gradient(180deg,var(--teal),var(--lilac) 55%,var(--pink))}
   .chain button{flex-direction:row;align-items:center;gap:12px;text-align:left}
   .ingr{grid-template-columns:1fr}.ingr .box:last-child{grid-column:auto}
   .proof .ph{height:170px}
   .sbar .crumbs{font-size:12px}.sbtns .pill span{display:none}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* pie */
+.cta{padding-block:clamp(80px,10vw,128px) clamp(56px,7vw,88px);text-align:left}
+.cta h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.03em;max-width:20ch}
+.cta-row{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+.btn-key{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:10px;text-decoration:none;border-radius:999px;color:var(--fg);font:500 16px var(--display);padding:12px 24px;border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box;transition:transform .25s}
+.btn-key::after{content:"";position:absolute;inset:-2px;border-radius:inherit;background:var(--pastel);filter:blur(12px);opacity:0;z-index:-1;transition:opacity .35s}
+.btn-key:hover{transform:translateY(-1px)}.btn-key:hover::after{opacity:.55}
+.btn-key svg{width:15px;height:15px}
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:14px}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.foot a{font:600 20px var(--display);text-decoration:none;color:var(--fg);display:inline-flex;align-items:baseline}
+.foot a i{width:.3em;height:.3em;border-radius:50%;background:var(--grad);margin-left:.08em}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+html,body{overflow-x:hidden;overflow-x:clip}
+
+@media (max-width:620px){.mark b,.mark span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}}
+.nw{white-space:nowrap}
+.i18n-wait .top,.i18n-wait main{visibility:hidden}
 </style>
 </head>
 <body>
-<div class="proto"><b>Prototipo</b>Trabajo gráfico · proceso por marca</div>
-<main class="wrap">
-  <div class="head">
-    <div>
-      <p class="kicker"><i></i>Diseño gráfico y dirección de arte</p>
-      <h1>Trabajo <span class="nw">Gráfico<i></i></span></h1>
-    </div>
-    <div>
-      <p>Cada marca parte de un reto y de elementos dispersos. Mi trabajo consiste en <b>conectar esos puntos</b> hasta construir una voz visual propia.</p>
-      <div class="legend"><span><i></i>Reto</span><span><i></i>Sistema visual</span><span><i></i>Concepto</span><span><i></i>Aplicaciones</span></div>
+<a class="skip" href="#galeria">Saltar al contenido principal</a>
+<div class="leak" aria-hidden="true"><i></i><i></i></div>
+
+<header class="top">
+  <div class="wrap wide">
+    <a class="mark" href="index.html"><i></i><b>Verónica</b><span>Arciniega</span></a>
+    <div class="tools">
+      <a class="back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg><span data-en="Back to portfolio">Volver al portfolio</span></a>
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="theme" type="button" id="themeBtn" aria-label="Cambiar a modo claro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" id="themeIcon"></svg></button>
     </div>
   </div>
-  <section class="brands" id="brands" aria-label="Marcas"></section>
-  <section class="more" aria-labelledby="h-more">
-    <h2 id="h-more">Otros proyectos</h2>
-    <p>Selección de piezas para otros clientes.</p>
+</header>
+
+<main id="galeria">
+  <section class="wrap wide g-head">
+    <div>
+      <p class="kicker"><i></i><span data-en="Graphic design &amp; art direction">Diseño gráfico y dirección de arte</span></p>
+      <h1><span data-en="Graphic">Trabajo</span> <span class="nw"><span data-en="Work">Gráfico</span><span class="stop" aria-hidden="true"></span></span></h1>
+    </div>
+    <div>
+      <p class="lead" data-en="Every brand starts with a challenge and a handful of scattered elements. My work is to &lt;b&gt;connect those dots&lt;/b&gt; until it has a visual voice of its own.">Cada marca parte de un reto y de elementos dispersos. Mi trabajo consiste en <b>conectar esos puntos</b> hasta construir una voz visual propia.</p>
+      <div class="legend" aria-hidden="true"><span><i></i><span data-en="Challenge">Reto</span></span><span><i></i><span data-en="Visual system">Sistema visual</span></span><span><i></i><span data-en="Concept">Concepto</span></span><span><i></i><span data-en="Applications">Aplicaciones</span></span></div>
+    </div>
+  </section>
+
+  <section class="wrap wide" aria-label="Marcas" data-en-aria="Brands"><div class="brands" id="brands"></div></section>
+
+  <section class="wrap wide more" aria-labelledby="h-more">
+    <h2 id="h-more" data-en="Other projects">Otros proyectos</h2>
+    <p data-en="A selection of pieces for other clients.">Selección de piezas para otros clientes.</p>
     <div id="rows"></div>
+  </section>
+
+  <section class="wrap wide cta">
+    <h2 data-en="Want to see how I think, not just what I make?">¿Quieres ver cómo pienso, además de lo que hago?</h2>
+    <div class="cta-row">
+      <a class="btn-key" href="index.html#proyectos"><span data-en="See UX/UI projects">Ver proyectos UX/UI</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a class="back" href="index.html#contacto"><span data-en="Let's talk">¿Hablamos?</span></a>
+    </div>
   </section>
 </main>
 
-<div class="story" id="story" role="dialog" aria-modal="true" aria-label="Marca"></div>
-<div class="zoomer" id="zoomer" role="dialog" aria-modal="true" aria-label="Pieza ampliada"><button class="x" type="button" aria-label="Cerrar">✕</button><div id="zbox"></div></div>
+<footer>
+  <div class="wrap wide foot">
+    <a href="index.html">Verónica Arciniega<i aria-hidden="true"></i></a>
+    <p data-en="© 2026 — Multidisciplinary Designer">© 2026 — Diseñadora Multidisciplinar</p>
+  </div>
+</footer>
+
+<div class="story" id="story" role="dialog" aria-modal="true" aria-label="Marca" hidden></div>
+<div class="zoomer" id="zoomer" role="dialog" aria-modal="true" aria-label="Pieza ampliada" hidden><button class="x" type="button" aria-label="Cerrar">✕</button><div id="zbox"></div></div>
 
 <script>
 (() => {
-const BASE = 'https://arciniegaveronica.github.io/';
-const RAW = [{"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-01.jpg", "r": "1080/1920"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-02.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-03.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-04.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-05.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-06.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-07.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-08.jpg", "r": "1080/1920"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-09.jpg", "r": "2025/2531"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-10.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-11.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-12.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-13.jpg", "r": "1080/1350"}, {"b": "chiltepik", "c": "", "t": "post", "s": "assets/chiltepik-14.jpg", "r": "1080/1920"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-01.jpg", "r": "912/1140"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-02.jpg", "r": "1652/606"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-03.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "print", "s": "assets/habemus-pizza-04.jpg", "r": "1920/1080"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-05.png", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-06.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-07.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-08.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-09.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-10.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-11.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-12.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-13.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-14.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "post", "s": "assets/habemus-pizza-15.jpg", "r": "1080/1350"}, {"b": "habemus", "c": "", "t": "reel", "v": "assets/habemus-pizza-reel-1.mp4", "r": "9/16"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-01.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-02.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-03.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-04.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-05.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-06.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-07.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-08.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-09.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-10.jpg", "r": "1080/1350"}, {"b": "jaguares", "c": "", "t": "post", "s": "assets/jaguares-11.jpg", "r": "1080/1350"}, {"b": "eka", "c": "", "t": "post", "s": "assets/eka-active-01.jpg", "r": "1080/1350"}, {"b": "eka", "c": "", "t": "post", "s": "assets/eka-active-02.jpg", "r": "1080/1350"}, {"b": "eka", "c": "", "t": "post", "s": "assets/eka-active-03.jpg", "r": "1080/1350"}, {"b": "eka", "c": "", "t": "post", "s": "assets/eka-active-04.jpg", "r": "1080/1350"}, {"b": "eka", "c": "", "t": "post", "s": "assets/eka-active-05.jpg", "r": "1080/1350"}, {"b": "eka", "c": "", "t": "post", "s": "assets/eka-active-06.jpg", "r": "1080/1350"}, {"b": "holly", "c": "", "t": "post", "s": "assets/holly-body-01.jpg", "r": "784/986"}, {"b": "holly", "c": "", "t": "post", "s": "assets/holly-body-02.jpg", "r": "1080/1350"}, {"b": "holly", "c": "", "t": "print", "s": "assets/holly-body-03.jpg", "r": "1654/608"}, {"b": "holly", "c": "", "t": "post", "s": "assets/holly-body-04.jpg", "r": "1080/1350"}, {"b": "holly", "c": "", "t": "post", "s": "assets/holly-body-05.jpg", "r": "1080/1350"}, {"b": "holly", "c": "", "t": "post", "s": "assets/holly-body-06.jpg", "r": "1080/1350"}, {"b": "otros", "c": "4me", "t": "branding", "s": "assets/4me-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-01.jpg", "r": "794/990"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-02.jpg", "r": "840/1044"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-03.jpg", "r": "768/961"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-04.jpg", "r": "1176/914"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-05.jpg", "r": "1088/1382"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-06.jpg", "r": "840/1054"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-07.jpg", "r": "1080/1350"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-08.jpg", "r": "1080/1350"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-09.jpg", "r": "1080/1350"}, {"b": "otros", "c": "4me", "t": "post", "s": "assets/4me-10.jpg", "r": "1080/1350"}, {"b": "otros", "c": "DKC", "t": "branding", "s": "assets/Dkc-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Ela K", "t": "post", "s": "assets/ElaK-01.jpg", "r": "764/950"}, {"b": "otros", "c": "Surya", "t": "post", "s": "assets/Surya-01.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Surya", "t": "post", "s": "assets/Surya-02.jpg", "r": "1080/1080"}, {"b": "otros", "c": "Surya", "t": "post", "s": "assets/Surya-03.jpg", "r": "720/1280"}, {"b": "otros", "c": "Surya", "t": "post", "s": "assets/Surya-04.jpg", "r": "1080/1080"}, {"b": "otros", "c": "Surya", "t": "post", "s": "assets/Surya-05.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Funding", "t": "branding", "s": "assets/Funding-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Legal", "t": "branding", "s": "assets/Legal-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-01.jpg", "r": "836/1048"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-03.jpg", "r": "1206/1486"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-04.jpg", "r": "1206/1499"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-05.jpg", "r": "1206/1481"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-06.jpg", "r": "1206/1500"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-07.jpg", "r": "1206/1502"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-08.jpg", "r": "628/896"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-09.jpg", "r": "1206/1489"}, {"b": "otros", "c": "Legal", "t": "post", "s": "assets/Legal-10.jpg", "r": "1206/1491"}, {"b": "otros", "c": "Xasxas", "t": "branding", "s": "assets/Xasxas-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-01.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-02.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-03.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-04.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-05.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-06.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-07.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-08.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-09.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-10.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-11.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Xasxas", "t": "post", "s": "assets/xasxas-13.jpg", "r": "1080/1350"}, {"b": "otros", "c": "GineLiz", "t": "branding", "s": "assets/GineLiz-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "JSC", "t": "branding", "s": "assets/JSC-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-01.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-02.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-03.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-04.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-05.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-06.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-07.jpg", "r": "810/1012"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-11.jpg", "r": "1080/1350"}, {"b": "otros", "c": "JSC", "t": "post", "s": "assets/JSC-13.jpg", "r": "2481/3509"}, {"b": "otros", "c": "Llevele", "t": "branding", "s": "assets/Llevele-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Llevele", "t": "post", "s": "assets/Llevele-01.jpg", "r": "1588/1180"}, {"b": "otros", "c": "Llevele", "t": "post", "s": "assets/Llevele-02.jpg", "r": "1974/1262"}, {"b": "otros", "c": "Llevele", "t": "post", "s": "assets/Llevele-03.jpg", "r": "858/1522"}, {"b": "otros", "c": "Llevele", "t": "post", "s": "assets/Llevele-04.jpg", "r": "1048/388"}, {"b": "otros", "c": "Llevele", "t": "post", "s": "assets/Llevele-05.jpg", "r": "1414/2000"}, {"b": "otros", "c": "Llevele", "t": "post", "s": "assets/Llevele-06.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Pasión M", "t": "branding", "s": "assets/PasionM-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Notaría", "t": "post", "s": "assets/Notaria-01.jpg", "r": "4/5"}, {"b": "otros", "c": "Notaría", "t": "post", "s": "assets/Notaria-02.jpg", "r": "525/698"}, {"b": "otros", "c": "Notaría", "t": "post", "s": "assets/Notaria-03.jpg", "r": "387/516"}, {"b": "otros", "c": "Notaría", "t": "post", "s": "assets/Notaria-04.jpg", "r": "527/702"}, {"b": "otros", "c": "Las Palmas", "t": "branding", "s": "assets/Laspalmas-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-01.jpg", "r": "932/1172"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-02.jpg", "r": "934/1166"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-04.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-05.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-06.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-07.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-08.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-09.jpg", "r": "1080/1920"}, {"b": "otros", "c": "Las Palmas", "t": "post", "s": "assets/Laspalmas-10.jpg", "r": "1080/1920"}, {"b": "otros", "c": "Vainilla Canela", "t": "branding", "s": "assets/VainillaCanela-Gral.jpg", "r": "1920/1080"}, {"b": "otros", "c": "Vainilla Canela", "t": "post", "s": "assets/VainillaC-01.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Vainilla Canela", "t": "post", "s": "assets/VainillaC-02.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Vainilla Canela", "t": "post", "s": "assets/VainillaC-03.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Vainilla Canela", "t": "post", "s": "assets/VainillaC-04.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Vainilla Canela", "t": "post", "s": "assets/VainillaC-05.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Vainilla Canela", "t": "post", "s": "assets/VainillaC-06.jpg", "r": "1080/1350"}, {"b": "otros", "c": "Ardin", "t": "post", "s": "assets/ardin-01.jpg", "r": "2200/1400"}, {"b": "otros", "c": "Ardin", "t": "post", "s": "assets/ardin-02.jpg", "r": "3000/2000"}, {"b": "otros", "c": "Bebeauty", "t": "post", "s": "assets/Bebeauty-01.jpg", "r": "804/1000"}, {"b": "habemus", "t": "print", "s": "assets/habemus-pizza-pauta.jpg", "r": "16/9"}, {"b": "holly", "t": "print", "s": "assets/holly-body-pauta.jpg", "r": "16/9"}, {"b": "habemus", "t": "print", "s": "assets/galeria/habemus-packaging.jpg", "r": "1/1"}, {"b": "holly", "t": "print", "s": "assets/galeria/holly-banner.jpg", "r": "3/1"}, {"b": "chiltepik", "t": "reel", "v": "assets/galeria/chiltepik-reel.mp4", "r": "9/16"}, {"b": "eka", "t": "reel", "v": "assets/galeria/eka-reel.mp4", "r": "9/16"}, {"b": "otros", "c": "Varios", "t": "reel", "v": "assets/galeria/otros-reel.mp4", "r": "9/16"}];
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+  let lang = 'es';
+  const T = x => Array.isArray(x) ? x[lang === 'es' ? 0 : 1] : x;
 
-/* =====================================================================
-   TUS MARCAS — aquí está todo el contenido de la galería.
-   reto / idea / detalle: textos de cada punto.
-   colores: [hex, nombre] · tipo: cómo es la tipografía · motivos: recursos visuales.
-   prueba: índices de los posts que ilustran el sistema visual.
-   colorTxt / recursosTxt / aplTxt: textos opcionales de cada apartado.
-   ===================================================================== */
-const FEATURED = [
-  { key:'jaguares', n:'Jaguares de Nayarit', sector:'Deporte y entretenimiento', c:'#e0602a', a:'#2D6B45', b:'#141414',
-    cover:'assets/jaguares-hero.jpg', big:true, page:'jaguares.html',
-    reto:"Construir la presencia digital de un equipo de béisbol profesional que <em>conectara con la identidad cultural de Nayarit</em>.",
-    retoSub:"Las piezas debían reconocerse a la vez por su arraigo territorial y por su identidad deportiva.",
-    colores:[['#E8642A','Naranja Jaguar'],['#141414','Noche'],['#2D6B45','Selva'],['#F2EBDD','Hueso']],
-    tipo:"Sans condensada en mayúsculas para los mensajes principales, en contraste con una script deportiva que aporta dinamismo.",
-    motivos:["Jaguar como símbolo", "Vegetación de la selva nayarita", "Costuras de la pelota", "Patrón textil regional", "Huellas y garras"],
-    idea:"El jaguar como <em>puente entre el equipo y el territorio</em>.",
-    ideaSub:"Una narrativa en tres fases —expectativa, presentación y venta de abonos— que integra deporte y cultura local. El equipo seleccionó la propuesta para su feed oficial.",
-    prueba:[0,4] },
-  { key:'Xasxas', n:'Xasxas', sector:"Heladería", c:'#4fb3a9', a:'#f7c6d9', b:'#7fd1c7', big:true,
-    reto:"Trasladar a redes el carácter <em>fresco, divertido y apetecible</em> de Xasxas.",
-    retoSub:"El sistema debía permitir variar color, forma, producto y tipografía en cada pieza sin que la marca dejara de reconocerse.",
-    colores:[['#F4C3D3','Rosa fresa'],['#5BB7AE','Turquesa'],['#F6D33C','Mango'],['#FFFFFF','Crema']],
-    tipo:"Una sans serif de formas redondeadas que participa activamente en la composición, más allá de su función informativa.",
-    motivos:["Producto en render 3D", "Formas orgánicas y ondas", "Tipografía en bucle", "Fondos de color plano"],
-    idea:"El producto como protagonista.",
-    ideaSub:"Una idea sencilla: que el helado se reconozca antes incluso de leer el nombre de la marca. A su alrededor, color, forma y tipografía crean un universo alegre en el que cada pieza tiene personalidad propia sin desligarse del conjunto.",
-    colorTxt:"Rosa, turquesa, amarillo y crema construyen un universo luminoso, ligado al carácter fresco y lúdico de la marca.",
-    recursosTxt:"Formas orgánicas, ondas, trazos curvos y el propio producto forman un lenguaje abierto, capaz de crecer con la comunicación.",
-    aplTxt:"Publicaciones de producto, presentación de sabores y mensajes de marca: cada una con su propia composición, todas inequívocamente Xasxas.",
-    prueba:[1,4] },
-  { key:'Las Palmas', n:'Las Palmas', sector:"Hospitalidad y estilo de vida", c:'#8a7a5c', a:'#3c3428', b:'#b8a98a',
-    reto:"Comunicar <em>la experiencia de estar allí</em>, más allá de las instalaciones.",
-    retoSub:"Las Palmas es un espacio pensado para desconectar. La comunicación debía apoyarse en la luz, el paisaje, la arquitectura y los pequeños momentos, con una identidad que acompañara a la fotografía sin competir con ella.",
-    colores:[['#D8CBB3','Arena'],['#5A4632','Madera'],['#1C1A17','Noche'],['#9DB8D3','Cielo']],
-    tipo:"Una serif editorial combinada con una manuscrita: contraste entre sofisticación y espontaneidad.",
-    motivos:["Palmeras y paisaje", "Arquitectura con luz cálida", "Texturas naturales", "Mensajes breves en inglés"],
-    idea:"No comunicar el lugar. Comunicar cómo se siente.",
-    ideaSub:"La fotografía lleva el peso del relato y los recursos gráficos aparecen como intervenciones mínimas que refuerzan la atmósfera. El resultado se acerca más a un editorial de estilo de vida que a una promoción turística convencional.",
-    colorTxt:"Arena, madera, cielo y tonos nocturnos crean una atmósfera cálida y natural.",
-    recursosTxt:"Paisaje, arquitectura, palmeras, texturas naturales y mensajes breves funcionan como elementos narrativos.",
-    aplTxt:"Contenido para redes sociales y piezas promocionales que construyen, publicación a publicación, el relato de la experiencia.",
-    prueba:[0,3] },
-  { key:'chiltepik', n:'Chiltepiik', sector:'Alimentos artesanales', c:'#c9a46b', a:'#edc491', b:'#5C6B3A',
-    cover:'assets/chiltepik-hero.jpg', page:'chiltepik.html',
-    reto:"Una salsa artesanal con logotipo, pero <em>sin sistema visual ni dirección de arte</em>.",
-    retoSub:"Construir desde cero una identidad editorial coherente con su carácter auténtico, artesanal y mexicano.",
-    colores:[['#8B5A3C','Tierra'],['#6E1F2A','Vino'],['#5C6B3A','Verde olivo'],['#EDE3D1','Masa']],
-    tipo:"Familias editoriales que sitúan la marca en un registro gastronómico cuidado.",
-    motivos:["Chiltepín", "Tortilla y piedra volcánica", "Iluminación en clave baja", "Composición editorial"],
-    idea:"Una <em>dirección de arte integral</em>: paleta, estilo fotográfico, tipografía y sistema compositivo.",
-    ideaSub:"Sobre esa base se desarrolló la parrilla de contenido completa, con publicaciones estáticas y reels.",
-    prueba:[1,2] },
-  { key:'habemus', n:'Habemus Pizza', sector:'Food y eventos', c:'#e0602a', a:'#E8650A', b:'#CC3300',
-    cover:'assets/habemus-pizza-hero.jpg', page:'habemus-pizza.html',
-    reto:"Ampliar el registro creativo de una identidad <em>ya consolidada</em> sin alterar sus fundamentos.",
-    retoSub:"Generar piezas variadas y atractivas dentro de los parámetros de la marca.",
-    colores:[['#E8650A','Naranja horno'],['#CC3300','Rojo'],['#1C1A17','Carbón'],['#E9D9BF','Kraft']],
-    tipo:"Tipografía corporativa de la marca, aplicada en nuevas composiciones y jerarquías.",
-    motivos:["Producto", "Horno", "Packaging kraft", "Material de pauta"],
-    idea:"<em>Explorar dentro de los límites</em> de la marca y extenderla al soporte físico.",
-    ideaSub:"Publicaciones y reels de alto impacto, un folleto para pauta digital y un mockup de bolsa de papel.",
-    prueba:[0,2] },
-  { key:'4me', n:'4ME', sector:"Suplementación · Pacientes bariátricos", c:'#e07a93', a:'#f7c6d0', b:'#d4566f',
-    reto:"Integrar la suplementación en <em>la nueva rutina</em> de personas que han pasado por una cirugía bariátrica.",
-    retoSub:"Había que explicar productos y características de forma accesible, sin un tono clínico ni técnico, pero sin restar importancia al producto dentro de un contexto de cuidado.",
-    colores:[['#F2A7B5','Rosa'],['#D9536F','Fresa'],['#6B3E2E','Chocolate'],['#F6EDE6','Crema']],
-    tipo:"Una sans serif de alto impacto da claridad a los mensajes principales; una serif condensada aporta contraste y un carácter editorial.",
-    motivos:["Producto en primer plano", "Sabores: fresa y chocolate", "Etiquetas en cápsula", "Recetas"],
-    idea:"Hacer de la suplementación parte de la rutina.",
-    ideaSub:"El suplemento se presenta como parte de una nueva forma de cuidarse, no solo como un producto. La comunicación acerca una categoría que puede percibirse técnica o médica a situaciones cotidianas, para explicar sin saturar y combinar información con estilo de vida.",
-    colorTxt:"Rosados, fresa, chocolate y crema construyen una identidad cálida y cercana, lejos del lenguaje habitual de los suplementos deportivos.",
-    recursosTxt:"Producto, ingredientes, texturas, sabores y composiciones tipo etiqueta organizan la información y la hacen más visual.",
-    aplTxt:"Contenidos de producto, ingredientes, sabores, recetas y situaciones de consumo, con una jerarquía tipográfica que facilita la lectura en cada formato.",
-    prueba:[1,3] },
-  { key:'Vainilla Canela', n:'Vainilla Canela', sector:"Belleza y estética", c:'#d38fbf', a:'#f6dbe6', b:'#c9748f',
-    reto:"Comunicar <em>una oferta diversa de servicios</em> de belleza bajo una sola voz de marca.",
-    retoSub:"Cada tratamiento tiene su propio universo visual. El sistema debía diferenciarlos sin fragmentar la percepción de la marca.",
-    colores:[['#F3D6DF','Rosa empolvado'],['#D9417E','Magenta'],['#BFB8BC','Perla'],['#FFFFFF','Blanco']],
-    tipo:"La serif aporta elegancia y estructura; el trazo manuscrito, una dimensión personal y distintiva.",
-    motivos:["Planos de detalle", "Tipografía en diagonal y en curva", "Precio en sello circular", "Firma de la marca"],
-    idea:"Cada servicio tiene su propio gesto.",
-    ideaSub:"El punto de partida es el movimiento y el detalle de cada tratamiento. Cabello, cejas, maquillaje y herramientas dejan de ser solo fotografía y pasan a formar parte de la composición, de modo que cada servicio se distingue sin romper la unidad.",
-    colorTxt:"Rosa empolvado, magenta, perla y blanco aportan feminidad y contraste sin caer en una estética recargada.",
-    recursosTxt:"Detalles de cada tratamiento, composiciones en diagonal, sellos de precio y tipografía en movimiento generan jerarquía y dinamismo.",
-    aplTxt:"Piezas promocionales y contenidos digitales en los que imagen, tipografía y composición comunican cada servicio y su precio de un vistazo.",
-    prueba:[1,2] },
-  { key:'eka', n:'EKA Active', sector:'Fitness y bienestar', c:'#5fc4bf', a:'#86e1dd', b:'#5C7A4A',
-    cover:'assets/eka-active-hero.jpg', page:'eka-active.html',
-    reto:"Una marca de fitness en fase inicial que necesitaba <em>una comunicación visual consistente</em>.",
-    retoSub:"Transformar sus recursos gráficos existentes en un lenguaje reconocible.",
-    colores:[['#E07A3A','Naranja'],['#6B4A35','Café'],['#7A8F6A','Verde'],['#F1ECE4','Arena']],
-    tipo:"Composición y tipografía orientadas a transmitir energía sin perder cercanía.",
-    motivos:["Movimiento", "Naturaleza", "Fotografía de actividad", "Recursos gráficos propios"],
-    idea:"Equilibrar <em>la energía del fitness</em> con una estética natural.",
-    ideaSub:"Naranja, café y verde como ejes del lenguaje visual de cada pieza.",
-    prueba:[0,1] },
-  { key:'JSC', n:'JSC Global Becas', sector:"Educación · Becas académicas y deportivas", c:'#2c4a9a', a:'#1d3a8a', b:'#7ea0e0',
-    reto:"Convertir una propuesta con muchas variables en <em>una comunicación clara y fácil de recorrer</em>.",
-    retoSub:"Estudios, deporte, destinos y oportunidades internacionales: un volumen de información que podía resultar institucional o difícil de consumir. La jerarquía debía responder de inmediato qué se ofrece, a quién y dónde.",
-    colores:[['#1D3A8A','Azul'],['#6E95E0','Azul claro'],['#C8A04A','Dorado'],['#FFFFFF','Blanco']],
-    tipo:"Una sans serif geométrica y contundente que facilita la lectura de titulares, cifras y mensajes clave.",
-    motivos:["Deportistas reales", "Banderas y destinos", "Cifras destacadas", "Publicaciones de bienvenida"],
-    idea:"Las oportunidades empiezan por las personas.",
-    ideaSub:"Frente a una comunicación exclusivamente institucional, el sistema pone en primer plano a quienes viven la experiencia. Historias, destinos, resultados y datos se ordenan en una estructura que hace la información más humana y directa.",
-    colorTxt:"El azul actúa como eje institucional; el azul claro, el dorado y el blanco generan contraste y destacan la información relevante.",
-    recursosTxt:"Fotografía de estudiantes y deportistas, destinos, banderas y cifras destacadas aportan contexto y convierten los datos en contenido visual.",
-    aplTxt:"Bienvenidas a nuevos deportistas, oportunidades académicas y deportivas, destinos y datos clave, con una jerarquía constante entre imagen, mensaje y llamada a la acción.",
-    prueba:[0,2] }
-];
+  /* =====================================================================
+     TODAS LAS PIEZAS
+     brand: id de la marca (o 'otros' + client:'Nombre').
+     type: 'post' | 'reel' | 'print' | 'branding' · src (imagen) o video.
+     r: proporción del archivo (ancho/alto).
+     Para añadir una pieza, copia una línea y cambia la ruta.
+     ===================================================================== */
+  const pieces = [
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-01.jpg', r:'1080/1920' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-02.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-03.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-04.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-05.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-06.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-07.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-08.jpg', r:'1080/1920' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-09.jpg', r:'2025/2531' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-10.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-11.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-12.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-13.jpg', r:'1080/1350' },
+    { brand:'chiltepik', type:'post', src:'assets/chiltepik-14.jpg', r:'1080/1920' },
 
-const abs = u => u && !/^https?:/.test(u) ? BASE + u : u;
-const ratioOf = r => { const [w, h] = String(r).split('/').map(Number); return w && h ? w / h : .8; };
-const P = RAW.map(p => ({ ...p, s:abs(p.s), v:abs(p.v), ratio:ratioOf(p.r), key:p.b === 'otros' ? (p.c || '') : p.b }));
-const isPres = p => !p.v && (p.t === 'branding' || p.t === 'print' || p.ratio >= 1.5 || /gral|pauta|packaging|banner/i.test(p.s || ''));
-const brands = FEATURED.map(f => {
-  const all = P.filter(p => p.key === f.key);
-  return { ...f, cover:abs(f.cover), posts:all.filter(p => !p.v && !isPres(p)), reels:all.filter(p => p.v), pres:all.filter(isPres) };
-});
-const fk = new Set(FEATURED.map(f => f.key));
-const others = P.filter(p => !fk.has(p.key));
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-01.jpg', r:'912/1140' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-02.jpg', r:'1652/606' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-03.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'print', src:'assets/habemus-pizza-04.jpg', r:'1920/1080' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-05.png', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-06.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-07.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-08.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-09.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-10.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-11.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-12.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-13.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-14.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'post', src:'assets/habemus-pizza-15.jpg', r:'1080/1350' },
+    { brand:'habemus', type:'reel', video:'assets/habemus-pizza-reel-1.mp4', r:'9/16' },
 
-function piece(p, o = {}) {
-  const el = document.createElement('span'); el.className = 'ph';
-  if (o.a) { el.style.setProperty('--a', o.a); el.style.setProperty('--b', o.b); }
-  if (o.ratio) el.style.aspectRatio = p.ratio;
-  if (p.v) {
-    const v = document.createElement('video');
-    Object.assign(v, { src:p.v, muted:true, loop:true, playsInline:true, autoplay:!!o.play, preload:'metadata' });
-    v.onerror = () => v.remove(); el.append(v);
-    if (o.badge) el.insertAdjacentHTML('beforeend', '<span class="badge">▶ Reel</span>');
-  } else if (p.s) {
-    const img = new Image(); img.alt = o.alt || ''; img.loading = o.eager ? 'eager' : 'lazy'; img.decoding = 'async'; img.src = p.s;
-    img.onerror = () => img.remove();
-    if (o.ratio) img.onload = () => { p.ratio = img.naturalWidth / img.naturalHeight; el.style.aspectRatio = p.ratio; };
-    el.append(img);
+    { brand:'jaguares', type:'post', src:'assets/jaguares-01.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-02.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-03.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-04.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-05.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-06.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-07.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-08.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-09.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-10.jpg', r:'1080/1350' },
+    { brand:'jaguares', type:'post', src:'assets/jaguares-11.jpg', r:'1080/1350' },
+
+    { brand:'eka', type:'post', src:'assets/eka-active-01.jpg', r:'1080/1350' },
+    { brand:'eka', type:'post', src:'assets/eka-active-02.jpg', r:'1080/1350' },
+    { brand:'eka', type:'post', src:'assets/eka-active-03.jpg', r:'1080/1350' },
+    { brand:'eka', type:'post', src:'assets/eka-active-04.jpg', r:'1080/1350' },
+    { brand:'eka', type:'post', src:'assets/eka-active-05.jpg', r:'1080/1350' },
+    { brand:'eka', type:'post', src:'assets/eka-active-06.jpg', r:'1080/1350' },
+
+    { brand:'holly', type:'post', src:'assets/holly-body-01.jpg', r:'784/986' },
+    { brand:'holly', type:'post', src:'assets/holly-body-02.jpg', r:'1080/1350' },
+    { brand:'holly', type:'print', src:'assets/holly-body-03.jpg', r:'1654/608' },
+    { brand:'holly', type:'post', src:'assets/holly-body-04.jpg', r:'1080/1350' },
+    { brand:'holly', type:'post', src:'assets/holly-body-05.jpg', r:'1080/1350' },
+    { brand:'holly', type:'post', src:'assets/holly-body-06.jpg', r:'1080/1350' },
+
+    // Piezas sin proyecto en el portfolio (capítulo "Más trabajo gráfico")
+    { brand:'otros', client:'4me', type:'branding', src:'assets/4me-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-01.jpg', r:'794/990' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-02.jpg', r:'840/1044' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-03.jpg', r:'768/961' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-04.jpg', r:'1176/914' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-05.jpg', r:'1088/1382' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-06.jpg', r:'840/1054' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-07.jpg', r:'1080/1350' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-08.jpg', r:'1080/1350' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-09.jpg', r:'1080/1350' },
+    { brand:'otros', client:'4me', type:'post', src:'assets/4me-10.jpg', r:'1080/1350' },
+    { brand:'otros', client:'DKC', type:'branding', src:'assets/Dkc-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Ela K', type:'post', src:'assets/ElaK-01.jpg', r:'764/950' },
+    { brand:'otros', client:'Surya', type:'post', src:'assets/Surya-01.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Surya', type:'post', src:'assets/Surya-02.jpg', r:'1080/1080' },
+    { brand:'otros', client:'Surya', type:'post', src:'assets/Surya-03.jpg', r:'720/1280' },
+    { brand:'otros', client:'Surya', type:'post', src:'assets/Surya-04.jpg', r:'1080/1080' },
+    { brand:'otros', client:'Surya', type:'post', src:'assets/Surya-05.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Funding', type:'branding', src:'assets/Funding-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Legal', type:'branding', src:'assets/Legal-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-01.jpg', r:'836/1048' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-03.jpg', r:'1206/1486' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-04.jpg', r:'1206/1499' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-05.jpg', r:'1206/1481' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-06.jpg', r:'1206/1500' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-07.jpg', r:'1206/1502' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-08.jpg', r:'628/896' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-09.jpg', r:'1206/1489' },
+    { brand:'otros', client:'Legal', type:'post', src:'assets/Legal-10.jpg', r:'1206/1491' },
+    { brand:'otros', client:'Xasxas', type:'branding', src:'assets/Xasxas-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-01.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-02.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-03.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-04.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-05.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-06.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-07.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-08.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-09.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-10.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-11.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Xasxas', type:'post', src:'assets/xasxas-13.jpg', r:'1080/1350' },
+    { brand:'otros', client:'GineLiz', type:'branding', src:'assets/GineLiz-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'JSC', type:'branding', src:'assets/JSC-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-01.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-02.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-03.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-04.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-05.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-06.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-07.jpg', r:'810/1012' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-11.jpg', r:'1080/1350' },
+    { brand:'otros', client:'JSC', type:'post', src:'assets/JSC-13.jpg', r:'2481/3509' },
+    { brand:'otros', client:'Llevele', type:'branding', src:'assets/Llevele-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Llevele', type:'post', src:'assets/Llevele-01.jpg', r:'1588/1180' },
+    { brand:'otros', client:'Llevele', type:'post', src:'assets/Llevele-02.jpg', r:'1974/1262' },
+    { brand:'otros', client:'Llevele', type:'post', src:'assets/Llevele-03.jpg', r:'858/1522' },
+    { brand:'otros', client:'Llevele', type:'post', src:'assets/Llevele-04.jpg', r:'1048/388' },
+    { brand:'otros', client:'Llevele', type:'post', src:'assets/Llevele-05.jpg', r:'1414/2000' },
+    { brand:'otros', client:'Llevele', type:'post', src:'assets/Llevele-06.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Pasión M', type:'branding', src:'assets/PasionM-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Notaría', type:'post', src:'assets/Notaria-01.jpg', r:'4/5' },
+    { brand:'otros', client:'Notaría', type:'post', src:'assets/Notaria-02.jpg', r:'525/698' },
+    { brand:'otros', client:'Notaría', type:'post', src:'assets/Notaria-03.jpg', r:'387/516' },
+    { brand:'otros', client:'Notaría', type:'post', src:'assets/Notaria-04.jpg', r:'527/702' },
+    { brand:'otros', client:'Las Palmas', type:'branding', src:'assets/Laspalmas-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-01.jpg', r:'932/1172' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-02.jpg', r:'934/1166' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-04.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-05.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-06.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-07.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-08.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-09.jpg', r:'1080/1920' },
+    { brand:'otros', client:'Las Palmas', type:'post', src:'assets/Laspalmas-10.jpg', r:'1080/1920' },
+    { brand:'otros', client:'Vainilla Canela', type:'branding', src:'assets/VainillaCanela-Gral.jpg', r:'1920/1080' },
+    { brand:'otros', client:'Vainilla Canela', type:'post', src:'assets/VainillaC-01.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Vainilla Canela', type:'post', src:'assets/VainillaC-02.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Vainilla Canela', type:'post', src:'assets/VainillaC-03.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Vainilla Canela', type:'post', src:'assets/VainillaC-04.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Vainilla Canela', type:'post', src:'assets/VainillaC-05.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Vainilla Canela', type:'post', src:'assets/VainillaC-06.jpg', r:'1080/1350' },
+    { brand:'otros', client:'Ardin', type:'post', src:'assets/ardin-01.jpg', r:'2200/1400' },
+    { brand:'otros', client:'Ardin', type:'post', src:'assets/ardin-02.jpg', r:'3000/2000' },
+    { brand:'otros', client:'Bebeauty', type:'post', src:'assets/Bebeauty-01.jpg', r:'804/1000' },
+    // Piezas añadidas: pautas, packaging, banner y reels de la carpeta galeria
+    { brand:'habemus', type:'print', src:'assets/habemus-pizza-pauta.jpg', r:'16/9' },
+    { brand:'habemus', type:'print', src:'assets/galeria/habemus-packaging.jpg', r:'1/1' },
+    { brand:'holly', type:'print', src:'assets/holly-body-pauta.jpg', r:'16/9' },
+    { brand:'holly', type:'print', src:'assets/galeria/holly-banner.jpg', r:'3/1' },
+    { brand:'chiltepik', type:'reel', video:'assets/galeria/chiltepik-reel.mp4', r:'9/16' },
+    { brand:'eka', type:'reel', video:'assets/galeria/eka-reel.mp4', r:'9/16' },
+    { brand:'otros', client:'Varios', type:'reel', video:'assets/galeria/otros-reel.mp4', r:'9/16' }
+  ];
+
+  /* =====================================================================
+     MARCAS DESTACADAS — cada una se cuenta en 4 puntos:
+     reto · sistema visual · concepto · aplicaciones.
+     Cada texto va en [español, inglés].
+     key: cómo se reconoce la marca en las piezas (brand o client).
+     cover: portada (si no hay, se compone un collage con sus 3 primeros posts).
+     prueba: posición de los posts que ilustran el sistema visual.
+     ===================================================================== */
+  const FEATURED = [
+    { key:'jaguares', n:'Jaguares de Nayarit', c:'#e0602a', a:'#2D6B45', b:'#141414', cover:'assets/jaguares-hero.jpg', big:true, page:'jaguares.html',
+      sector:['Deporte y entretenimiento','Sport & entertainment'],
+      reto:['Construir la presencia digital de un equipo de béisbol profesional que <em>conectara con la identidad cultural de Nayarit</em>.','Building the digital presence of a professional baseball team that would <em>connect with Nayarit’s cultural identity</em>.'],
+      retoSub:['Las piezas debían reconocerse a la vez por su arraigo territorial y por su identidad deportiva.','The pieces had to be recognisable both for their roots in the region and for their sporting identity.'],
+      colores:[['#E8642A',['Naranja Jaguar','Jaguar orange']],['#141414',['Noche','Night']],['#2D6B45',['Selva','Jungle']],['#F2EBDD',['Hueso','Bone']]],
+      tipo:['Sans condensada en mayúsculas para los mensajes principales, en contraste con una script deportiva que aporta dinamismo.','A condensed uppercase sans for the key messages, set against a sporty script that adds movement.'],
+      motivos:[['Jaguar como símbolo','The jaguar as symbol'],['Vegetación de la selva nayarita','Nayarit jungle foliage'],['Costuras de la pelota','Baseball stitching'],['Patrón textil regional','Regional textile pattern'],['Huellas y garras','Paw prints and claws']],
+      idea:['El jaguar como <em>puente entre el equipo y el territorio</em>.','The jaguar as <em>a bridge between the team and the land</em>.'],
+      ideaSub:['Una narrativa en tres fases —expectativa, presentación y venta de abonos— que integra deporte y cultura local. El equipo seleccionó la propuesta para su feed oficial.','A three-phase narrative —teaser, launch and season-ticket sales— that brings sport and local culture together. The team chose the proposal for its official feed.'],
+      prueba:[0,4] },
+    { key:'Xasxas', n:'Xasxas', c:'#4fb3a9', a:'#f7c6d9', b:'#7fd1c7', big:true,
+      sector:['Heladería','Ice-cream shop'],
+      reto:['Trasladar a redes el carácter <em>fresco, divertido y apetecible</em> de Xasxas.','Bringing Xasxas’s <em>fresh, playful and mouth-watering</em> character to social media.'],
+      retoSub:['El sistema debía permitir variar color, forma, producto y tipografía en cada pieza sin que la marca dejara de reconocerse.','The system had to allow colour, shape, product and type to change from piece to piece without the brand losing its recognisability.'],
+      colores:[['#F4C3D3',['Rosa fresa','Strawberry pink']],['#5BB7AE',['Turquesa','Turquoise']],['#F6D33C',['Mango','Mango']],['#FFFFFF',['Crema','Cream']]],
+      colorTxt:['Rosa, turquesa, amarillo y crema construyen un universo luminoso, ligado al carácter fresco y lúdico de la marca.','Pink, turquoise, yellow and cream build a bright world tied to the brand’s fresh, playful character.'],
+      tipo:['Una sans serif de formas redondeadas que participa activamente en la composición, más allá de su función informativa.','A rounded sans serif that plays an active part in the composition, beyond simply carrying information.'],
+      recursosTxt:['Formas orgánicas, ondas, trazos curvos y el propio producto forman un lenguaje abierto, capaz de crecer con la comunicación.','Organic shapes, waves, curved lines and the product itself form an open language that can grow with the brand’s communication.'],
+      idea:['El producto como protagonista.','The product takes centre stage.'],
+      ideaSub:['Una idea sencilla: que el helado se reconozca antes incluso de leer el nombre de la marca. A su alrededor, color, forma y tipografía crean un universo alegre en el que cada pieza tiene personalidad propia sin desligarse del conjunto.','A simple idea: the ice cream should be recognisable before you even read the brand name. Around it, colour, shape and type create a cheerful world where each piece has its own personality without breaking away from the whole.'],
+      aplTxt:['Publicaciones de producto, presentación de sabores y mensajes de marca: cada una con su propia composición, todas inequívocamente Xasxas.','Product posts, flavour launches and brand messages: each with its own composition, all unmistakably Xasxas.'],
+      prueba:[1,4] },
+    { key:'Las Palmas', n:'Las Palmas', c:'#8a7a5c', a:'#3c3428', b:'#b8a98a',
+      sector:['Hospitalidad y estilo de vida','Hospitality & lifestyle'],
+      reto:['Comunicar <em>la experiencia de estar allí</em>, más allá de las instalaciones.','Communicating <em>what it feels like to be there</em>, beyond the facilities.'],
+      retoSub:['Las Palmas es un espacio pensado para desconectar. La comunicación debía apoyarse en la luz, el paisaje, la arquitectura y los pequeños momentos, con una identidad que acompañara a la fotografía sin competir con ella.','Las Palmas is a place designed for switching off. The communication had to rely on light, landscape, architecture and small moments, with an identity that supports the photography rather than competing with it.'],
+      colores:[['#D8CBB3',['Arena','Sand']],['#5A4632',['Madera','Wood']],['#1C1A17',['Noche','Night']],['#9DB8D3',['Cielo','Sky']]],
+      colorTxt:['Arena, madera, cielo y tonos nocturnos crean una atmósfera cálida y natural.','Sand, wood, sky and night tones create a warm, natural atmosphere.'],
+      tipo:['Una serif editorial combinada con una manuscrita: contraste entre sofisticación y espontaneidad.','An editorial serif paired with a handwritten script: a contrast between sophistication and spontaneity.'],
+      recursosTxt:['Paisaje, arquitectura, palmeras, texturas naturales y mensajes breves funcionan como elementos narrativos.','Landscape, architecture, palm trees, natural textures and short messages work as narrative elements.'],
+      idea:['No comunicar el lugar. Comunicar cómo se siente.','Don’t communicate the place. Communicate how it feels.'],
+      ideaSub:['La fotografía lleva el peso del relato y los recursos gráficos aparecen como intervenciones mínimas que refuerzan la atmósfera. El resultado se acerca más a un editorial de estilo de vida que a una promoción turística convencional.','Photography carries the story, and graphic elements appear as minimal interventions that reinforce the atmosphere. The result is closer to a lifestyle editorial than to conventional tourism promotion.'],
+      aplTxt:['Contenido para redes sociales y piezas promocionales que construyen, publicación a publicación, el relato de la experiencia.','Social media content and promotional pieces that build the story of the experience, post by post.'],
+      prueba:[0,3] },
+    { key:'chiltepik', n:'Chiltepiik', c:'#c9a46b', a:'#edc491', b:'#5C6B3A', cover:'assets/chiltepik-hero.jpg', page:'chiltepik.html',
+      sector:['Alimentos artesanales','Artisanal food'],
+      reto:['Una salsa artesanal con logotipo, pero <em>sin sistema visual ni dirección de arte</em>.','An artisanal salsa with a logo, but <em>no visual system or art direction</em>.'],
+      retoSub:['Construir desde cero una identidad editorial coherente con su carácter auténtico, artesanal y mexicano.','Building from scratch an editorial identity true to its authentic, handmade, Mexican character.'],
+      colores:[['#8B5A3C',['Tierra','Earth']],['#6E1F2A',['Vino','Wine']],['#5C6B3A',['Verde olivo','Olive']],['#EDE3D1',['Masa','Masa']]],
+      tipo:['Familias editoriales que sitúan la marca en un registro gastronómico cuidado.','Editorial typefaces that place the brand in a refined, food-magazine register.'],
+      motivos:[['Chiltepín','Chiltepín pepper'],['Tortilla y piedra volcánica','Tortilla and volcanic stone'],['Iluminación en clave baja','Low-key lighting'],['Composición editorial','Editorial composition']],
+      idea:['Una <em>dirección de arte integral</em>: paleta, estilo fotográfico, tipografía y sistema compositivo.','A <em>complete art direction</em>: palette, photographic style, typography and compositional system.'],
+      ideaSub:['Sobre esa base se desarrolló la parrilla de contenido completa, con publicaciones estáticas y reels.','On that foundation, the full content calendar was developed, with static posts and reels.'],
+      prueba:[1,2] },
+    { key:'habemus', n:'Habemus Pizza', c:'#e0602a', a:'#E8650A', b:'#CC3300', cover:'assets/habemus-pizza-hero.jpg', page:'habemus-pizza.html',
+      sector:['Food y eventos','Food & events'],
+      reto:['Ampliar el registro creativo de una identidad <em>ya consolidada</em> sin alterar sus fundamentos.','Expanding the creative range of an <em>established</em> identity without altering its foundations.'],
+      retoSub:['Generar piezas variadas y atractivas dentro de los parámetros de la marca.','Creating varied, engaging pieces within the brand’s own parameters.'],
+      colores:[['#E8650A',['Naranja horno','Oven orange']],['#CC3300',['Rojo','Red']],['#1C1A17',['Carbón','Charcoal']],['#E9D9BF',['Kraft','Kraft']]],
+      tipo:['Tipografía corporativa de la marca, aplicada en nuevas composiciones y jerarquías.','The brand’s corporate typeface, applied in new compositions and hierarchies.'],
+      motivos:[['Producto','Product'],['Horno','Oven'],['Packaging kraft','Kraft packaging'],['Material de pauta','Paid media material']],
+      idea:['<em>Explorar dentro de los límites</em> de la marca y extenderla al soporte físico.','<em>Exploring within the brand’s limits</em> and extending it into the physical world.'],
+      ideaSub:['Publicaciones y reels de alto impacto, un folleto para pauta digital y un mockup de bolsa de papel.','High-impact posts and reels, a leaflet for digital paid media and a paper-bag mockup.'],
+      prueba:[0,2] },
+    { key:'4me', n:'4ME', c:'#e07a93', a:'#f7c6d0', b:'#d4566f',
+      sector:['Suplementación · Pacientes bariátricos','Supplements · Bariatric patients'],
+      reto:['Integrar la suplementación en <em>la nueva rutina</em> de personas que han pasado por una cirugía bariátrica.','Making supplements part of <em>the new routine</em> of people who have undergone bariatric surgery.'],
+      retoSub:['Había que explicar productos y características de forma accesible, sin un tono clínico ni técnico, pero sin restar importancia al producto dentro de un contexto de cuidado.','Products and their features had to be explained accessibly, without a clinical or technical tone, while still giving the product its due weight in a context of care.'],
+      colores:[['#F2A7B5',['Rosa','Pink']],['#D9536F',['Fresa','Strawberry']],['#6B3E2E',['Chocolate','Chocolate']],['#F6EDE6',['Crema','Cream']]],
+      colorTxt:['Rosados, fresa, chocolate y crema construyen una identidad cálida y cercana, lejos del lenguaje habitual de los suplementos deportivos.','Pinks, strawberry, chocolate and cream build a warm, approachable identity, far from the usual language of sports supplements.'],
+      tipo:['Una sans serif de alto impacto da claridad a los mensajes principales; una serif condensada aporta contraste y un carácter editorial.','A bold sans serif gives clarity to the key messages; a condensed serif adds contrast and an editorial character.'],
+      recursosTxt:['Producto, ingredientes, texturas, sabores y composiciones tipo etiqueta organizan la información y la hacen más visual.','Product, ingredients, textures, flavours and label-style layouts organise the information and make it more visual.'],
+      idea:['Hacer de la suplementación parte de la rutina.','Making supplements part of the routine.'],
+      ideaSub:['El suplemento se presenta como parte de una nueva forma de cuidarse, no solo como un producto. La comunicación acerca una categoría que puede percibirse técnica o médica a situaciones cotidianas, para explicar sin saturar y combinar información con estilo de vida.','The supplement is presented as part of a new way of looking after yourself, not just as a product. The communication brings a category that can feel technical or medical into everyday situations, explaining without overwhelming and blending information with lifestyle.'],
+      aplTxt:['Contenidos de producto, ingredientes, sabores, recetas y situaciones de consumo, con una jerarquía tipográfica que facilita la lectura en cada formato.','Content on products, ingredients, flavours, recipes and moments of use, with a typographic hierarchy that keeps every format easy to read.'],
+      prueba:[1,3] },
+    { key:'Vainilla Canela', n:'Vainilla Canela', c:'#d38fbf', a:'#f6dbe6', b:'#c9748f',
+      sector:['Belleza y estética','Beauty & aesthetics'],
+      reto:['Comunicar <em>una oferta diversa de servicios</em> de belleza bajo una sola voz de marca.','Communicating <em>a wide range of beauty services</em> under a single brand voice.'],
+      retoSub:['Cada tratamiento tiene su propio universo visual. El sistema debía diferenciarlos sin fragmentar la percepción de la marca.','Each treatment has its own visual world. The system had to tell them apart without fragmenting how the brand is perceived.'],
+      colores:[['#F3D6DF',['Rosa empolvado','Powder pink']],['#D9417E',['Magenta','Magenta']],['#BFB8BC',['Perla','Pearl']],['#FFFFFF',['Blanco','White']]],
+      colorTxt:['Rosa empolvado, magenta, perla y blanco aportan feminidad y contraste sin caer en una estética recargada.','Powder pink, magenta, pearl and white bring femininity and contrast without tipping into an ornate look.'],
+      tipo:['La serif aporta elegancia y estructura; el trazo manuscrito, una dimensión personal y distintiva.','The serif brings elegance and structure; the handwritten stroke, a personal and distinctive touch.'],
+      recursosTxt:['Detalles de cada tratamiento, composiciones en diagonal, sellos de precio y tipografía en movimiento generan jerarquía y dinamismo.','Close-ups of each treatment, diagonal compositions, price seals and moving type create hierarchy and energy.'],
+      idea:['Cada servicio tiene su propio gesto.','Every service has its own gesture.'],
+      ideaSub:['El punto de partida es el movimiento y el detalle de cada tratamiento. Cabello, cejas, maquillaje y herramientas dejan de ser solo fotografía y pasan a formar parte de la composición, de modo que cada servicio se distingue sin romper la unidad.','The starting point is the movement and detail of each treatment. Hair, brows, make-up and tools stop being just photography and become part of the composition, so each service stands out without breaking the whole.'],
+      aplTxt:['Piezas promocionales y contenidos digitales en los que imagen, tipografía y composición comunican cada servicio y su precio de un vistazo.','Promotional pieces and digital content where image, type and composition communicate each service and its price at a glance.'],
+      prueba:[1,2] },
+    { key:'eka', n:'EKA Active', c:'#5fc4bf', a:'#86e1dd', b:'#5C7A4A', cover:'assets/eka-active-hero.jpg', page:'eka-active.html',
+      sector:['Fitness y bienestar','Fitness & wellness'],
+      reto:['Una marca de fitness en fase inicial que necesitaba <em>una comunicación visual consistente</em>.','An early-stage fitness brand that needed <em>consistent visual communication</em>.'],
+      retoSub:['Transformar sus recursos gráficos existentes en un lenguaje reconocible.','Turning its existing graphic assets into a recognisable language.'],
+      colores:[['#E07A3A',['Naranja','Orange']],['#6B4A35',['Café','Coffee']],['#7A8F6A',['Verde','Green']],['#F1ECE4',['Arena','Sand']]],
+      tipo:['Composición y tipografía orientadas a transmitir energía sin perder cercanía.','Composition and type designed to convey energy without losing warmth.'],
+      motivos:[['Movimiento','Movement'],['Naturaleza','Nature'],['Fotografía de actividad','Activity photography'],['Recursos gráficos propios','Brand graphic assets']],
+      idea:['Equilibrar <em>la energía del fitness</em> con una estética natural.','Balancing <em>the energy of fitness</em> with a natural aesthetic.'],
+      ideaSub:['Naranja, café y verde como ejes del lenguaje visual de cada pieza.','Orange, coffee and green as the backbone of each piece’s visual language.'],
+      prueba:[0,1] },
+    { key:'JSC', n:'JSC Global Becas', c:'#2c4a9a', a:'#1d3a8a', b:'#7ea0e0',
+      sector:['Educación · Becas académicas y deportivas','Education · Academic & sports scholarships'],
+      reto:['Convertir una propuesta con muchas variables en <em>una comunicación clara y fácil de recorrer</em>.','Turning an offer with many variables into <em>clear, easy-to-navigate communication</em>.'],
+      retoSub:['Estudios, deporte, destinos y oportunidades internacionales: un volumen de información que podía resultar institucional o difícil de consumir. La jerarquía debía responder de inmediato qué se ofrece, a quién y dónde.','Studies, sport, destinations and international opportunities: a volume of information that could easily feel institutional or hard to take in. The hierarchy had to answer at once what is on offer, for whom and where.'],
+      colores:[['#1D3A8A',['Azul','Blue']],['#6E95E0',['Azul claro','Light blue']],['#C8A04A',['Dorado','Gold']],['#FFFFFF',['Blanco','White']]],
+      colorTxt:['El azul actúa como eje institucional; el azul claro, el dorado y el blanco generan contraste y destacan la información relevante.','Blue acts as the institutional anchor; light blue, gold and white add contrast and highlight key information.'],
+      tipo:['Una sans serif geométrica y contundente que facilita la lectura de titulares, cifras y mensajes clave.','A strong geometric sans serif that makes headlines, figures and key messages easy to read.'],
+      recursosTxt:['Fotografía de estudiantes y deportistas, destinos, banderas y cifras destacadas aportan contexto y convierten los datos en contenido visual.','Photos of students and athletes, destinations, flags and highlighted figures add context and turn data into visual content.'],
+      idea:['Las oportunidades empiezan por las personas.','Opportunities start with people.'],
+      ideaSub:['Frente a una comunicación exclusivamente institucional, el sistema pone en primer plano a quienes viven la experiencia. Historias, destinos, resultados y datos se ordenan en una estructura que hace la información más humana y directa.','Instead of purely institutional communication, the system puts the people living the experience first. Stories, destinations, results and data are arranged in a structure that makes the information more human and direct.'],
+      aplTxt:['Bienvenidas a nuevos deportistas, oportunidades académicas y deportivas, destinos y datos clave, con una jerarquía constante entre imagen, mensaje y llamada a la acción.','Welcome posts for new athletes, academic and sports opportunities, destinations and key data, with a consistent hierarchy between image, message and call to action.'],
+      prueba:[0,2] }
+  ];
+  /* ===================================================================== */
+
+  const STEPS = [['reto',['Reto','Challenge']],['sistema',['Sistema visual','Visual system']],['idea',['Concepto','Concept']],['piezas',['Aplicaciones','Applications']]];
+  const ratioOf = r => { const [w, h] = String(r).split('/').map(Number); return w && h ? w / h : .8; };
+  const P = pieces.map(p => ({ ...p, ratio:ratioOf(p.r), key:p.brand === 'otros' ? (p.client || '') : p.brand }));
+  const isPres = p => !p.video && (p.type === 'branding' || p.type === 'print' || p.ratio >= 1.5 || /gral|pauta|packaging|banner/i.test(p.src || ''));
+  const brands = FEATURED.map(f => {
+    const all = P.filter(p => p.key === f.key);
+    return { ...f, posts:all.filter(p => !p.video && !isPres(p)), reels:all.filter(p => p.video), pres:all.filter(isPres) };
+  });
+  const fk = new Set(FEATURED.map(f => f.key));
+  const others = P.filter(p => !fk.has(p.key));
+  const otherName = p => p.client || ({ holly:'Holly Body', habemus:'Habemus Pizza', chiltepik:'Chiltepiik', jaguares:'Jaguares de Nayarit', eka:'EKA Active' }[p.brand] || p.brand);
+
+  function piece(p, o = {}) {
+    const el = document.createElement('span'); el.className = 'ph';
+    if (o.a) { el.style.setProperty('--a', o.a); el.style.setProperty('--b', o.b); }
+    if (o.ratio) el.style.aspectRatio = p.ratio;
+    if (p.video) {
+      const v = document.createElement('video');
+      Object.assign(v, { src:p.video, muted:true, loop:true, playsInline:true, autoplay:!!o.play && !still, preload:'metadata' });
+      v.setAttribute('aria-label', o.alt || 'Reel');
+      v.onerror = () => v.remove(); el.append(v);
+      if (o.badge) el.insertAdjacentHTML('beforeend', '<span class="badge">▶ Reel</span>');
+    } else if (p.src) {
+      const img = new Image(); img.alt = o.alt || ''; img.loading = o.eager ? 'eager' : 'lazy'; img.decoding = 'async'; img.src = p.src;
+      img.onerror = () => img.remove();
+      if (o.ratio) img.onload = () => { p.ratio = img.naturalWidth / img.naturalHeight; el.style.aspectRatio = p.ratio; };
+      el.append(img);
+    }
+    return el;
   }
-  return el;
-}
 
-/* ---------- portada ---------- */
-const grid = document.getElementById('brands');
-brands.forEach((b, i) => {
-  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'bcard' + (b.big ? ' big' : '');
-  btn.setAttribute('aria-label', `Ver el proceso de ${b.n}`);
-  btn.innerHTML = `<span class="cover" style="--a:${b.a};--b:${b.b}"><span class="cdots">${b.colores.map(c => `<i style="--c:${c[0]}"></i>`).join('')}<em>Ver proceso →</em></span></span>
-    <span class="bmeta"><span><h2>${b.n}</h2><p>${b.sector}</p></span><small>${b.posts.length + b.reels.length + b.pres.length} piezas</small></span>`;
-  const cover = btn.querySelector('.cover');
-  if (b.cover) { const img = new Image(); img.alt = ''; img.src = b.cover; img.loading = i < 3 ? 'eager' : 'lazy'; img.onerror = () => img.remove(); cover.prepend(img); }
-  else { const col = document.createElement('span'); col.className = 'collage'; b.posts.slice(0, 3).forEach(p => col.append(piece(p, { a:b.a, b:b.b, eager:i < 3 }))); cover.prepend(col); }
-  btn.onclick = () => openStory(i);
-  grid.append(btn);
-});
-
-/* ---------- más trabajo ---------- */
-const rows = document.getElementById('rows');
-function renderRows() {
-  rows.innerHTML = '';
-  const W = rows.clientWidth, target = W < 600 ? 120 : 200, G = 10;
-  let row = [], sum = 0;
-  const flush = last => {
-    const h = last ? Math.min(target, (W - G * (row.length - 1)) / sum) : (W - G * (row.length - 1)) / sum;
-    const r = document.createElement('div'); r.className = 'jrow';
-    row.forEach(p => {
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'cell'; b.style.width = (p.ratio * h) + 'px';
-      const who = p.c || ({ holly:'Holly Body' }[p.b] || p.b);
-      b.setAttribute('aria-label', 'Ampliar pieza de ' + who);
-      const ph = piece(p, { badge:true }); ph.style.height = h + 'px'; b.append(ph);
-      b.insertAdjacentHTML('beforeend', `<small>${who}</small>`);
-      b.onclick = () => zoom(p); r.append(b);
+  /* ---------- tarjetas de marca ---------- */
+  const grid = document.getElementById('brands');
+  function renderBrands() {
+    grid.innerHTML = '';
+    brands.forEach((b, i) => {
+      const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'bcard' + (b.big ? ' big' : '');
+      btn.setAttribute('aria-label', T(['Ver el proceso de ', 'See the process for ']) + b.n);
+      const total = b.posts.length + b.reels.length + b.pres.length;
+      btn.innerHTML = `<span class="cover" style="--a:${b.a};--b:${b.b}"><span class="cdots" aria-hidden="true">${b.colores.map(c => `<i style="--c:${c[0]}"></i>`).join('')}<em>${T(['Ver proceso →', 'See process →'])}</em></span></span>
+        <span class="bmeta"><span><h2>${b.n}</h2><p>${T(b.sector)}</p></span><small>${total} ${T(['piezas', 'pieces'])}</small></span>`;
+      const cover = btn.querySelector('.cover');
+      if (b.cover) { const img = new Image(); img.alt = ''; img.src = b.cover; img.loading = i < 3 ? 'eager' : 'lazy'; img.decoding = 'async'; img.onerror = () => img.remove(); cover.prepend(img); }
+      else { const col = document.createElement('span'); col.className = 'collage'; b.posts.slice(0, 3).forEach(p => col.append(piece(p, { a:b.a, b:b.b, eager:i < 3 }))); cover.prepend(col); }
+      btn.onclick = () => openStory(i);
+      grid.append(btn);
     });
-    rows.append(r); row = []; sum = 0;
-  };
-  others.forEach(p => { row.push(p); sum += p.ratio; if (sum * target + G * (row.length - 1) >= W) flush(false); });
-  if (row.length) flush(true);
-}
-renderRows();
-let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(renderRows, 150); });
+  }
 
-/* ---------- historia de una marca ---------- */
-const story = document.getElementById('story');
-let cur = 0, lastFocus, io;
-const STEPS = [['reto','Reto'],['sistema','Sistema visual'],['idea','Concepto'],['piezas','Aplicaciones']];
-function renderStory() {
-  const b = brands[cur], nx = brands[(cur + 1) % brands.length];
-  story.style.setProperty('--c', b.c);
-  story.innerHTML = `
-  <div class="sbar"><span class="crumbs">Trabajo gráfico / <b>${b.n}</b> · ${cur + 1} de ${brands.length}</span>
-    <span class="sbtns"><button class="pill" type="button" id="sPrev" aria-label="Marca anterior">‹<span> Anterior</span></button><button class="pill" type="button" id="sNext" aria-label="Marca siguiente"><span>Siguiente </span>›</button><button class="pill dark" type="button" id="sClose" aria-label="Cerrar">✕</button></span></div>
-  <div class="wrap">
-    <div class="shero"><div><small>${b.sector.toUpperCase()}</small><h2>${b.n}<i></i></h2>${b.borrador ? '<span class="draft">Borrador · pendiente de revisión</span>' : ''}</div>${b.page ? `<a class="pill" href="${b.page}">Ver caso de estudio →</a>` : ''}</div>
-    <nav class="chain" aria-label="Puntos de la historia">${STEPS.map((s, i) => `<button type="button" data-go="${s[0]}"><i></i><span>0${i + 1}</span><b>${s[1]}</b></button>`).join('')}</nav>
+  /* ---------- otros proyectos: filas justificadas ---------- */
+  const rows = document.getElementById('rows');
+  function renderRows() {
+    rows.innerHTML = '';
+    const W = rows.clientWidth || 1000, target = W < 600 ? 120 : 200, G = 10;
+    let row = [], sum = 0;
+    const flush = last => {
+      const h = last ? Math.min(target, (W - G * (row.length - 1)) / sum) : (W - G * (row.length - 1)) / sum;
+      const r = document.createElement('div'); r.className = 'jrow';
+      row.forEach(p => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'cell'; b.style.width = (p.ratio * h) + 'px';
+        b.setAttribute('aria-label', T(['Ampliar pieza de ', 'Enlarge piece for ']) + otherName(p));
+        const ph = piece(p, { badge:true, alt:otherName(p) }); ph.style.height = h + 'px'; b.append(ph);
+        b.insertAdjacentHTML('beforeend', `<small>${otherName(p)}</small>`);
+        b.onclick = () => zoom(p); r.append(b);
+      });
+      rows.append(r); row = []; sum = 0;
+    };
+    others.forEach(p => { row.push(p); sum += p.ratio; if (sum * target + G * (row.length - 1) >= W) flush(false); });
+    if (row.length) flush(true);
+  }
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(renderRows, 150); });
 
-    <section class="step" id="st-reto"><header><small>01</small><h3><i></i>Reto</h3></header>
-      <div><p class="big">${b.reto}</p><p class="sub">${b.retoSub}</p></div></section>
+  /* ---------- historia de una marca ---------- */
+  const story = document.getElementById('story');
+  let cur = -1, lastFocus, io;
+  function renderStory() {
+    const b = brands[cur], nx = brands[(cur + 1) % brands.length];
+    story.style.setProperty('--c', b.c);
+    story.innerHTML = `
+    <div class="sbar"><span class="crumbs">${T(['Trabajo gráfico', 'Graphic work'])} / <b>${b.n}</b> · ${cur + 1} ${T(['de', 'of'])} ${brands.length}</span>
+      <span class="sbtns"><button class="pill" type="button" id="sPrev" aria-label="${T(['Marca anterior', 'Previous brand'])}">‹<span> ${T(['Anterior', 'Previous'])}</span></button><button class="pill" type="button" id="sNext" aria-label="${T(['Marca siguiente', 'Next brand'])}"><span>${T(['Siguiente', 'Next'])} </span>›</button><button class="pill dark" type="button" id="sClose" aria-label="${T(['Cerrar', 'Close'])}">✕</button></span></div>
+    <div class="wrap wide">
+      <div class="shero"><div><small>${T(b.sector)}</small><h2>${b.n}<i aria-hidden="true"></i></h2></div>${b.page ? `<a class="pill" href="${b.page}">${T(['Ver caso de estudio →', 'View case study →'])}</a>` : ''}</div>
+      <nav class="chain" aria-label="${T(['Puntos del proceso', 'Process steps'])}">${STEPS.map((s, i) => `<button type="button" data-go="${s[0]}"><i aria-hidden="true"></i><span>0${i + 1}</span><b>${T(s[1])}</b></button>`).join('')}</nav>
+      <section class="step" id="st-reto"><header><small>01</small><h3><i aria-hidden="true"></i>${T(STEPS[0][1])}</h3></header>
+        <div><p class="big">${T(b.reto)}</p><p class="sub">${T(b.retoSub)}</p></div></section>
+      <section class="step" id="st-sistema"><header><small>02</small><h3><i aria-hidden="true"></i>${T(STEPS[1][1])}</h3></header>
+        <div><div class="ingr">
+          <div class="box"><h4>${T(['PALETA', 'PALETTE'])}</h4><div class="sw">${b.colores.map(c => `<div><i style="--v:${c[0]}"></i>${T(c[1])}</div>`).join('')}</div>${b.colorTxt ? `<p class="btxt">${T(b.colorTxt)}</p>` : ''}</div>
+          <div class="box type"><h4>${T(['TIPOGRAFÍA', 'TYPOGRAPHY'])}</h4><span class="aa" aria-hidden="true">Aa</span><p>${T(b.tipo)}</p></div>
+          <div class="box"><h4>${T(['RECURSOS GRÁFICOS', 'GRAPHIC ELEMENTS'])}</h4>${b.recursosTxt ? `<p class="btxt" style="margin-top:0">${T(b.recursosTxt)}</p>` : `<div class="motifs">${b.motivos.map(m => `<span>${T(m)}</span>`).join('')}</div>`}</div>
+        </div><div class="proof" id="proof"></div></div></section>
+      <section class="step" id="st-idea"><header><small>03</small><h3><i aria-hidden="true"></i>${T(STEPS[2][1])}</h3></header>
+        <div><p class="big">${T(b.idea)}</p><p class="sub">${T(b.ideaSub)}</p></div></section>
+      <section class="step" id="st-piezas"><header><small>04</small><h3><i aria-hidden="true"></i>${T(STEPS[3][1])}</h3></header>
+        <div class="pieces"><div class="phone" id="phone"></div><div class="presgrid" id="presgrid"></div></div></section>
+      <div class="nextb"><span>${b.n} · ${T(b.sector)}</span><button type="button" id="sNext2"><small>${T(['Siguiente marca', 'Next brand'])}</small><b>${nx.n} →</b></button></div>
+    </div>`;
+    const proof = story.querySelector('#proof');
+    (b.prueba || []).map(k => b.posts[k]).filter(Boolean).forEach(p => {
+      const bt = document.createElement('button'); bt.type = 'button'; bt.setAttribute('aria-label', T(['Ampliar', 'Enlarge']));
+      bt.append(piece(p, { a:b.a, b:b.b, alt:b.n })); bt.insertAdjacentHTML('beforeend', `<small>${T(['El sistema, aplicado', 'The system, applied'])}</small>`);
+      bt.onclick = () => zoom(p, b); proof.append(bt);
+    });
+    const pg = story.querySelector('#presgrid');
+    if (b.aplTxt) pg.insertAdjacentHTML('beforeend', `<p class="big apl">${T(b.aplTxt)}</p>`);
+    const presList = b.pres.length ? b.pres : (b.cover ? [{ src:b.cover, ratio:1.6 }] : []);
+    if (presList.length) {
+      pg.insertAdjacentHTML('beforeend', `<h4>${b.pres.length ? T(['PRESENTACIÓN E IMPRESOS', 'PRESENTATION & PRINT']) : T(['LA MARCA APLICADA', 'THE BRAND IN USE'])}</h4>`);
+      presList.forEach(p => { const bt = document.createElement('button'); bt.type = 'button'; bt.setAttribute('aria-label', T(['Ampliar', 'Enlarge'])); bt.append(piece(p, { ratio:true, a:b.a, b:b.b, alt:b.n })); bt.onclick = () => zoom(p, b); pg.append(bt); });
+    } else pg.insertAdjacentHTML('beforeend', `<p class="sub" style="margin:0">${T(['Perfil completo de la marca: selecciona una publicación para recorrer el feed.', 'The brand’s full profile: select a post to scroll through the feed.'])}</p>`);
+    drawPhone('posts');
+    story.querySelector('#sClose').onclick = closeStory;
+    story.querySelector('#sPrev').onclick = () => go(-1);
+    story.querySelector('#sNext').onclick = story.querySelector('#sNext2').onclick = () => go(1);
+    story.querySelectorAll('.chain button').forEach(x => x.onclick = () => story.querySelector('#st-' + x.dataset.go).scrollIntoView({ behavior:still ? 'auto' : 'smooth' }));
+    io && io.disconnect();
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const id = e.target.id.slice(3); story.querySelectorAll('.chain button').forEach(x => x.setAttribute('aria-current', x.dataset.go === id)); }), { root:story, rootMargin:'-40% 0px -55% 0px' });
+      story.querySelectorAll('.step').forEach(s => io.observe(s));
+    }
+    story.querySelector('.chain button').setAttribute('aria-current', 'true');
+    story.scrollTop = 0;
+  }
+  function drawPhone(tab) {
+    const b = brands[cur], phone = story.querySelector('#phone');
+    const tabs = [['posts', '▦', 'Posts'], ...(b.reels.length ? [['reels', '▶', 'Reels']] : [])];
+    phone.innerHTML = `<div class="scr"><span class="island"></span><div class="status"><span>9:41</span><span>●●● 5G</span></div>
+      <div class="pbar"><button type="button" class="back" aria-label="${T(['Volver al perfil', 'Back to profile'])}" style="visibility:hidden">‹</button><span>${b.n}</span><span aria-hidden="true">•••</span></div>
+      <div class="pbody"><div class="phead" style="--a:${b.a};--b:${b.b}"><span class="av"><span></span></span>
+        <div class="stats"><div><b>${b.posts.length}</b>posts</div>${b.reels.length ? `<div><b>${b.reels.length}</b>reels</div>` : ''}</div></div>
+        <div class="pbio"><b>${b.n}</b>${T(b.sector)}<br>${T(['Diseño y dirección visual', 'Design & visual direction'])} · Verónica Arciniega</div>
+        <div class="ptabs">${tabs.map(t => `<button type="button" data-t="${t[0]}" aria-label="${t[2]}" aria-pressed="${t[0] === tab}">${t[1]}</button>`).join('')}</div>
+        <div class="tabc"></div></div><div class="tab" aria-hidden="true">⌂ ⌕ ⊕ ▶ ◯</div></div>`;
+    const av = phone.querySelector('.phead .av span'), first = b.posts[0];
+    if (first) { const ai = new Image(); ai.src = first.src; ai.alt = ''; ai.onerror = () => ai.remove(); av.append(ai); }
+    phone.querySelectorAll('.ptabs button').forEach(x => x.onclick = () => drawPhone(x.dataset.t));
+    const list = tab === 'reels' ? b.reels : b.posts, g = document.createElement('div');
+    g.className = 'grid3' + (tab === 'reels' ? ' reels' : '');
+    list.forEach((p, i) => { const bt = document.createElement('button'); bt.type = 'button'; bt.setAttribute('aria-label', `${b.n} ${i + 1}`); bt.append(piece(p, { a:b.a, b:b.b })); bt.onclick = () => tab === 'reels' ? reel(p) : feed(i); g.append(bt); });
+    phone.querySelector('.tabc').append(g);
+  }
+  function feed(start) {
+    const b = brands[cur], phone = story.querySelector('#phone'), body = phone.querySelector('.pbody'), back = phone.querySelector('.back');
+    back.style.visibility = 'visible'; back.onclick = () => drawPhone('posts');
+    body.innerHTML = '';
+    b.posts.forEach((p, i) => {
+      const el = document.createElement('div'); el.className = 'post';
+      el.innerHTML = `<div class="h"><span class="av" style="--c:${b.c}"><span></span></span>${b.n}<button class="zoom" type="button">${T(['Ampliar', 'Enlarge'])}</button></div>`;
+      el.append(piece(p, { a:b.a, b:b.b, alt:b.n }));
+      el.insertAdjacentHTML('beforeend', '<div class="acts" aria-hidden="true">♡ <span>💬</span> <span>➤</span><span class="s">🔖</span></div>');
+      el.querySelector('.zoom').onclick = () => zoom(p, b);
+      body.append(el);
+      if (i === start) requestAnimationFrame(() => { body.scrollTop = el.offsetTop; });
+    });
+  }
+  function reel(p) {
+    const b = brands[cur], scr = story.querySelector('#phone .scr');
+    const r = document.createElement('div'); r.className = 'reelv';
+    r.append(piece(p, { a:b.a, b:b.b, play:true, alt:'Reel ' + b.n }));
+    r.insertAdjacentHTML('beforeend', `<div class="ui"></div><button class="x" type="button">‹ ${T(['Volver', 'Back'])}</button><button class="snd" type="button">🔇 ${T(['Sonido', 'Sound'])}</button><div class="cap"><b>${b.n}</b>Reel · ${T(b.sector)}</div>`);
+    r.querySelector('.x').onclick = () => r.remove();
+    r.querySelector('.snd').onclick = e => { const v = r.querySelector('video'); if (!v) return; v.muted = !v.muted; if (v.paused) v.play().catch(() => {}); e.target.textContent = (v.muted ? '🔇 ' : '🔊 ') + T(['Sonido', 'Sound']); };
+    scr.append(r);
+  }
+  function openStory(i) { lastFocus = document.activeElement; cur = i; story.hidden = false; document.body.style.overflow = 'hidden'; renderStory(); story.querySelector('#sClose').focus(); }
+  function closeStory() { story.hidden = true; story.innerHTML = ''; cur = -1; document.body.style.overflow = ''; lastFocus && lastFocus.focus(); }
+  function go(d) { cur = (cur + d + brands.length) % brands.length; renderStory(); story.querySelector('#sClose').focus(); }
 
-    <section class="step" id="st-sistema"><header><small>02</small><h3><i></i>Sistema visual</h3></header>
-      <div><div class="ingr">
-        <div class="box"><h4>PALETA</h4><div class="sw">${b.colores.map(c => `<div><i style="--v:${c[0]}"></i>${c[1]}</div>`).join('')}</div>${b.colorTxt ? `<p class="btxt">${b.colorTxt}</p>` : ''}</div>
-        <div class="box type"><h4>TIPOGRAFÍA</h4><span class="aa">Aa</span><p>${b.tipo}</p></div>
-        <div class="box"><h4>RECURSOS GRÁFICOS</h4>${b.recursosTxt ? `<p class="btxt" style="margin-top:0">${b.recursosTxt}</p>` : `<div class="motifs">${b.motivos.map(m => `<span>${m}</span>`).join('')}</div>`}</div>
-      </div><div class="proof" id="proof"></div></div></section>
-
-    <section class="step" id="st-idea"><header><small>03</small><h3><i></i>Concepto</h3></header>
-      <div><p class="big">${b.idea}</p><p class="sub">${b.ideaSub}</p></div></section>
-
-    <section class="step" id="st-piezas"><header><small>04</small><h3><i></i>Aplicaciones</h3></header>
-      <div class="pieces"><div class="phone" id="phone"></div><div class="presgrid" id="presgrid"></div></div></section>
-
-    <div class="nextb"><span class="crumbs" style="font:13px var(--mono);color:var(--muted)">${b.n} · ${b.sector}</span><button type="button" id="sNext2"><small>Siguiente marca</small><b>${nx.n} →</b></button></div>
-  </div>`;
-  // piezas que ilustran el sistema visual
-  const proof = story.querySelector('#proof');
-  (b.prueba || []).map(k => b.posts[k]).filter(Boolean).forEach(p => {
-    const bt = document.createElement('button'); bt.type = 'button'; bt.setAttribute('aria-label', 'Ampliar');
-    bt.append(piece(p, { a:b.a, b:b.b })); bt.insertAdjacentHTML('beforeend', '<small>El sistema, aplicado</small>');
-    bt.onclick = () => zoom(p, b); proof.append(bt);
+  /* ---------- ampliar una pieza ---------- */
+  const zoomer = document.getElementById('zoomer'), zbox = document.getElementById('zbox');
+  let zFocus;
+  function zoom(p, b) {
+    zFocus = document.activeElement; zbox.innerHTML = '';
+    const ph = piece(p, { ratio:true, play:true, a:b && b.a, b:b && b.b, alt:b ? b.n : otherName(p) });
+    if (p.ratio >= 1) ph.style.width = 'min(92vw,1300px)'; else ph.style.height = '86vh';
+    const v = ph.querySelector('video'); if (v) { v.controls = true; v.muted = false; }
+    zbox.append(ph); zoomer.hidden = false; zoomer.querySelector('.x').focus();
+  }
+  const closeZoom = () => { zoomer.hidden = true; zbox.innerHTML = ''; zFocus && zFocus.focus(); };
+  zoomer.onclick = e => { if (!e.target.closest('video')) closeZoom(); };
+  addEventListener('keydown', e => {
+    if (!zoomer.hidden) { if (e.key === 'Escape') closeZoom(); return; }
+    if (!story.hidden && e.key === 'Escape') closeStory();
   });
-  // presentación e impresos
-  const pg = story.querySelector('#presgrid');
-  if (b.aplTxt) pg.insertAdjacentHTML('beforeend', `<p class="big apl">${b.aplTxt}</p>`);
-  const presList = b.pres.length ? b.pres : (b.cover ? [{ s:b.cover, ratio:1.6 }] : []);
-  if (presList.length) {
-    pg.insertAdjacentHTML('beforeend', `<h4>${b.pres.length ? 'PRESENTACIÓN E IMPRESOS' : 'LA MARCA APLICADA'}</h4>`);
-    presList.forEach(p => { const bt = document.createElement('button'); bt.type = 'button'; bt.setAttribute('aria-label', 'Ampliar'); bt.append(piece(p, { ratio:true, a:b.a, b:b.b })); bt.onclick = () => zoom(p, b); pg.append(bt); });
-  } else pg.insertAdjacentHTML('beforeend', `<p class="sub" style="margin:0">Perfil completo de la marca: selecciona una publicación para recorrer el feed${b.reels.length ? ' o abre la pestaña ▶ para ver los reels' : ''}.</p>`);
-  drawPhone('posts');
-  // eventos
-  story.querySelector('#sClose').onclick = closeStory;
-  story.querySelector('#sPrev').onclick = () => go(-1);
-  story.querySelector('#sNext').onclick = story.querySelector('#sNext2').onclick = () => go(1);
-  story.querySelectorAll('.chain button').forEach(x => x.onclick = () => story.querySelector('#st-' + x.dataset.go).scrollIntoView({ behavior:'smooth' }));
-  // el punto activo se ilumina al hacer scroll
-  io && io.disconnect();
-  io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const id = e.target.id.slice(3); story.querySelectorAll('.chain button').forEach(x => x.setAttribute('aria-current', x.dataset.go === id)); }), { root:story, rootMargin:'-40% 0px -55% 0px' });
-  story.querySelectorAll('.step').forEach(s => io.observe(s));
-  story.querySelector('.chain button').setAttribute('aria-current', 'true');
-  story.scrollTop = 0;
-}
 
-function drawPhone(tab) {
-  const b = brands[cur], phone = story.querySelector('#phone');
-  const tabs = [['posts','▦','Posts'], ...(b.reels.length ? [['reels','▶','Reels']] : [])];
-  phone.innerHTML = `<div class="scr"><span class="island"></span><div class="status"><span>9:41</span><span>●●● 5G</span></div>
-    <div class="pbar"><button type="button" class="back" aria-label="Volver al perfil" style="visibility:hidden">‹</button><span>${b.n}</span><span>•••</span></div>
-    <div class="pbody"><div class="phead" style="--a:${b.a};--b:${b.b}"><span class="av"><span></span></span>
-      <div class="stats"><div><b>${b.posts.length}</b>posts</div>${b.reels.length ? `<div><b>${b.reels.length}</b>reels</div>` : ''}</div></div>
-      <div class="pbio"><b>${b.n}</b>${b.sector}<br>Diseño y dirección visual · Verónica Arciniega</div>
-      ${tabs.length > 1 ? `<div class="ptabs">${tabs.map(t => `<button type="button" data-t="${t[0]}" aria-label="${t[2]}" aria-pressed="${t[0] === tab}">${t[1]}</button>`).join('')}</div>` : '<div class="ptabs"><button type="button" aria-pressed="true" aria-label="Posts">▦</button></div>'}
-      <div class="tabc"></div></div><div class="tab">⌂ ⌕ ⊕ ▶ ◯</div></div>`;
-  const av = phone.querySelector('.phead .av span'); const first = b.posts[0];
-  if (first) { const ai = new Image(); ai.src = first.s; ai.alt = ''; ai.onerror = () => ai.remove(); av.append(ai); }
-  phone.querySelectorAll('.ptabs button[data-t]').forEach(x => x.onclick = () => drawPhone(x.dataset.t));
-  const list = tab === 'reels' ? b.reels : b.posts, g = document.createElement('div');
-  g.className = 'grid3' + (tab === 'reels' ? ' reels' : '');
-  list.forEach((p, i) => { const bt = document.createElement('button'); bt.type = 'button'; bt.setAttribute('aria-label', `Abrir ${i + 1}`); bt.append(piece(p, { a:b.a, b:b.b })); bt.onclick = () => tab === 'reels' ? reel(p) : feed(i); g.append(bt); });
-  phone.querySelector('.tabc').append(g);
-}
-function feed(start) {
-  const b = brands[cur], phone = story.querySelector('#phone'), body = phone.querySelector('.pbody'), back = phone.querySelector('.back');
-  back.style.visibility = 'visible'; back.onclick = () => drawPhone('posts');
-  body.innerHTML = '';
-  b.posts.forEach((p, i) => {
-    const el = document.createElement('div'); el.className = 'post';
-    el.innerHTML = `<div class="h"><span class="av" style="--c:${b.c}"><span></span></span>${b.n}<button class="zoom" type="button">Ampliar</button></div>`;
-    el.append(piece(p, { a:b.a, b:b.b }));
-    el.insertAdjacentHTML('beforeend', '<div class="acts">♡ <span>💬</span> <span>➤</span><span class="s">🔖</span></div>');
-    el.querySelector('.zoom').onclick = () => zoom(p, b);
-    body.append(el);
-    if (i === start) requestAnimationFrame(() => { body.scrollTop = el.offsetTop; });
-  });
-}
-function reel(p) {
-  const b = brands[cur], scr = story.querySelector('#phone .scr');
-  const r = document.createElement('div'); r.className = 'reelv';
-  r.append(piece(p, { a:b.a, b:b.b, play:true }));
-  r.insertAdjacentHTML('beforeend', `<div class="ui"></div><button class="x" type="button">‹ Volver</button><button class="snd" type="button">🔇 Sonido</button><div class="cap"><b>${b.n}</b>Reel · ${b.sector}</div>`);
-  r.querySelector('.x').onclick = () => r.remove();
-  r.querySelector('.snd').onclick = e => { const v = r.querySelector('video'); if (!v) return; v.muted = !v.muted; e.target.textContent = v.muted ? '🔇 Sonido' : '🔊 Sonido'; };
-  scr.append(r);
-}
-function openStory(i) { lastFocus = document.activeElement; cur = i; story.classList.add('on'); document.body.style.overflow = 'hidden'; renderStory(); story.querySelector('#sClose').focus(); }
-function closeStory() { story.classList.remove('on'); story.innerHTML = ''; document.body.style.overflow = ''; lastFocus && lastFocus.focus(); }
-function go(d) { cur = (cur + d + brands.length) % brands.length; renderStory(); }
+  /* ---------- idioma (compartido con la portada) ---------- */
+  const i18n = [...document.querySelectorAll('[data-en]')];
+  i18n.forEach(el => el.dataset.es = el.innerHTML);
+  function setLang(l) {
+    lang = l; root.lang = l;
+    document.querySelectorAll('.lang button').forEach(x => x.setAttribute('aria-pressed', x.dataset.lang === l));
+    i18n.forEach(el => el.innerHTML = l === 'en' ? el.dataset.en : el.dataset.es);
+    renderBrands(); renderRows(); setThemeLabel();
+    if (cur >= 0) renderStory();
+  }
+  document.querySelectorAll('.lang button').forEach(b => b.onclick = () => { setLang(b.dataset.lang); try { localStorage.setItem('va-lang', b.dataset.lang); } catch (e) {} });
 
-/* ---------- ampliar ---------- */
-const zoomer = document.getElementById('zoomer'), zbox = document.getElementById('zbox');
-function zoom(p, b) {
-  zbox.innerHTML = ''; const ph = piece(p, { ratio:true, play:true, a:b && b.a, b:b && b.b });
-  if (p.ratio >= 1) ph.style.width = 'min(92vw,1300px)'; else ph.style.height = '86vh';
-  const v = ph.querySelector('video'); if (v) { v.controls = true; v.muted = false; }
-  zbox.append(ph); zoomer.classList.add('on'); zoomer.querySelector('.x').focus();
-}
-const closeZoom = () => { zoomer.classList.remove('on'); zbox.innerHTML = ''; };
-zoomer.onclick = e => { if (!e.target.closest('video')) closeZoom(); };
-addEventListener('keydown', e => {
-  if (zoomer.classList.contains('on')) { if (e.key === 'Escape') closeZoom(); return; }
-  if (!story.classList.contains('on')) return;
-  if (e.key === 'Escape') closeStory();
-});
+  /* ---------- tema (compartido con la portada) ---------- */
+  const themeBtn = document.getElementById('themeBtn'), icon = document.getElementById('themeIcon');
+  const sun = '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>';
+  const moon = '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>';
+  const isLight = () => getComputedStyle(root).colorScheme.includes('light');
+  function setThemeLabel() { const l = isLight(); icon.innerHTML = l ? moon : sun; themeBtn.setAttribute('aria-label', l ? T(['Cambiar a modo oscuro', 'Switch to dark mode']) : T(['Cambiar a modo claro', 'Switch to light mode'])); }
+  themeBtn.onclick = () => { root.dataset.theme = isLight() ? 'dark' : 'light'; root.dataset.userTheme = '1'; try { localStorage.setItem('va-theme', root.dataset.theme); } catch (e) {} setThemeLabel(); };
+  new MutationObserver(setThemeLabel).observe(root, { attributes:true, attributeFilter:['data-theme'] });
+  try { const t = localStorage.getItem('va-theme'); if (t) { root.dataset.theme = t; root.dataset.userTheme = '1'; } } catch (e) {}
+
+  let saved = 'es'; try { saved = localStorage.getItem('va-lang') || 'es'; } catch (e) {}
+  setLang(saved);
+  root.classList.remove('i18n-wait');
 })();
 </script>
 </body>
