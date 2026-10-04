@@ -670,6 +670,146 @@
   }
 
 
+
+  /* ---------- manuales PDF: se abren como un libro que se hojea ---------- */
+
+  const LIB = {
+    pdf: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    worker: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',
+    flip: 'https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js'
+  };
+
+  const loadScript = src => new Promise((ok, ko) => {
+    if (document.querySelector('script[data-lib="' + src + '"]')) return ok();
+    const sc = document.createElement('script');
+    sc.src = src; sc.dataset.lib = src; sc.onload = ok; sc.onerror = ko;
+    document.head.appendChild(sc);
+  });
+
+  const pdfLinks = [...document.querySelectorAll('a.file[href$=".pdf"]')];
+
+  if (pdfLinks.length) {
+    const bookEl = document.createElement('div');
+    bookEl.className = 'viewer book';
+    bookEl.hidden = true;
+    bookEl.setAttribute('role', 'dialog');
+    bookEl.setAttribute('aria-modal', 'true');
+    bookEl.innerHTML =
+      '<div class="v-top"><b id="bkTitle"></b><div class="bk-tools">' +
+      '<a class="ghost bk-open" id="bkOpen" target="_blank" rel="noopener"></a>' +
+      '<button class="v-btn" type="button" id="bkClose"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div></div>' +
+      '<div class="v-stage"><button class="v-btn" type="button" id="bkPrev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 3 5 8l5 5"/></svg></button>' +
+      '<div class="bk-area" id="bkArea"><p class="bk-msg" id="bkMsg"></p><div class="bk-flip" id="bkFlip"></div></div>' +
+      '<button class="v-btn" type="button" id="bkNext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></button></div>' +
+      '<p class="v-count" id="bkCount"></p>';
+    document.body.appendChild(bookEl);
+
+    const $ = id => document.getElementById(id);
+    let flipper = null, token = 0, bookFocus;
+
+    function setLabels() {
+      $('bkClose').setAttribute('aria-label', T('Cerrar', 'Close'));
+      $('bkPrev').setAttribute('aria-label', T('Página anterior', 'Previous page'));
+      $('bkNext').setAttribute('aria-label', T('Página siguiente', 'Next page'));
+      $('bkOpen').textContent = T('Abrir PDF', 'Open PDF');
+    }
+
+    function closeBook() {
+      token++;
+      if (flipper) { try { flipper.destroy(); } catch (e) {} flipper = null; }
+      $('bkFlip').innerHTML = '';
+      bookEl.hidden = true;
+      document.body.style.overflow = '';
+      removeEventListener('keydown', bookKeys);
+      if (bookFocus) bookFocus.focus();
+    }
+
+    function bookKeys(e) {
+      if (e.key === 'Escape') closeBook();
+      if (flipper && e.key === 'ArrowLeft') flipper.flipPrev();
+      if (flipper && e.key === 'ArrowRight') flipper.flipNext();
+    }
+
+    async function openBook(href, title) {
+      const my = ++token;
+      bookFocus = document.activeElement;
+      setLabels();
+      $('bkTitle').textContent = title;
+      $('bkOpen').href = href;
+      $('bkCount').textContent = '';
+      $('bkFlip').innerHTML = '';
+      $('bkMsg').hidden = false;
+      $('bkMsg').textContent = T('Preparando el manual…', 'Preparing the manual…');
+      bookEl.hidden = false;
+      document.body.style.overflow = 'hidden';
+      addEventListener('keydown', bookKeys);
+      $('bkClose').focus();
+
+      try {
+        await Promise.all([loadScript(LIB.pdf), loadScript(LIB.flip)]);
+        if (my !== token) return;
+        pdfjsLib.GlobalWorkerOptions.workerSrc = LIB.worker;
+        const doc = await pdfjsLib.getDocument(href).promise;
+        if (my !== token) return;
+
+        const first = await doc.getPage(1);
+        const vp = first.getViewport({ scale: 1 });
+        const ratio = vp.width / vp.height;
+
+        /* tamaño de cada página según el espacio disponible */
+        const area = $('bkArea').getBoundingClientRect();
+        const wide = area.width > 760;
+        const maxW = wide ? area.width / 2 : area.width;
+        const ph = Math.floor(Math.min(area.height - 8, maxW / ratio));
+        const pw = Math.floor(ph * ratio);
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const pages = [];
+        for (let n = 1; n <= doc.numPages; n++) {
+          const page = await doc.getPage(n);
+          if (my !== token) return;
+          const v = page.getViewport({ scale: (pw * dpr) / page.getViewport({ scale: 1 }).width });
+          const cv = document.createElement('canvas');
+          cv.width = Math.floor(v.width); cv.height = Math.floor(v.height);
+          await page.render({ canvasContext: cv.getContext('2d'), viewport: v }).promise;
+          const holder = document.createElement('div');
+          holder.className = 'bk-page';
+          holder.appendChild(cv);
+          pages.push(holder);
+          $('bkMsg').textContent = T('Preparando el manual…', 'Preparing the manual…') + ' ' + n + '/' + doc.numPages;
+        }
+        if (my !== token) return;
+
+        $('bkMsg').hidden = true;
+        flipper = new St.PageFlip($('bkFlip'), {
+          width: pw, height: ph, size: 'fixed', showCover: true, usePortrait: !wide,
+          drawShadow: true, maxShadowOpacity: .35, flippingTime: still ? 1 : 800,
+          mobileScrollSupport: false, useMouseEvents: true
+        });
+        flipper.loadFromHTML(pages);
+        const upd = () => { $('bkCount').textContent = (flipper.getCurrentPageIndex() + 1) + ' / ' + doc.numPages; };
+        flipper.on('flip', upd);
+        upd();
+      } catch (err) {
+        /* si algo falla (sin conexión, PDF no encontrado…), se abre el PDF normal */
+        if (my === token) { closeBook(); window.open(href, '_blank', 'noopener'); }
+      }
+    }
+
+    $('bkClose').addEventListener('click', closeBook);
+    $('bkPrev').addEventListener('click', () => flipper && flipper.flipPrev());
+    $('bkNext').addEventListener('click', () => flipper && flipper.flipNext());
+    bookEl.addEventListener('click', e => { if (e.target === bookEl || e.target.classList.contains('v-stage')) closeBook(); });
+
+    pdfLinks.forEach(a => a.addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault();
+      const b = a.querySelector('b');
+      openBook(a.getAttribute('href'), b ? b.textContent : '');
+    }));
+  }
+
+
   /* ---------- idioma guardado ---------- */
 
   let saved = 'es';
