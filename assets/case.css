@@ -468,3 +468,7 @@ main .ghost svg{width:16px;height:16px}
 .result .sticker small::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--grad)}
 .result p:not(.sticker){flex:1 1 0;min-width:0;margin:0}
 @media (max-width:620px){.result{flex-wrap:wrap}.result p.sticker{border-right:0;border-bottom:1px solid var(--line);padding:0 0 16px;width:100%}}
+
+/* refuerzo: el sello de resultado nunca puede crecer, esté donde esté */
+.sticker{flex:none!important;width:auto!important;max-width:100%!important;aspect-ratio:auto!important;border-radius:0!important;background:none!important;transform:none!important;box-shadow:none!important;color:var(--fg)!important}
+.sticker b{background:var(--grad)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
