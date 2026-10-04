@@ -806,9 +806,12 @@
           holderEl.style.transform = 'translateX(' + dx + 'px)';
           near(c);
         };
+        /* primera colocación sin animar: el libro nace ya centrado */
+        holderEl.style.transition = 'none';
+        upd();
+        void holderEl.offsetWidth;
         holderEl.style.transition = still ? 'none' : 'transform .6s cubic-bezier(.2,.8,.2,1)';
         flipper.on('flip', upd);
-        upd();
       } catch (err) {
         /* si algo falla (sin conexión, PDF no encontrado…), se abre el PDF normal */
         if (my === token) { closeBook(); window.open(href, '_blank', 'noopener'); }
