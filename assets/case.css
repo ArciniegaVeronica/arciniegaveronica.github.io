@@ -459,3 +459,12 @@ main .ghost svg{width:16px;height:16px}
 .sec h3::before{content:"";position:absolute;left:0;top:.2em;bottom:.2em;width:3px;border-radius:3px;background:var(--grad)}
 .sec h3{font-weight:600}
 .flow h3{padding-left:0}.flow h3::before{display:none}
+
+/* resultado destacado: cifra sobria con el punto de la marca (sustituye al sello circular) */
+.result{gap:clamp(20px,3vw,40px);padding:clamp(20px,2.4vw,28px) clamp(22px,3vw,36px);flex-wrap:nowrap}
+.result p.sticker{flex:none;width:auto;aspect-ratio:auto;border-radius:0;background:none;transform:none;box-shadow:none;color:var(--fg);display:block;text-align:left;padding:0 clamp(20px,3vw,40px) 0 0;border-right:1px solid var(--line)}
+.result .sticker b{display:block;font:500 clamp(48px,6vw,72px)/1 var(--display);letter-spacing:-.04em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.result .sticker small{display:flex;align-items:center;gap:8px;margin-top:8px;padding:0;font:500 14px var(--display);color:var(--muted)}
+.result .sticker small::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--grad)}
+.result p:not(.sticker){flex:1 1 0;min-width:0;margin:0}
+@media (max-width:620px){.result{flex-wrap:wrap}.result p.sticker{border-right:0;border-bottom:1px solid var(--line);padding:0 0 16px;width:100%}}
