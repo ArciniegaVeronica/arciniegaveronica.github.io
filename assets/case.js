@@ -756,28 +756,36 @@
         const vp = first.getViewport({ scale: 1 });
         const ratio = vp.width / vp.height;
 
-        /* tamaño de cada página según el espacio disponible */
+        /* tamaño de cada página: cabe siempre entera, con margen, y el libro queda centrado */
         const area = $('bkArea').getBoundingClientRect();
         const wide = area.width > 760;
-        const maxW = wide ? area.width / 2 : area.width;
-        const ph = Math.floor(Math.min(area.height - 8, maxW / ratio));
+        const maxW = (wide ? area.width / 2 : area.width) * .94;
+        const ph = Math.floor(Math.min(area.height * .86, maxW / ratio));
         const pw = Math.floor(ph * ratio);
-
+        const total = doc.numPages;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const pages = [];
-        for (let n = 1; n <= doc.numPages; n++) {
-          const page = await doc.getPage(n);
+
+        /* las páginas se dibujan solo cuando se acercan: así un manual largo abre al instante */
+        const pages = [], done = new Set();
+        for (let n = 0; n < total; n++) {
+          const holder = document.createElement('div');
+          holder.className = 'bk-page';
+          pages.push(holder);
+        }
+        async function paint(i) {
+          if (i < 0 || i >= total || done.has(i)) return;
+          done.add(i);
+          const page = await doc.getPage(i + 1);
           if (my !== token) return;
           const v = page.getViewport({ scale: (pw * dpr) / page.getViewport({ scale: 1 }).width });
           const cv = document.createElement('canvas');
           cv.width = Math.floor(v.width); cv.height = Math.floor(v.height);
           await page.render({ canvasContext: cv.getContext('2d'), viewport: v }).promise;
-          const holder = document.createElement('div');
-          holder.className = 'bk-page';
-          holder.appendChild(cv);
-          pages.push(holder);
-          $('bkMsg').textContent = T('Preparando el manual…', 'Preparing the manual…') + ' ' + n + '/' + doc.numPages;
+          if (my === token) pages[i].appendChild(cv);
         }
+        const near = c => { for (let k = c - 3; k <= c + 5; k++) paint(k); };
+        near(0);
+        await paint(0);
         if (my !== token) return;
 
         $('bkMsg').hidden = true;
@@ -787,7 +795,18 @@
           mobileScrollSupport: false, useMouseEvents: true
         });
         flipper.loadFromHTML(pages);
-        const upd = () => { $('bkCount').textContent = (flipper.getCurrentPageIndex() + 1) + ' / ' + doc.numPages; };
+
+        /* portada y contraportada están solas: se desplaza el libro para que siempre quede centrado */
+        const holderEl = $('bkFlip');
+        const upd = () => {
+          const c = flipper.getCurrentPageIndex();
+          $('bkCount').textContent = (c + 1) + ' / ' + total;
+          let dx = 0;
+          if (wide) { if (c === 0) dx = -pw / 2; else if (c >= total - 1 && total % 2 === 0) dx = pw / 2; }
+          holderEl.style.transform = 'translateX(' + dx + 'px)';
+          near(c);
+        };
+        holderEl.style.transition = still ? 'none' : 'transform .6s cubic-bezier(.2,.8,.2,1)';
         flipper.on('flip', upd);
         upd();
       } catch (err) {
