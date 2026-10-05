@@ -490,3 +490,8 @@ main .ghost svg{width:16px;height:16px}
 .bk-area{padding-block:8px}
 .bk-flip{margin:auto}
 .book .v-stage{padding-block:8px}
+
+/* paleta de marca: filas completas, sin huecos */
+.swatches:has(> :nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
+.swatches:has(> :nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:620px){.swatches:has(> :nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}}
