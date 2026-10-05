@@ -696,10 +696,9 @@
     bookEl.setAttribute('aria-modal', 'true');
     bookEl.innerHTML =
       '<div class="v-top"><b id="bkTitle"></b><div class="bk-tools">' +
-      '<a class="ghost bk-open" id="bkOpen" target="_blank" rel="noopener"></a>' +
       '<button class="v-btn" type="button" id="bkClose"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div></div>' +
       '<div class="v-stage"><button class="v-btn" type="button" id="bkPrev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 3 5 8l5 5"/></svg></button>' +
-      '<div class="bk-area" id="bkArea"><p class="bk-msg" id="bkMsg"></p><div class="bk-flip" id="bkFlip"></div></div>' +
+      '<div class="bk-area" id="bkArea"><p class="bk-msg" id="bkMsg"></p></div>' +
       '<button class="v-btn" type="button" id="bkNext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></button></div>' +
       '<p class="v-count" id="bkCount"></p>';
     document.body.appendChild(bookEl);
@@ -711,17 +710,26 @@
       $('bkClose').setAttribute('aria-label', T('Cerrar', 'Close'));
       $('bkPrev').setAttribute('aria-label', T('Página anterior', 'Previous page'));
       $('bkNext').setAttribute('aria-label', T('Página siguiente', 'Next page'));
-      $('bkOpen').textContent = T('Abrir PDF', 'Open PDF');
+    }
+
+    function freshFlip() {
+      const old = $('bkFlip');
+      if (old) old.remove();
+      const el = document.createElement('div');
+      el.className = 'bk-flip'; el.id = 'bkFlip';
+      $('bkArea').appendChild(el);
+      return el;
     }
 
     function closeBook() {
       token++;
-      if (flipper) { try { flipper.destroy(); } catch (e) {} flipper = null; }
-      $('bkFlip').innerHTML = '';
       bookEl.hidden = true;
       document.body.style.overflow = '';
       removeEventListener('keydown', bookKeys);
-      if (bookFocus) bookFocus.focus();
+      try { if (flipper) flipper.destroy(); } catch (e) {}
+      flipper = null;
+      try { const f = $('bkFlip'); if (f) f.remove(); } catch (e) {}
+      try { if (bookFocus) bookFocus.focus(); } catch (e) {}
     }
 
     function bookKeys(e) {
@@ -735,9 +743,8 @@
       bookFocus = document.activeElement;
       setLabels();
       $('bkTitle').textContent = title;
-      $('bkOpen').href = href;
       $('bkCount').textContent = '';
-      $('bkFlip').innerHTML = '';
+      freshFlip();
       $('bkMsg').hidden = false;
       $('bkMsg').textContent = T('Preparando el manual…', 'Preparing the manual…');
       bookEl.hidden = false;
