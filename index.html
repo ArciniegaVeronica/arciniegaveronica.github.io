@@ -603,6 +603,8 @@ details.dots[open] summary .plus{transform:rotate(45deg)}
 .contact-glow{position:absolute;width:min(70vw,820px);aspect-ratio:1;right:-18%;top:10%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--pink) 30%,transparent),color-mix(in srgb,var(--lilac) 14%,transparent) 55%,transparent);pointer-events:none;z-index:-1}
 .contact .wrap{position:relative}
 .contact h2{font-size:clamp(48px,9vw,120px);line-height:.98;letter-spacing:-.04em}
+/* el degradado recorta el texto a su caja: margen interior para que no se corten el ¿ ni la ? */
+.contact h2.grad{padding:.1em .12em .16em;margin:-.1em -.12em -.16em}
 .contact p{color:var(--muted);max-width:46ch;margin-top:22px}
 .contact-links{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:980px}
 .contact-card{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;padding:18px 18px 18px 18px;border-radius:20px;text-decoration:none;color:var(--fg);border:1px solid var(--line);background:linear-gradient(150deg,var(--surface-2),var(--surface));-webkit-transition:border-color .25s,transform .25s,box-shadow .25s;min-width:0}
@@ -971,18 +973,18 @@ html,body{overflow-x:hidden;overflow-x:clip}
   const steps = { es:['Un problema','Una pregunta','Una idea','Un sistema','Una experiencia'], en:['A problem','A question','An idea','A system','An experience'] };
   const base = '';
   const projects = [
+    { id:'linkers', img:'assets/linkers-hero.jpg', cats:['uxui'], c:'#4F6BFF', name:'Linkers', link:'linkers.html',
+      tag:['TFM · Accesibilidad Digital',"Master's Thesis · Digital Accessibility"],
+      desc:['Trabajo de Fin de Máster: una plataforma que conecta diseñadores con testers con discapacidad para integrar la accesibilidad desde las primeras fases del diseño, en lugar de como una auditoría final.',"Master's Thesis project: a platform connecting designers with testers with disabilities to build accessibility in from the earliest design phases, instead of as a final audit."],
+      tools:['UX Research','Accesibilidad','Figma','Benchmark'],
+      chain:{ es:['La accesibilidad llega como auditoría final, cuando cambiar cuesta caro.','¿Y si las personas con discapacidad participaran desde el primer boceto?','Conectar diseñadores con testers con discapacidad.','Una plataforma que integra el testeo en las primeras fases.','Accesibilidad desde el inicio.'],
+              en:['Accessibility arrives as a final audit, when change is expensive.','What if people with disabilities took part from the first sketch?','Connect designers with testers with disabilities.','A platform that brings testing into the earliest phases.','Accessibility from the start.'] } },
     { id:'thunder', img:'thunder-gym.png', cats:['uxui'], c:'#6366f1', name:'Thunder Gym', link:'thunder-gym.html',
       tag:['UX/UI Design · Prueba Técnica','UX/UI Design · Technical Test'],
       desc:['Diseño UX/UI de una app móvil de gimnasio bajo presión de tiempo real: 72 horas para investigar, idear y entregar un prototipo navegable de alta fidelidad con flujos de reserva, horarios y alertas.','UX/UI design of a gym mobile app under real time pressure: 72 hours to research, ideate and deliver a high-fidelity navigable prototype covering booking, schedules and alert flows.'],
       tools:['Figma','UX Research',"Crazy 8's",'Wireframing','Prototipado'],
       chain:{ es:['Reservar clases y consultar horarios en el gimnasio lleva demasiados pasos.','¿Cómo podría un socio reservar una clase en pocos toques?','Unir reservas, horarios y alertas en un solo flujo claro.','Research, Crazy 8\'s, wireframes y un prototipo navegable de alta fidelidad.','Entregado en 72 horas.'],
               en:['Booking classes and checking schedules at the gym takes too many steps.','How might members book a class in a few taps?','Bring booking, schedules and alerts into one clear flow.','Research, Crazy 8\'s, wireframes and a navigable high-fidelity prototype.','Delivered in 72 hours.'] } },
-    { id:'hexalud', img:'assets/hexalud-hero.jpg', cats:['uxui','product'], c:'#0ABAB5', name:'Hexalud Wellness', link:'hexalud-wellness.html',
-      tag:['UX/UI · Product Design','UX/UI · Product Design'],
-      desc:['Plataforma de bienestar corporativo con gamificación y recompensas. Diseño UX/UI de la app móvil, wireframes, UX tracking y evolución de identidad visual a lo largo de 3 años en equipo Agile. +30% retención.','Corporate wellness platform with gamification and rewards. Mobile app UX/UI design, wireframes, UX tracking and visual identity evolution over 3 years in an Agile team. +30% user retention.'],
-      tools:['Figma','Jira','UX Research','Prototipos','Adobe Suite'],
-      chain:{ es:['Programas de bienestar que la gente prueba una vez y olvida.','¿Cómo hacer que los hábitos saludables den ganas de volver cada día?','Gamificación y recompensas.','App móvil, UX tracking e identidad visual en evolución, en equipo Agile.','+30% de retención.'],
-              en:['Wellness programmes people try once and forget.','How might healthy habits make people want to come back every day?','Gamification and rewards.','Mobile app, UX tracking and an evolving visual identity, in an Agile team.','+30% retention.'] } },
     { id:'wisecook', img:'assets/wisecook-hero.jpg', cats:['uxui','product'], c:'#34A853', name:'WiseCook', link:'wisecook.html',
       tag:['UX/UI · Service Design','UX/UI · Service Design'],
       desc:['App y dispositivo inteligente contra el desperdicio de alimentos. Proyecto académico en equipo: investigación, encuesta propia, identidad de marca y prototipo de alta fidelidad.','App and smart device against food waste. Academic team project: research, own survey, brand identity and high-fidelity prototype.'],
@@ -995,12 +997,12 @@ html,body{overflow-x:hidden;overflow-x:clip}
       tools:['Design Sprint','Facilitación','Figma','Testeo con usuarios'],
       chain:{ es:['Reservar veladas en grupo genera fricción.','¿Cómo resolverlo con 5 personas en una sola sesión?','Un Design Sprint de 2h30.','Comprender, diverger, converger y prototipar.','Testeado con usuarios reales el mismo día.'],
               en:['Booking group evenings creates friction.','How might we solve it with 5 people in a single session?','A 2.5-hour Design Sprint.','Understand, diverge, converge and prototype.','Tested with real users the same day.'] } },
-    { id:'linkers', img:'assets/linkers-hero.jpg', cats:['uxui'], c:'#4F6BFF', name:'Linkers', link:'linkers.html',
-      tag:['TFM · Accesibilidad Digital',"Master's Thesis · Digital Accessibility"],
-      desc:['Trabajo de Fin de Máster: una plataforma que conecta diseñadores con testers con discapacidad para integrar la accesibilidad desde las primeras fases del diseño, en lugar de como una auditoría final.',"Master's Thesis project: a platform connecting designers with testers with disabilities to build accessibility in from the earliest design phases, instead of as a final audit."],
-      tools:['UX Research','Accesibilidad','Figma','Benchmark'],
-      chain:{ es:['La accesibilidad llega como auditoría final, cuando cambiar cuesta caro.','¿Y si las personas con discapacidad participaran desde el primer boceto?','Conectar diseñadores con testers con discapacidad.','Una plataforma que integra el testeo en las primeras fases.','Accesibilidad desde el inicio.'],
-              en:['Accessibility arrives as a final audit, when change is expensive.','What if people with disabilities took part from the first sketch?','Connect designers with testers with disabilities.','A platform that brings testing into the earliest phases.','Accessibility from the start.'] } }
+    { id:'hexalud', img:'assets/hexalud-hero.jpg', cats:['uxui','product'], c:'#0ABAB5', name:'Hexalud Wellness', link:'hexalud-wellness.html',
+      tag:['UX/UI · Product Design','UX/UI · Product Design'],
+      desc:['Plataforma de bienestar corporativo con gamificación y recompensas. Diseño UX/UI de la app móvil, wireframes, UX tracking y evolución de identidad visual a lo largo de 3 años en equipo Agile. +30% retención.','Corporate wellness platform with gamification and rewards. Mobile app UX/UI design, wireframes, UX tracking and visual identity evolution over 3 years in an Agile team. +30% user retention.'],
+      tools:['Figma','Jira','UX Research','Prototipos','Adobe Suite'],
+      chain:{ es:['Programas de bienestar que la gente prueba una vez y olvida.','¿Cómo hacer que los hábitos saludables den ganas de volver cada día?','Gamificación y recompensas.','App móvil, UX tracking e identidad visual en evolución, en equipo Agile.','+30% de retención.'],
+              en:['Wellness programmes people try once and forget.','How might healthy habits make people want to come back every day?','Gamification and rewards.','Mobile app, UX tracking and an evolving visual identity, in an Agile team.','+30% retention.'] } }
   ];
 
   const grid = document.getElementById('grid');
