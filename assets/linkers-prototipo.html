@@ -794,7 +794,7 @@ V.signup=()=>{const r=S.signup?S.role:null;const roles=[["designer",L("I'm a des
 
 const authHead=()=>header();
 V.login=()=>`<div class="lnd">${authHead()}<main id="main" tabindex="-1" class="lw" style="padding-block:48px 80px;max-width:1040px"><div class="g g2" style="align-items:center;gap:48px">
- <div style="display:grid;place-items:center;background:var(--cobalt-l);border-radius:var(--r-m);padding:40px 24px;gap:20px;text-align:center">${MASC(440,L("Login illustration","Ilustración de login"))}<p class="quote" style="margin:0;color:var(--cobalt-d)">${L("The missing piece in Inclusive Design","La pieza faltante en el Diseño Inclusivo")}</p></div>
+ <div style="display:grid;place-items:center;background:var(--cobalt-l);border-radius:var(--r-m);padding:40px 24px;gap:20px;text-align:center"><img src="linkers-login.png" alt="${L("Designers and testers working together","Diseñadores y testers trabajando juntos")}" style="width:100%;max-width:440px;height:auto;border-radius:16px"><p class="quote" style="margin:0;color:var(--cobalt-d)">${L("The missing piece in Inclusive Design","La pieza faltante en el Diseño Inclusivo")}</p></div>
  <form class="stack" data-form="login" novalidate><h1 class="disp" style="font-size:clamp(2rem,4vw,2.8rem)">${L("Log in","Inicia sesión")}</h1>
  <div class="field"><label for="li-e">${L("Email","Correo electrónico")}</label><input id="li-e" type="email" class="input" autocomplete="email" value="adriana@linkers.app"></div>
  <div class="field"><label for="li-p">${L("Password","Contraseña")}</label><input id="li-p" type="password" class="input" autocomplete="current-password" value="linkers2026"></div>
