@@ -1,5 +1,26 @@
 [
   {
+    "id": "linkers",
+    "category": "uxui",
+    "color": "#4F6BFF",
+    "titleEs": "Linkers",
+    "titleEn": "Linkers",
+    "tagEs": "TFM · Accesibilidad Digital",
+    "tagEn": "Master's Thesis · Digital Accessibility",
+    "descEs": "Trabajo de Fin de Máster: una plataforma que conecta diseñadores con testers con discapacidad para integrar la accesibilidad desde las primeras fases del diseño, en lugar de como una auditoría final.",
+    "descEn": "Master's Thesis project: a platform connecting designers with testers with disabilities to build accessibility in from the earliest design phases, instead of as a final audit.",
+    "image": "assets/linkers-hero.jpg",
+    "tags": [
+      "UX Research",
+      "Accesibilidad",
+      "Figma",
+      "Benchmark"
+    ],
+    "link": "linkers.html",
+    "textDark": "#7a90ff",
+    "textLight": "#2d47cc"
+  },
+  {
     "id": "thunder-gym",
     "category": "uxui",
     "color": "#6366f1",
@@ -20,28 +41,6 @@
     "link": "thunder-gym.html",
     "textDark": "#7678f3",
     "textLight": "#4f46e5"
-  },
-  {
-    "id": "hexalud-wellness",
-    "category": "uxui",
-    "color": "#0ABAB5",
-    "titleEs": "Hexalud Wellness",
-    "titleEn": "Hexalud Wellness",
-    "tagEs": "UX/UI · Product Design",
-    "tagEn": "UX/UI · Product Design",
-    "descEs": "Plataforma de bienestar corporativo con gamificación y recompensas. Diseño UX/UI de la app móvil, wireframes, UX tracking y evolución de identidad visual a lo largo de 3 años en equipo Agile. +30% retención.",
-    "descEn": "Corporate wellness platform with gamification and rewards. Mobile app UX/UI design, wireframes, UX tracking and visual identity evolution over 3 years in an Agile team. +30% user retention.",
-    "image": "assets/hexalud-hero.jpg",
-    "tags": [
-      "Figma",
-      "Jira",
-      "UX Research",
-      "Prototipos",
-      "Adobe Suite"
-    ],
-    "link": "hexalud-wellness.html",
-    "textDark": "#0abab5",
-    "textLight": "#067370"
   },
   {
     "id": "wisecook",
@@ -86,26 +85,28 @@
     "textLight": "#c94e1c"
   },
   {
-    "id": "linkers",
+    "id": "hexalud-wellness",
     "category": "uxui",
-    "color": "#4F6BFF",
-    "titleEs": "Linkers",
-    "titleEn": "Linkers",
-    "tagEs": "TFM · Accesibilidad Digital",
-    "tagEn": "Master's Thesis · Digital Accessibility",
-    "descEs": "Trabajo de Fin de Máster: una plataforma que conecta diseñadores con testers con discapacidad para integrar la accesibilidad desde las primeras fases del diseño, en lugar de como una auditoría final.",
-    "descEn": "Master's Thesis project: a platform connecting designers with testers with disabilities to build accessibility in from the earliest design phases, instead of as a final audit.",
-    "image": "assets/linkers-hero.jpg",
+    "color": "#0ABAB5",
+    "titleEs": "Hexalud Wellness",
+    "titleEn": "Hexalud Wellness",
+    "tagEs": "UX/UI · Product Design",
+    "tagEn": "UX/UI · Product Design",
+    "descEs": "Plataforma de bienestar corporativo con gamificación y recompensas. Diseño UX/UI de la app móvil, wireframes, UX tracking y evolución de identidad visual a lo largo de 3 años en equipo Agile. +30% retención.",
+    "descEn": "Corporate wellness platform with gamification and rewards. Mobile app UX/UI design, wireframes, UX tracking and visual identity evolution over 3 years in an Agile team. +30% user retention.",
+    "image": "assets/hexalud-hero.jpg",
     "tags": [
-      "UX Research",
-      "Accesibilidad",
       "Figma",
-      "Benchmark"
+      "Jira",
+      "UX Research",
+      "Prototipos",
+      "Adobe Suite"
     ],
-    "link": "linkers.html",
-    "textDark": "#7a90ff",
-    "textLight": "#2d47cc"
+    "link": "hexalud-wellness.html",
+    "textDark": "#0abab5",
+    "textLight": "#067370"
   },
+  
   {
     "id": "chiltepik",
     "category": "graphic",
