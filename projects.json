@@ -106,7 +106,6 @@
     "textDark": "#0abab5",
     "textLight": "#067370"
   },
-  
   {
     "id": "chiltepik",
     "category": "graphic",
@@ -127,6 +126,27 @@
     "link": "chiltepik.html",
     "textDark": "#edc491",
     "textLight": "#7b664b"
+  },
+  {
+    "id": "rosette-bakery",
+    "category": "graphic",
+    "color": "#C49A6C",
+    "titleEs": "Rosette Bakery",
+    "titleEn": "Rosette Bakery",
+    "tagEs": "Identidad de Marca · Packaging",
+    "tagEn": "Brand Identity · Packaging",
+    "descEs": "Identidad de marca para una pastelería artesanal: logotipo, monograma, sistema visual, packaging, menú y piezas de comunicación.",
+    "descEn": "Brand identity for an artisan bakery: logotype, monogram, visual system, packaging, menu and communication pieces.",
+    "image": "assets/rosette-hero.jpg",
+    "tags": [
+      "Illustrator",
+      "Photoshop",
+      "Branding",
+      "IA"
+    ],
+    "link": "rosette-bakery.html",
+    "textDark": "#d4ad80",
+    "textLight": "#7a5a36"
   },
   {
     "id": "habemus-pizza",
