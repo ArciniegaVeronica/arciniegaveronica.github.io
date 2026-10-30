@@ -374,7 +374,7 @@ html,body{overflow-x:hidden;overflow-x:clip}
 .tabsx button{font-family:var(--display)}
 .sec-x{margin-top:clamp(56px,7vw,96px)}
 
-.hero-w{overflow:hidden;width:100%}
+.hero-w{overflow:hidden;width:100%;max-width:none}
 .lanes{margin:0;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .lane{animation:mq 60s linear infinite}
 .lane.r{animation-direction:reverse;animation-duration:70s}.lane.s{animation-duration:85s}
@@ -492,6 +492,16 @@ html,body{overflow-x:hidden;overflow-x:clip}
 @media(max-width:760px){.cs{column-width:auto;column-count:2}.cs.vbig{column-count:1}}
 .vimg{width:auto!important;height:auto!important;aspect-ratio:auto!important;background:none!important;max-width:92vw}
 .vimg img{min-width:min(86vw,420px)}.vimg img,.vimg video{width:auto;height:auto;max-width:min(92vw,760px);max-height:78vh;object-fit:contain;border-radius:16px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.pause span{display:inline!important}.pause{padding:8px 16px!important}
+@media(max-width:620px){.pg-h{flex-direction:column;align-items:flex-start!important;gap:6px}.pg-h p{text-align:left!important;max-width:none}.hint{display:none}}
+.ovnav .back span{display:inline!important;font-size:18px;line-height:1}.ovnav .back{min-width:38px;justify-content:center}
+.binfo .go .back span{display:inline!important}.binfo .go .back{padding:8px 16px!important}
+.lane{will-change:transform;backface-visibility:hidden}
+.lane .mini{contain:layout paint;box-shadow:none!important;transition:none}
+.lane .mini:hover{transform:none}
+.lane .mini img{image-rendering:auto}
+.lanes.off .lane,.lanes.hid .lane{animation-play-state:paused}
+@media(max-width:760px){.lane{animation-duration:90s!important}}
 </style>
 </head>
 <body>
@@ -739,8 +749,8 @@ let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 const med=(src,vid,alt)=>vid?`<video src="${vid}#t=0.1" muted loop playsinline preload="metadata" aria-label="${alt}" onerror="this.remove()"></video>`:src?`<img src="${src}" alt="${alt}" loading="lazy" decoding="async" onerror="this.remove()">`:'';
 const cls=p=>p.t==='reel'?'reel':p.t==='print'?'print':p.t==='brand'?'brandw':'';
 const mini=(p,x='')=>{const cap=B[p.b][0]+' · '+TL[p.t][lang==='es'?0:1];return `<div class="mini ${cls(p)}${p.hl?' hl':''}" role="button" tabindex="0" data-b="${p.b}" data-t="${p.t}" data-src="${p.src}" data-video="${p.video}" data-cap="${cap}" aria-label="${cap}" style="${st(B[p.b])};--ar:${p.ar};aspect-ratio:${p.ar};${x}">${med(p.src,p.video,cap)}${p.t==='reel'?'<span class="sh"></span><i></i>':''}<span class="cap">${cap}</span></div>`};
-const lane=(t,c,h)=>{const m=P.filter(p=>t.includes(p.t)&&(p.src||p.video)).sort(()=>rnd()-.5).slice(0,24);const x=m.map(p=>mini(p,`height:${h}px;width:${Math.round(h*p.ar)}px;aspect-ratio:auto`)).join('');return `<div class="lane ${c}">${x}${x}</div>`};
-const wall=()=>{seed=11;$('#lanes').innerHTML=lane(['post','reel','brand'],'',260)+lane(['post','print','brand','reel'],'r',190)};
+const lane=(t,c,h)=>{const m=P.filter(p=>t.includes(p.t)&&p.src).sort(()=>rnd()-.5).slice(0,14);const x=m.map(p=>mini({...p,video:null},`height:${h}px;width:${Math.round(h*p.ar)}px;aspect-ratio:auto`)).join('');return `<div class="lane ${c}">${x}${x}</div>`};
+const wall=()=>{seed=11;const k=Math.max(.52,Math.min(1,innerWidth/1100));$('#lanes').innerHTML=lane(['post','reel','brand'],'',Math.round(260*k))+lane(['post','print','brand','reel'],'r',Math.round(190*k))};const _ln=$('#lanes');if('IntersectionObserver' in window)new IntersectionObserver(e=>_ln.classList.toggle('off',!e[0].isIntersecting)).observe(_ln);document.addEventListener('visibilitychange',()=>_ln.classList.toggle('hid',document.hidden));let _wk=innerWidth;addEventListener('resize',()=>{clearTimeout(window._wt);window._wt=setTimeout(()=>{if(Math.abs(innerWidth-_wk)>40){_wk=innerWidth;wall();$('#lanes').style.gap='14px'}},200)});
 wall();$('#lanes').style.gap='14px';
 const cov=b=>b[7]?(/\.mp4$/.test(b[7])?med('',b[7],b[0]):med(b[7],'',b[0])):'';
 // baraja (proyectos destacados)
