@@ -502,6 +502,34 @@ html,body{overflow-x:hidden;overflow-x:clip}
 .lane .mini img{image-rendering:auto}
 .lanes.off .lane,.lanes.hid .lane{animation-play-state:paused}
 @media(max-width:760px){.lane{animation-duration:90s!important}}
+
+/* ===== rejilla ordenada (sin masonry) ===== */
+.ovbody .cs{display:grid!important;column-width:auto;column-count:auto;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));grid-auto-rows:auto;gap:16px;padding:0;margin:0;width:auto;align-items:stretch}
+.ovbody .cs .mini{display:block;margin:0;break-inside:auto;width:100%;aspect-ratio:4/5!important;grid-column:auto!important;grid-row:auto!important;border-radius:16px}
+.ovbody .cs .mini img,.ovbody .cs .mini video{width:100%;height:100%;object-fit:cover}
+.ovbody .cs.vbig{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ovbody .cs.vbig .mini{aspect-ratio:1/1!important}
+@media(max-width:760px){.ovbody .cs{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.ovbody .cs.vbig{grid-template-columns:1fr}}
+/* contacto como en el portfolio */
+.cnt{margin-top:clamp(64px,8vw,110px);position:relative;padding-top:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
+.cnt .cglow{position:absolute;width:min(60vw,560px);aspect-ratio:1;right:-10%;top:-10%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--pink) 24%,transparent),color-mix(in srgb,var(--lilac) 12%,transparent) 55%,transparent);pointer-events:none;z-index:-1}
+.cnt h2{font:400 clamp(44px,7vw,88px)/.98 var(--display);letter-spacing:-.04em;margin:0;padding:.1em .12em .16em;margin:-.1em -.12em -.16em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cnt>p.cl{color:var(--muted);max-width:46ch;margin:22px 0 0}
+.contact-links{margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.contact-card{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;padding:18px;border-radius:20px;text-decoration:none;color:var(--fg);border:1px solid var(--line);background:linear-gradient(150deg,var(--surface-2),var(--surface));transition:border-color .25s,transform .25s,box-shadow .25s;min-width:0}
+.contact-card:hover{border-color:color-mix(in srgb,var(--lilac) 60%,transparent);transform:translateY(-2px);box-shadow:0 14px 30px -18px color-mix(in srgb,var(--lilac) 70%,transparent)}
+.contact-card:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.contact-card .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line)}
+.contact-card .ico svg{width:20px;height:20px}
+.contact-card .tx{display:grid;gap:2px;min-width:0}
+.contact-card small{font:400 13px var(--body);color:var(--muted)}
+.contact-card b{font:500 16px/1.3 var(--display);overflow-wrap:anywhere}
+.contact-card>svg.arw{width:16px;height:16px;color:var(--muted);transition:transform .25s,color .25s}
+.contact-card:hover>svg.arw{transform:translate(2px,-2px);color:var(--fg)}
+@media(max-width:860px){.contact-links{grid-template-columns:1fr}}
+.talk{font:500 14px var(--display)!important;padding:10px 18px!important;border-radius:999px;border:1.5px solid transparent!important;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box!important;text-decoration:none;color:var(--fg);white-space:nowrap;display:inline-flex;align-items:center;transition:transform .25s}
+.talk:hover{transform:translateY(-1px)}
+.cnt{overflow:clip;overflow-clip-margin:0}.cnt .cglow{right:0}.ovbody{overflow-x:clip}
 </style>
 </head>
 <body>
@@ -573,7 +601,7 @@ html,body{overflow-x:hidden;overflow-x:clip}
     </div>
   </div></div>
   <div class="wrap wide ovbody"><div class="binfo" id="binfo" aria-live="polite"></div><div class="cs" id="cs"></div>
-    <section class="cnt" aria-label="Contacto"><p class="kind" data-en="Let's talk">¿Hablamos?</p><div class="cnt-l"><a class="pn" href="mailto:avap2704@gmail.com"><small>Email</small><b>avap2704@gmail.com</b></a><a class="pn" href="tel:+34610128985"><small data-en="Phone">Teléfono</small><b>+34 610 128 985</b></a><a class="pn" href="https://www.linkedin.com/in/averonicaarciniegap" target="_blank" rel="noopener"><small>LinkedIn</small><b>@averonicaarciniegap</b></a></div></section>
+    <section class="cnt" id="ovcnt" aria-label="Contacto"><div class="cglow" aria-hidden="true"></div><p class="kicker"><i></i><span data-en="Next step">Próximo paso</span></p><h2 data-en="Let's talk">¿Hablamos?</h2><p class="cl" data-en="I love bringing an innovative approach and creative solutions to teams that want to go one step further.">Me apasiona aportar un enfoque innovador y soluciones creativas a equipos que buscan ir un paso más allá.</p><div class="contact-links"><a class="contact-card" href="mailto:avap2704@gmail.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span><span class="tx"><small>Email</small><b>avap2704@gmail.com</b></span><svg class="arw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a><a class="contact-card" href="tel:+34610128985"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span class="tx"><small data-en="Phone">Teléfono</small><b>+34 610 128 985</b></span><svg class="arw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a><a class="contact-card" href="https://www.linkedin.com/in/averonicaarciniegap" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></span><span class="tx"><small>LinkedIn</small><b>@averonicaarciniegap</b></span><svg class="arw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></a></div></section>
     <nav class="ovfoot" aria-label="Más proyectos"><button type="button" id="fp" class="pn"><small data-en="Previous">Anterior</small><b></b></button><a class="pn mid" href="index.html"><small data-en="Portfolio">Portfolio</small><b data-en="Back to home">Volver al inicio</b></a><button type="button" id="fn" class="pn r"><small data-en="Next">Siguiente</small><b></b></button></nav>
   </div>
 </div>
@@ -770,7 +798,7 @@ function place(){const cs=$$('.fc'),W=fan.clientWidth,cw=cs[0].offsetWidth,M=cs.
  $('#hint').textContent=open?'':T(['Pasa el cursor o toca','Hover or tap'])}
 function info(){const b=B[c0],ts=[...new Set(P.filter(p=>p.b===c0).map(p=>p.t==='brand'?'print':p.t))].map(t=>TL[t][lang==='es'?0:1]);
  const feat=c0<FEAT,sec=T([b[1],b[2]]);
- $('#binfo').innerHTML=`<div><p class="kind">${feat?T(['Proyecto destacado','Featured project']):T(['Cliente y proyectos','Client & projects'])}</p><h3>${b[0]}.</h3>${sec?`<p class="role">${sec}</p>`:''}<p class="res">${ts.join(' · ')}</p></div><div class="go">${b[6]?`<a class="btn-key" href="${b[6]}"><span>${T(['Ver caso completo','See full case'])}</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>`:''}<a class="back" href="index.html#contacto"><span>${T(['¿Hablamos?','Let\'s talk'])}</span></a></div>`}
+ $('#binfo').innerHTML=`<div><p class="kind">${feat?T(['Proyecto destacado','Featured project']):T(['Cliente y proyectos','Client & projects'])}</p><h3>${b[0]}.</h3>${sec?`<p class="role">${sec}</p>`:''}<p class="res">${ts.join(' · ')}</p></div><div class="go">${b[6]?`<a class="btn-key" href="${b[6]}"><span>${T(['Ver caso completo','See full case'])}</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>`:''}<a class="talk" href="#ovcnt" onclick="event.preventDefault();document.getElementById('ovcnt').scrollIntoView({behavior:'smooth',block:'start'})"><span>${T(['¿Hablamos?','Let\'s talk'])}</span></a></div>`}
 function lay(){place();sheet();info()}
 const ov=$('#ov');let lastF;
 function openO(i){c0=i;open=false;lay();lastF=document.activeElement;ov.hidden=false;ov.scrollTop=0;bml();bmt();document.body.style.overflow='hidden';$('#ovx').focus()}
