@@ -530,6 +530,17 @@ html,body{overflow-x:hidden;overflow-x:clip}
 .talk{font:500 14px var(--display)!important;padding:10px 18px!important;border-radius:999px;border:1.5px solid transparent!important;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box!important;text-decoration:none;color:var(--fg);white-space:nowrap;display:inline-flex;align-items:center;transition:transform .25s}
 .talk:hover{transform:translateY(-1px)}
 .cnt{overflow:clip;overflow-clip-margin:0}.cnt .cglow{right:0}.ovbody{overflow-x:clip}
+
+.mbl{display:none}
+@media(max-width:760px){
+.pg-h .dsk{display:none}.pg-h .mbl{display:block}
+.fan{position:relative;display:flex!important;gap:12px;height:auto!important;margin:0 calc(var(--gutter)*-1) 24px!important;padding:6px var(--gutter) 16px!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-padding-inline:var(--gutter);overscroll-behavior-x:contain;scrollbar-width:none;touch-action:pan-x pan-y}
+.fan::-webkit-scrollbar{display:none}
+.fan .fc{position:relative!important;left:auto!important;top:auto!important;flex:0 0 min(72%,280px)!important;width:auto!important;height:320px!important;transform:none!important;scroll-snap-align:start;filter:none!important;opacity:1!important;box-shadow:0 18px 30px -22px rgba(0,0,0,.6);transition:none}
+.fan .fc .nm,.fan .fc small{opacity:1!important}
+.fan .fc:active{transform:scale(.98)!important}
+.fan.isopen .fc.hv::after{display:none}
+}
 </style>
 </head>
 <body>
@@ -564,7 +575,7 @@ html,body{overflow-x:hidden;overflow-x:clip}
   <section class="wide hero-w" aria-label="Muestra"><div class="lanes" id="lanes"></div><div class="wrap wide"><button class="back pause" id="pz" type="button" aria-pressed="false"><span id="pzt">Pausar movimiento</span></button></div></section>
 
   <section class="wrap wide sec-x" id="explorar">
-    <div class="pg-h"><h2 data-en="Featured projects">Proyectos destacados</h2><p data-en="Hover or tap the deck to open it.">Pasa el cursor o toca la baraja para abrirla.</p></div>
+    <div class="pg-h"><h2 data-en="Featured projects">Proyectos destacados</h2><p class="dsk" data-en="Hover or tap the deck to open it.">Pasa el cursor o toca la baraja para abrirla.</p><p class="mbl" data-en="Swipe and tap a card.">Desliza y toca una tarjeta.</p></div>
     <div class="fan" id="dk2"></div>
   </section>
   <section class="wrap wide sec-x" id="otros">
@@ -752,7 +763,6 @@ const RAW=[
 { brand:'otros', client:'Ardin', type:'post', src:'assets/ardin-01.jpg', r:'2200/1400' },
 { brand:'otros', client:'Ardin', type:'post', src:'assets/ardin-02.jpg', r:'3000/2000' },
 { brand:'otros', client:'Bebeauty', type:'post', src:'assets/Bebeauty-01.jpg', r:'804/1000' },
-{ brand:'habemus', type:'print', src:'assets/habemus-pizza-pauta.jpg', r:'16/9' },
 { brand:'habemus', type:'print', src:'assets/galeria/habemus-packaging.jpg', r:'1/1' },
 { brand:'eka', type:'reel', video:'assets/galeria/eka-reel-1.mp4', r:'9/16' },
 { brand:'otros', client:'4me', type:'reel', video:'assets/galeria/4me-reel-1.mp4', r:'9/16' },
@@ -788,7 +798,9 @@ fan.innerHTML=B.slice(0,FEAT).map((b,i)=>`<button type="button" class="fc" style
 // clientes
 $('#cl').innerHTML=B.slice(FEAT).map((b,i)=>`<button type="button" class="cc" style="${st(b)}" data-i="${i+FEAT}">${cov(b)}<span class="nm">${b[0]}</span></button>`).join('');
 function sheet(){const b=B[c0],list=P.filter(p=>p.b===c0);$('#cs').innerHTML=list.map(p=>mini(p)).join('')}
-function place(){const cs=$$('.fc'),W=fan.clientWidth,cw=cs[0].offsetWidth,M=cs.length,step=Math.min(cw+14,(W-cw*1.08)/(M-1));
+const mob=matchMedia('(max-width:760px)');
+function place(){const cs=$$('.fc');if(mob.matches){fan.classList.remove('isopen');cs.forEach((d,i)=>{d.style.transform='';d.style.zIndex='';d.style.opacity=1;d.classList.remove('hv','on');d.classList.add('lbl');d.querySelector('.nm').textContent=B[i][0];d.querySelector('small').textContent=T([B[i][1],B[i][2]])});$$('.cc').forEach(x=>x.classList.toggle('on',+x.dataset.i===c0));return}
+ const W=fan.clientWidth,cw=cs[0].offsetWidth,M=cs.length,step=Math.min(cw+14,(W-cw*1.08)/(M-1));
  if(c0<FEAT)cf=c0;
  fan.classList.toggle('isopen',open);cs.forEach((d,i)=>{const k=(i-cf+M)%M;d.classList.toggle('hv',open&&i===hv);d.classList.toggle('on',i===c0&&!open);
   if(open){d.style.zIndex=i===hv?40:10+i;d.style.transform=i===hv?`translateX(${i*step}px) translateY(-16px) scale(1.06)`:`translateX(${i*step}px) translateY(${i===c0?-12:0}px)`}
@@ -815,7 +827,7 @@ function setView(big){$('#cs').classList.toggle('vbig',big);$('#vg').setAttribut
 $('#vg').onclick=()=>setView(false);$('#vb').onclick=()=>setView(true);
 $('#themeBtn2').onclick=()=>$('#themeBtn').click();
 $('#ovx').onclick=closeO;$('#ovn').onclick=()=>go(1);$('#ovp').onclick=()=>go(-1);
-fan.onclick=e=>{const d=e.target.closest('.fc');if(!d)return;if(!open){open=true;place();return}openO(+d.dataset.i)};
+fan.onclick=e=>{const d=e.target.closest('.fc');if(!d)return;if(mob.matches){openO(+d.dataset.i);return}if(!open){open=true;place();return}openO(+d.dataset.i)};
 if(matchMedia('(hover:hover)').matches){let t;fan.onmouseenter=()=>{clearTimeout(t);if(!open){open=true;place()}};fan.onmouseleave=()=>{t=setTimeout(()=>{open=false;place()},180)}}
 $$('.cc').forEach(x=>x.onclick=()=>openO(+x.dataset.i));
 fan.addEventListener('mouseover',e=>{const d=e.target.closest('.fc');const n=d?+d.dataset.i:-1;if(n!==hv){hv=n;if(open)place()}});fan.addEventListener('focusin',e=>{const d=e.target.closest('.fc');hv=d?+d.dataset.i:-1;if(open)place()});fan.addEventListener('mouseleave',()=>{hv=-1});addEventListener('resize',place);if(window.ResizeObserver)new ResizeObserver(place).observe(fan);
