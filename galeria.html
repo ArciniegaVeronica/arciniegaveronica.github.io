@@ -541,6 +541,17 @@ html,body{overflow-x:hidden;overflow-x:clip}
 .fan .fc:active{transform:scale(.98)!important}
 .fan.isopen .fc.hv::after{display:none}
 }
+.cc{aspect-ratio:auto;display:flex;flex-direction:column;align-items:stretch;padding:0;gap:0;background:var(--surface);border:1px solid var(--line);color:var(--fg);border-radius:18px;overflow:hidden}
+.cc::before{display:none!important}
+.cc .cim{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(150deg,var(--a),var(--cb))}
+.cc .cim img,.cc .cim video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.cc:hover .cim img,.cc:hover .cim video{transform:scale(1.04)}
+.cc .nm{position:static;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 15px 14px;font:400 16px/1.2 var(--display);letter-spacing:-.015em;color:var(--fg);background:none;border:0;border-radius:0;text-shadow:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc .nm::after{content:"↗";flex:none;font-size:14px;color:var(--muted);transition:transform .25s,color .25s}
+.cc:hover,.cc:focus-visible{transform:translateY(-3px);border-color:color-mix(in srgb,var(--lilac) 55%,transparent);box-shadow:0 14px 30px -20px color-mix(in srgb,var(--lilac) 70%,transparent)}
+.cc:hover .nm::after{transform:translate(2px,-2px);color:var(--fg)}
+.cc.on{box-shadow:0 0 0 2px var(--c)}
+@media(max-width:760px){.clients{grid-auto-rows:auto!important}.cc .nm{font-size:15px;padding:11px 12px 12px}}
 </style>
 </head>
 <body>
@@ -785,7 +796,12 @@ const N=B.length,st=b=>`--a:${b[3]};--cb:${b[4]};--c:${b[5]}`;
 const TL={reel:['Reel','Reel'],post:['Post','Post'],print:['Impreso','Print'],pack:['Packaging','Packaging'],brand:['Tablero de marca','Brand board']};
 let lang='es';const T=x=>Array.isArray(x)?x[lang==='es'?0:1]:x;
 let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
-const med=(src,vid,alt)=>vid?`<video src="${vid}#t=0.1" muted loop playsinline preload="metadata" aria-label="${alt}" onerror="this.remove()"></video>`:src?`<img src="${src}" alt="${alt}" loading="lazy" decoding="async" onerror="this.remove()">`:'';
+window.__ok=0;window.__bad=[];
+window.__sweep=function(){if(window.__ok>0){window.__bad.splice(0).forEach(function(m){m.remove()})}};
+window.__fail=function(el){var m=el.closest('.mini');el.remove();if(m){window.__bad.push(m);window.__sweep()}};
+['load','loadedmetadata'].forEach(function(t){document.addEventListener(t,function(e){var n=e.target&&e.target.tagName;if(n==='IMG'||n==='VIDEO'){window.__ok++;window.__sweep()}},true)});
+setTimeout(function(){window.__sweep()},2500);
+const med=(src,vid,alt)=>vid?`<video src="${vid}#t=0.1" muted loop playsinline preload="metadata" aria-label="${alt}" onerror="__fail(this)"></video>`:src?`<img src="${src}" alt="${alt}" loading="lazy" decoding="async" onerror="__fail(this)">`:'';
 const cls=p=>p.t==='reel'?'reel':p.t==='print'?'print':p.t==='brand'?'brandw':'';
 const mini=(p,x='')=>{const cap=B[p.b][0]+' · '+TL[p.t][lang==='es'?0:1];return `<div class="mini ${cls(p)}${p.hl?' hl':''}" role="button" tabindex="0" data-b="${p.b}" data-t="${p.t}" data-src="${p.src}" data-video="${p.video}" data-cap="${cap}" aria-label="${cap}" style="${st(B[p.b])};--ar:${p.ar};aspect-ratio:${p.ar};${x}">${med(p.src,p.video,cap)}${p.t==='reel'?'<span class="sh"></span><i></i>':''}<span class="cap">${cap}</span></div>`};
 const lane=(t,c,h)=>{const m=P.filter(p=>t.includes(p.t)&&p.src).sort(()=>rnd()-.5).slice(0,14);const x=m.map(p=>mini({...p,video:null},`height:${h}px;width:${Math.round(h*p.ar)}px;aspect-ratio:auto`)).join('');return `<div class="lane ${c}">${x}${x}</div>`};
@@ -796,7 +812,7 @@ const cov=b=>b[7]?(/\.mp4$/.test(b[7])?med('',b[7],b[0]):med(b[7],'',b[0])):'';
 let c0=0,cf=0,open=false,hv=-1;const fan=$('#dk2');
 fan.innerHTML=B.slice(0,FEAT).map((b,i)=>`<button type="button" class="fc" style="${st(b)}" data-i="${i}">${cov(b)}<span class="nm"></span><small></small></button>`).join('')+'<span class="hint" id="hint"></span>';
 // clientes
-$('#cl').innerHTML=B.slice(FEAT).map((b,i)=>`<button type="button" class="cc" style="${st(b)}" data-i="${i+FEAT}">${cov(b)}<span class="nm">${b[0]}</span></button>`).join('');
+$('#cl').innerHTML=B.slice(FEAT).map((b,i)=>`<button type="button" class="cc" style="${st(b)}" data-i="${i+FEAT}"><span class="cim">${cov(b)}</span><span class="nm">${b[0]}</span></button>`).join('');
 function sheet(){const b=B[c0],list=P.filter(p=>p.b===c0);$('#cs').innerHTML=list.map(p=>mini(p)).join('')}
 const mob=matchMedia('(max-width:760px)');
 function place(){const cs=$$('.fc');if(mob.matches){fan.classList.remove('isopen');cs.forEach((d,i)=>{d.style.transform='';d.style.zIndex='';d.style.opacity=1;d.classList.remove('hv','on');d.classList.add('lbl');d.querySelector('.nm').textContent=B[i][0];d.querySelector('small').textContent=T([B[i][1],B[i][2]])});$$('.cc').forEach(x=>x.classList.toggle('on',+x.dataset.i===c0));return}
