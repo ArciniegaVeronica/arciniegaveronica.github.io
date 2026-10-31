@@ -662,6 +662,35 @@ html,body{overflow-x:hidden;overflow-x:clip}
 /* durante la carga no se anima nada que no deba moverse */
 .boot body,.boot .mark b,.boot .mark span,.boot .theme{transition:none!important}
 .i18n-wait .top,.i18n-wait main{visibility:hidden}
+
+/* apartado gráfico: carrusel numerado en tarjetas */
+.gf{margin-top:64px}
+.gf-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:18px}.gf-head h3{font-size:24px}
+.gf-nav{display:flex;align-items:center;gap:10px}.gf-count{font:400 14px var(--body);color:var(--muted);margin-right:6px;font-variant-numeric:tabular-nums}.gf-count b{font:500 18px var(--display);color:var(--fg)}
+.go-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);font-size:20px;cursor:pointer;transition:border-color .25s,transform .25s}.go-btn:hover{border-color:var(--lilac);transform:translateY(-1px)}.go-btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.gf-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px 10px;margin:0 -2px;-webkit-mask-image:linear-gradient(90deg,#000 94%,transparent);mask-image:linear-gradient(90deg,#000 94%,transparent)}
+.gf-track.end{-webkit-mask-image:none;mask-image:none}.gf-track::-webkit-scrollbar{display:none}
+.gf-track:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:22px}
+.gf-card{flex:0 0 clamp(250px,26vw,310px);scroll-snap-align:start;border-radius:24px;overflow:hidden;position:relative;background:var(--surface-2)}
+.gf-th{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;color:#fff;text-decoration:none;background:linear-gradient(140deg,var(--c,#444),#15111c)}
+.gf-th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}.gf-card:hover .gf-th img{transform:scale(1.05)}
+.gf-th::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(10,8,16,.78));pointer-events:none}
+.gf-badges{position:absolute;left:14px;top:14px;z-index:2}
+.gf-b{font:600 10.5px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:#17131f}
+.gf-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px}
+.gf-txt{display:grid;gap:3px;min-width:0}
+.gf-txt strong{font:400 clamp(21px,2vw,25px)/1.1 var(--display);letter-spacing:-.02em}
+.gf-txt small{font:500 11px var(--body);letter-spacing:.1em;text-transform:uppercase;opacity:.78}
+.gf-go{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .3s,color .3s,transform .3s}
+.gf-go svg{width:17px;height:17px}
+.gf-card:hover .gf-go{background:var(--pastel);color:var(--on-pastel);border-color:transparent;transform:translateX(2px)}
+.gf-th:focus-visible{outline:2px solid var(--teal);outline-offset:-4px}
+.gf-mos{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px}
+.gf-mos img{position:static;width:100%;height:100%;object-fit:cover;transform:none!important}
+.gf-more .gf-th::after{background:linear-gradient(180deg,rgba(10,8,16,.35),rgba(10,8,16,.82))}
+.gf-bar{height:3px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:12px}.gf-bar i{display:block;height:100%;width:18%;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--lilac),var(--pink));transition:width .15s}
+@media(max-width:560px){.gf-card{flex-basis:74%}.gf-count{display:none}}
+@media(prefers-reduced-motion:reduce){.gf-th img,.gf-link svg{transition:none}}
 </style>
 </head>
 <body>
@@ -744,18 +773,18 @@ html,body{overflow-x:hidden;overflow-x:clip}
       <div class="more-row" id="moreRow"><button class="btn-ghost" type="button" id="moreBtn" aria-expanded="false" aria-controls="grid"></button></div>
 
       <div id="graphicBlock">
-        <div class="mood-head">
-          <h3 data-en="Graphic design &amp; art direction">Diseño gráfico y dirección de arte</h3>
+        <div class="gf" id="gf">
+          <div class="gf-head"><h3 data-en="Graphic design &amp; art direction">Diseño gráfico y dirección de arte</h3><div class="gf-nav"><span class="gf-count" aria-live="polite"><b id="gfn">01</b> / 07</span><button type="button" class="go-btn" data-d="-1" aria-label="Anterior">‹</button><button type="button" class="go-btn" data-d="1" aria-label="Siguiente">›</button></div></div>
+          <div class="gf-track" tabindex="0" aria-label="Proyectos de diseño gráfico"><article class="gf-card" style="--c:#C49A6C"><a class="gf-th" href="rosette-bakery.html" aria-label="Rosette Bakery"><img src="assets/rosette-hero.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:center"><span class="gf-badges"><span class="gf-b" data-en="Concept project">Proyecto conceptual</span></span><span class="gf-cap"><span class="gf-txt"><strong>Rosette Bakery</strong><small data-en="Artisan bakery">Pastelería artesanal</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article>
+<article class="gf-card" style="--c:#c9a46b"><a class="gf-th" href="chiltepik.html" aria-label="Chiltepiik"><img src="assets/chiltepik-hero.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:center"><span class="gf-badges"></span><span class="gf-cap"><span class="gf-txt"><strong>Chiltepiik</strong><small data-en="Artisanal food">Alimentos artesanales</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article>
+<article class="gf-card" style="--c:#E8650A"><a class="gf-th" href="habemus-pizza.html" aria-label="Habemus Pizza"><img src="assets/habemus-pizza-hero.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:center"><span class="gf-badges"></span><span class="gf-cap"><span class="gf-txt"><strong>Habemus Pizza</strong><small data-en="Food &amp; events">Food y eventos</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article>
+<article class="gf-card" style="--c:#2D6B45"><a class="gf-th" href="jaguares.html" aria-label="Jaguares de Nayarit"><img src="assets/jaguares-hero.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:center"><span class="gf-badges"></span><span class="gf-cap"><span class="gf-txt"><strong>Jaguares de Nayarit</strong><small data-en="Sport &amp; entertainment">Deporte y entretenimiento</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article>
+<article class="gf-card" style="--c:#7BA7BC"><a class="gf-th" href="holly-body.html" aria-label="Holly Body"><img src="assets/holly-body-hero.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:30% center"><span class="gf-badges"></span><span class="gf-cap"><span class="gf-txt"><strong>Holly Body</strong><small data-en="Social Media">Social Media</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article>
+<article class="gf-card" style="--c:#5fc4bf"><a class="gf-th" href="eka-active.html" aria-label="EKA Active"><img src="assets/eka-active-hero.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:center 40%"><span class="gf-badges"></span><span class="gf-cap"><span class="gf-txt"><strong>EKA Active</strong><small data-en="Fitness &amp; wellness">Fitness y bienestar</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article>
+<article class="gf-card gf-more"><a class="gf-th" href="galeria.html" aria-label="Ver todo mi trabajo gráfico"><span class="gf-mos"><img src="assets/chiltepik-hero.jpg" alt="" loading="lazy"><img src="assets/habemus-pizza-hero.jpg" alt="" loading="lazy"><img src="assets/jaguares-hero.jpg" alt="" loading="lazy"><img src="assets/eka-active-hero.jpg" alt="" loading="lazy"></span><span class="gf-cap"><span class="gf-txt"><strong data-en="And more work">Y más trabajo</strong><small data-en="See all my graphic work">Ver todo mi trabajo gráfico</small></span><span class="gf-go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></span></a></article></div>
+          <div class="gf-bar"><i></i></div>
         </div>
-        <div class="mood">
-          <a class="tile t1" href="rosette-bakery.html" style="--a:#F1D9BE;--b:#B8694A"><img src="assets/rosette-hero.jpg" alt="" loading="lazy" onerror="this.remove()"><h4>Rosette Bakery</h4><span data-en="Brand Identity · Logo">Identidad de Marca · Logo</span></a>
-          <a class="tile t2" href="chiltepik.html" style="--a:#edc491;--b:#5C6B3A"><img src="assets/chiltepik-hero.jpg" alt="" loading="lazy" onerror="this.remove()"><h4>Chiltepiik</h4><span data-en="Art Direction · Social Media">Dirección de Arte · Social Media</span></a>
-          <a class="tile t3" href="habemus-pizza.html" style="--a:#E8650A;--b:#CC3300"><img src="assets/habemus-pizza-hero.jpg" alt="" loading="lazy" onerror="this.remove()"><h4>Habemus Pizza</h4><span data-en="Social Media · Print Material">Social Media · Material Impreso</span></a>
-          <a class="tile t4" href="jaguares.html" style="--a:#8fab6c;--b:#2D6B45"><img src="assets/jaguares-hero.jpg" alt="" loading="lazy" onerror="this.remove()"><h4>Jaguares de Nayarit</h4><span data-en="Social Media · Sports Identity">Social Media · Identidad Deportiva</span></a>
-          <a class="tile t5" href="holly-body.html" style="--a:#E8D5C4;--b:#7BA7BC"><img src="assets/holly-body-hero.jpg" alt="" loading="lazy" onerror="this.remove()"><h4>Holly Body</h4><span data-en="Social Media · Digital Advertising">Social Media · Publicidad Digital</span></a>
-          <a class="tile t6" href="eka-active.html" style="--a:#86e1dd;--b:#5C7A4A"><img src="assets/eka-active-hero.jpg" alt="" loading="lazy" onerror="this.remove()"><h4>EKA Active</h4><span data-en="Social Media · Visual Direction">Social Media · Dirección Visual</span></a>
-        </div>
-        <div class="more-row"><a class="btn-ghost" href="galeria.html"><span data-en="See all my graphic work">Ver todo mi trabajo gráfico</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+        
       </div>
     </div>
   </section>
@@ -1367,5 +1396,9 @@ html,body{overflow-x:hidden;overflow-x:clip}
 (function(){var c=function(){if(/index\.html$/.test(location.pathname)||location.hash==='#inicio')history.replaceState(null,'','/'+(location.hash&&location.hash!=='#inicio'?location.hash:''))};c();
 document.addEventListener('click',function(e){var a=e.target.closest('a[href="#inicio"]');if(!a)return;e.preventDefault();scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'','/')})})();
 </script>
-</body>
+<script>(function(){var t=document.querySelector('.gf-track'),bar=document.querySelector('.gf-bar i'),n=document.getElementById('gfn'),cards=[].slice.call(t.children);
+function upd(){var m=t.scrollWidth-t.clientWidth;bar.style.width=(18+82*(m>0?t.scrollLeft/m:1))+'%';t.classList.toggle('end',t.scrollLeft>=m-4);var L=t.getBoundingClientRect().left,b=0,d=1e9;cards.forEach(function(c,i){var x=Math.abs(c.getBoundingClientRect().left-L);if(x<d){d=x;b=i}});if(t.scrollLeft>=m-4)b=cards.length-1;n.textContent=('0'+(b+1)).slice(-2)}
+t.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+[].forEach.call(document.querySelectorAll('.go-btn'),function(b){b.onclick=function(){t.scrollBy({left:+b.dataset.d*(cards[0].offsetWidth+18),behavior:'smooth'})}});
+t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();t.scrollBy({left:cards[0].offsetWidth+18,behavior:'smooth'})}if(e.key==='ArrowLeft'){e.preventDefault();t.scrollBy({left:-(cards[0].offsetWidth+18),behavior:'smooth'})}});})();</script></body>
 </html>
